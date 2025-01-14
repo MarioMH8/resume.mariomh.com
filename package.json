@@ -32,6 +32,7 @@
 		"lint:fix": "eslint --fix .",
 		"postinstall": "astro sync",
 		"start": "astro preview",
+		"test": "bun test",
 		"typecheck": "astro check & tsc --noEmit"
 	},
 	"dependencies": {
