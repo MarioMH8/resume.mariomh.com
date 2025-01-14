@@ -1,0 +1,34 @@
+---
+import type { HTMLTag, Polymorphic } from 'astro/types';
+import { ArrowIcon } from '../icons';
+
+type Props<Tag extends HTMLTag = 'a'> = Polymorphic<{ as: Tag }> & {
+	variant?: 'bright';
+};
+
+const { variant, class: cls, "class:list": clsList, ...properties } = Astro.props;
+---
+
+<a
+	{...properties}
+	class:list={[
+		'group',
+		'font-primary',
+		'hover:text-primary-foreground-highlight dark:hover:text-primary',
+		'flex items-center gap-2',
+		'decoration-dotted underline-offset-5 hover:underline',
+		variant === 'bright' && 'text-primary-foreground-highlight dark:text-primary',
+		cls,
+		clsList,
+	]}>
+	<slot/>
+	<ArrowIcon
+		aria-hidden='true'
+		class:list={[
+			'size-4',
+			'print:hidden',
+			'transition motion-reduce:transition-none ease-linear',
+			'group-hover:-translate-y-0.5 group-hover:translate-x-0.5',
+		]}
+	/>
+</a>

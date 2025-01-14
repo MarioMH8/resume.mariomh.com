@@ -1,0 +1,17 @@
+---
+import SectionHeading from '@components/section-heading.astro';
+import type { HTMLTag, Polymorphic } from 'astro/types';
+
+type Props<Tag extends HTMLTag = 'section'> = Polymorphic<{ as: Tag }>;
+
+const { class: cls, "class:list": clsList, title, ...properties } = Astro.props;
+---
+
+<section
+	{...properties}
+	class:list={['flex flex-col gap-2 print:gap-0', cls, clsList]}>
+	{
+		title && (<SectionHeading>{title}</SectionHeading>)
+	}
+	<slot />
+</section>

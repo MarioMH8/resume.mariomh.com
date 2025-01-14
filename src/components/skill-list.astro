@@ -1,0 +1,48 @@
+---
+import type cv from 'resume';
+import type { HTMLTag, Polymorphic } from 'astro/types';
+import { SKILLS_ICONS } from '../icons';
+
+type Skill = typeof cv.skills[number];
+
+type Props<Tag extends HTMLTag = 'ul'> = Polymorphic<{ as: Tag }> & {
+	big?: boolean;
+	skills: string[] | Skill[];
+};
+
+const { class: cls, "class:list": clsList, big, skills, ...properties } = Astro.props;
+
+---
+
+<ul
+	{...properties}
+	class:list={[
+		'flex flex-row flex-wrap',
+		big ? 'gap-x-6 gap-y-4' : 'gap-2',
+		cls,
+		clsList,
+	]}>
+	{
+		skills.map(skill => {
+			const name = typeof skill === 'string' ? skill : skill.name;
+			const Icon = SKILLS_ICONS[name];
+
+			<!--TODO: Incluir level y keywords-->
+
+			return (
+				<li
+					class:list={[
+						'text-sm',
+						'rounded-md px-2 py-0.5',
+						'text-primary-foreground-highlight',
+						'bg-primary-background-subtle/40 dark:bg-primary-dark-background-subtle',
+						'border border-primary-border dark:border-primary-dark-border',
+						'flex gap-2 items-center flex-row',
+					]}>
+					{Icon && <Icon class={big ? 'size-5' : 'size-4'} />}
+					<span>{name}</span>
+				</li>
+			);
+		})
+	}
+</ul>

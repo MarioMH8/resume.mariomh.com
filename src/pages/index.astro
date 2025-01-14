@@ -1,0 +1,56 @@
+---
+import About from '@features/about.astro';
+import Experience from '@features/experience.astro';
+import Hero from '@features/hero.astro';
+import Projects from '@features/projects.astro';
+import Skills from '@features/skills.astro';
+import Education from '@features/education.astro';
+import Awards from '@features/awards.astro';
+import Layout from '@layout';
+import References from '@features/references.astro';
+import Publications from '@features/publications.astro';
+import Interests from '@features/interests.astro';
+---
+
+<Layout>
+	<main
+		class:list={[
+			'relative container print:px-8 print:py-4',
+			'max-w-7xl print:max-w-none',
+			'max-lg:py-16 xl:p-16',
+			'grid',
+			'xl:grid-cols-6 print:grid-cols-1',
+			'gap-12 xl:gap-24 print:gap-6',
+		]}>
+		<div
+			class:list={[
+				'space-y-6 xl:col-span-2',
+				'print:col-span-1 print:grid print:grid-cols-2 print:gap-3 print:space-y-0',
+				'max-xl:max-w-180 max-xl:mx-auto',
+			]}>
+			<Hero />
+			<About />
+		</div>
+		<div
+			class:list={[
+				'space-y-10 xl:col-span-4',
+				'print:col-span-1 print:grid print:grid-cols-4 print:gap-2 print:space-y-0',
+			]}>
+			<Experience />
+			<Projects />
+			<Skills />
+			<Education />
+			<Awards />
+			<References />
+			<Publications />
+			<Interests />
+		</div>
+	</main>
+</Layout>
+
+<style>
+	@page {
+		size: auto;
+		margin: 0;
+	}
+</style>

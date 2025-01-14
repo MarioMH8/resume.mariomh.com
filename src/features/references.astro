@@ -1,0 +1,19 @@
+---
+import Section from '@components/section.astro';
+import Span from '@mariomh/span/astro';
+import Paragraph from '@mariomh/paragraph/astro';
+import { references } from 'resume';
+---
+
+{references && references.length > 0 && (
+	<Section
+		class='print:hidden space-y-6'
+		title='Referencias'>
+		{references.map(({ name, reference }) => {
+			return (<figure class='mb-0'>
+				<Paragraph as="blockquote" class='mb-0'>{reference}</Paragraph>
+				<Span as='figcaption' dimension='sm' variant='muted'>&mdash; {name}</Span>
+			</figure>)
+		})}
+	</Section>
+)}

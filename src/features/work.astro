@@ -1,0 +1,228 @@
+---
+import cv from 'resume';
+import Heading from '@mariomh/heading/astro';
+import Paragraph from '@mariomh/paragraph/astro';
+import cn from '@mariomh/paragraph/class-name';
+import Span from '@mariomh/span/astro';
+
+import {  CaretDownIcon } from '@icons';
+import SkillList from '@components/skill-list.astro';
+import Link from '@components/link.astro';
+
+type Work = (typeof cv.work)[number];
+
+interface Props {
+	work: Work;
+}
+
+const { work } = Astro.props;
+const {
+	achievements,
+	endDate,
+	location,
+	location_type: locationType,
+	name,
+	position,
+	responsibilities,
+	skills,
+	startDate,
+	summary,
+	url,
+} = work;
+
+const startYear = new Date(startDate).getFullYear();
+const endYear = endDate ? new Date(endDate).getFullYear() : 'Presente';
+---
+
+<li class='break-inside-avoid'>
+	<div
+		class:list={[
+			'relative',
+			'grid',
+			'print:grid-cols-1 md:grid-cols-10',
+			'md:gap-8 lg:gap-6 print:gap-1',
+			'lg:hover:!opacity-100',
+		]}>
+		<header class='relative text-sm mt-1 font-medium print:font-semibold md:col-span-2'>
+			<time
+				data-title={startDate}
+				datetime={startDate}>
+				{startYear}
+			</time>
+			-
+			<time
+				data-title={endDate}
+				datetime={endDate}>
+				{endYear}
+			</time>
+		</header>
+		<div
+			class:list={[
+				'relative md:col-span-8',
+				'flex flex-col',
+				'before:absolute print:before:hidden before:w-px before:h-full before:-ml-6 before:mt-2 before:bg-primary-foreground-highlight',
+			]}>
+			<div
+				class:list={[
+					'absolute print:hidden w-2 h-2 mt-2.5 -translate-x-[1.71rem]',
+					'rounded-full',
+					'bg-primary-foreground-highlight',
+					'ring-4 ring-cv-background dark:ring-cv-dark-background',
+				]}>
+			</div>
+			<Span
+				aria-label='{position} - {company}'
+				as='h3'
+				class='inline-flex items-center gap-2 font-primary w-fit'
+				dimension='lg'
+				weight='base'>
+				<span>{position}</span>
+				<span>@</span>
+				{
+					url ? (
+						<Link
+							variant='bright'
+							href={url}
+							target='_blank'
+							rel='noopener noreferrer'
+							title={`Ver ${name}`}>
+							{name}
+						</Link>
+					) : (
+						<span>{name}</span>
+					)
+				}
+			</Span>
+			{
+				(location || locationType) && (
+					<Span
+						class='print:text-xs'
+						dimension='sm'
+						variant='muted'>
+						{[location, locationType].filter(Boolean).join(' - ')}
+					</Span>
+				)
+			}
+			<div class='mt-4 mb-6 print:mt-2 print:mb-4 flex flex-col gap-3 print:gap-1'>
+				{
+					summary && (
+						<div>
+							<Heading
+								class='text-base print:text-sm mb-0'
+								heading='h4'>
+								Resumen:
+							</Heading>
+							<Paragraph
+								class='print:text-xs mb-0'
+								dimension='sm'
+								variant='muted'>
+								{summary}
+							</Paragraph>
+						</div>
+					)
+				}
+				{
+					(responsibilities || achievements) && (
+						<>
+							<div
+								class:list={[
+									'relative',
+									'flex flex-col gap-3 print:gap-1',
+									'overflow-y-hidden',
+									'data-expanded:max-h-fit not-data-expanded:max-h-12',
+									`lg:after:absolute lg:after:content-[''] lg:after:bottom-0 lg:after:w-full lg:after:h-12`,
+									'lg:after:bg-gradient-to-t',
+									'lg:after:from-cv-background lg:after:to-cv-background/0',
+									'dark:lg:after:from-cv-dark-background dark:lg:after:to-cv-dark-background/0',
+									'max-md:!h-auto print:!max-h-fit print:after:hidden',
+									'not-print:data-expanded:after:hidden',
+								]}>
+								{responsibilities && (
+									<div>
+										<Heading
+											class='text-base print:text-sm mb-0'
+											heading='h4'>
+											Responsabilidades:
+										</Heading>
+										<ul
+											class:list={cn(
+												{ dimension: 'sm', variant: 'muted' },
+												'print:text-xs mb-0 list-disc'
+											)}>
+											{responsibilities.map(r => (
+												<li class='ml-4 marker:text-primary-foreground-highlight dark:marker:text-primary'>
+													{r}
+												</li>
+											))}
+										</ul>
+									</div>
+								)}
+								{achievements && (
+									<div>
+										<Heading
+											class='text-base print:text-sm mb-0'
+											heading='h4'>
+											Logros:
+										</Heading>
+										<ul
+											class:list={cn(
+												{ dimension: 'sm', variant: 'muted' },
+												'print:text-xs mb-0 list-disc'
+											)}>
+											{achievements.map(r => (
+												<li class='ml-4 marker:text-primary-foreground-highlight dark:marker:text-primary'>
+													{r}
+												</li>
+											))}
+										</ul>
+									</div>
+								)}
+							</div>
+							<button
+								class:list={[
+									'show-more',
+									'print:hidden',
+									'w-fit',
+									'text-sm',
+									'group/show-more',
+									'flex flex-row justify-center items-center gap-1.5',
+									'text-primary-foreground/65 dark:text-primary-dark-foreground/65',
+									'hover:text-primary-foreground/85 hover:dark:text-primary-dark-foreground/85',
+									'cursor-pointer underline transition-all hover:text-skin-base',
+								]}>
+								<span class='hidden group-not-data-expanded/show-more:inline'>Mostrar más</span>
+								<span class='hidden group-data-expanded/show-more:inline'>Mostrar menos</span>
+								<CaretDownIcon
+									class:list={[
+										'w-4 h-4',
+										'transition-transform ease-out motion-reduce:transition-none',
+										'group-hover/show-more:translate-y-0.5',
+										'group-data-expanded/show-more:rotate-180',
+									]}
+								/>
+							</button>
+						</>
+					)
+				}
+				{
+					skills && (
+						<SkillList
+							aria-label='Tecnologías utilizadas'
+							class='print:hidden'
+							skills={skills}/>
+					)
+				}
+			</div>
+		</div>
+	</div>
+</li>
+
+<script>
+	const showMoreButtons = document.querySelectorAll('.show-more');
+	showMoreButtons.forEach(button => {
+		button.addEventListener('click', () => {
+			button.previousElementSibling?.toggleAttribute('data-expanded');
+			button.toggleAttribute('data-expanded');
+		});
+	});
+</script>

@@ -1,0 +1,28 @@
+---
+import Section from '@components/section.astro';
+import { interests } from 'resume';
+import ListElement from '@components/list-element.astro';
+import List from '@components/list.astro';
+import { INTEREST_ICONS } from '../icons';
+---
+
+{interests && interests.length > 0 && (
+	<Section
+		class='print:hidden space-y-6'
+		title='Aficiones'>
+		<List>
+			{
+				interests.map(({ name, keywords }) => {
+					const description = keywords.join(' • ');
+					const Icon = INTEREST_ICONS[name];
+
+					return (
+						<ListElement title={name} description={description}>
+							{Icon && <Icon slot='icon' />}
+						</ListElement>
+					);
+				})
+			}
+		</List>
+	</Section>
+)}

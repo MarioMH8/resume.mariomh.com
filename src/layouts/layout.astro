@@ -1,0 +1,71 @@
+---
+import '@mariomh/archia/100.css';
+import '@mariomh/archia/300.css';
+import '@mariomh/archia/400.css';
+import '@mariomh/archia/500.css';
+import '@mariomh/archia/600.css';
+import '@mariomh/archia/700.css';
+import '@fontsource/dm-sans/100.css';
+import '@fontsource/dm-sans/200.css';
+import '@fontsource/dm-sans/300.css';
+import '@fontsource/dm-sans/400.css';
+import '@fontsource/dm-sans/500.css';
+import '@fontsource/dm-sans/600.css';
+import '@fontsource/dm-sans/700.css';
+import '@fontsource/dm-sans/800.css';
+import '@fontsource/dm-sans/900.css';
+import './layout.css';
+
+import cv from 'resume';
+import { SEO } from 'astro-seo';
+import type { HTMLTag, Polymorphic } from 'astro/types';
+
+type Props<Tag extends HTMLTag = 'body'> = Polymorphic<{ as: Tag }> & {
+	title?: string;
+	description?: string;
+};
+
+const { description, title, ...properties } = Astro.props;
+const computedTitle = title ? `${title} - ${cv.basics.name}` : `${cv.basics.name} - ${cv.basics.label}`;
+const computedDescription = description ?? cv.basics.summaryShort;
+---
+
+<!doctype html>
+<html lang='es'>
+	<head>
+		<meta charset='utf8' />
+		<meta
+			content='width=device-width'
+			name='viewport'
+		/>
+
+		<SEO
+			description={computedDescription}
+			openGraph={{
+				basic: {
+					image: '/og.webp',
+					title: `${cv.basics.name} - ${cv.basics.label}`,
+					type: 'website',
+				},
+			}}
+			title={computedTitle}
+		/>
+
+		<meta
+			content='#0F1214'
+			name='theme-color'
+		/>
+		<meta
+			content={Astro.generator}
+			name='generator'
+		/>
+
+		<link
+			href='/sitemap-index.xml'
+			rel='sitemap'
+		/>
+	</head>
+	<body {...properties} class:list={['bg-cv-background dark:bg-cv-dark-background', properties.class]}>
+		<slot />
+	</body>
+</html>

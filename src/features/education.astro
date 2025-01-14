@@ -1,0 +1,94 @@
+---
+import Section from '@components/section.astro';
+import { certificates, education, languages } from 'resume';
+import SectionHeading from '@components/section-heading.astro';
+import List from '@components/list.astro';
+import Span from '@mariomh/span/astro';
+import Heading from '@mariomh/heading/astro';
+import { GraduationCap, ScrollText, Languages } from 'lucide-astro';
+
+import ListElement from '@components/list-element.astro';
+---
+
+{((education && education.length > 0) || (certificates && certificates.length > 0) || (languages && languages.length > 0)) && (
+	<Section
+		class='order-first'
+		title='Educación'>
+		<List>
+			{
+				education.map(({ area, endDate, institution, startDate, url, studyType, score, courses }) => {
+					const startYear = new Date(startDate).getFullYear();
+					const endYear = endDate === undefined ? 'Presente' : new Date(endDate).getFullYear();
+					const years = `${startYear} - ${endYear}`;
+					const description = `${area} - ${studyType}`;
+					const badge = score ? `Nota: ${score}` : undefined;
+					const badgeAriaLabel = `Nota de ${institution}`;
+
+					return (
+						<ListElement title={institution} description={description} time={years} url={url}>
+							<GraduationCap slot='icon' />
+							{score && (
+								<Span
+									class='print:hidden'
+									aria-label={badgeAriaLabel}
+									dimension='xs'
+									slot='badge'
+									variant='muted'>
+									{badge}
+								</Span>
+							)}
+							{courses && courses.length > 0 && (
+								<Fragment>
+									<Heading heading='h5' class='mt-2 print:hidden' subtitle as='span'>Asignaturas</Heading>
+									<ul class='print:hidden list-disc ml-4 space-y-2'>
+										{courses.map(course => {
+											return <Span as='li' variant='muted' dimension='sm'>{course}</Span>;
+										})}
+									</ul>
+								</Fragment>
+							)}
+						</ListElement>
+					);
+				})
+			}
+		</List>
+		{
+			certificates && certificates.length > 0 && (
+				<>
+					<SectionHeading heading='h4' class='text-lg print:text-lg mt-4 print:mb-1'>
+						Certificados
+					</SectionHeading>
+					<List>
+						{certificates.map(({ date, issuer, name, url }) => {
+							const year = new Date(date).getFullYear();
+
+							return (
+								<ListElement title={name} description={issuer} time={year} url={url}>
+									<ScrollText slot='icon' />
+								</ListElement>
+							);
+						})}
+					</List>
+				</>
+			)
+		}
+		{
+			languages && languages.length > 0 && (
+				<>
+					<SectionHeading heading='h4' class='text-lg print:text-lg mt-4 print:mb-1'>
+						Idiomas
+					</SectionHeading>
+					<List>
+						{languages.map(({ language, fluency }) => {
+							return (
+								<ListElement title={language} description={fluency}>
+									<Languages slot='icon' />
+								</ListElement>
+							);
+						})}
+					</List>
+				</>
+			)
+		}
+	</Section>
+)}

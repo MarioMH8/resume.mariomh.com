@@ -1,0 +1,57 @@
+---
+import Span from '@mariomh/span/astro';
+import Link from '@components/link.astro';
+import type { HTMLTag, Polymorphic } from 'astro/types';
+
+type Props<Tag extends HTMLTag = 'li'> = Polymorphic<{ as: Tag }> & {
+	time?: string | number | undefined;
+	title: string;
+	description?: string;
+	url?: string | undefined;
+};
+
+const {class: cls, "class:list": clsList, title, url, description, time, ...properties } = Astro.props;
+---
+
+<li
+	{...properties}
+	class:list={[
+		'flex flex-row print:flex-col gap-4 print:gap-0',
+		'[&>svg]:size-5 [&>svg]:my-0.5 [&>svg]:shrink-0 [&>svg]:print:hidden',
+		cls,
+		clsList,
+	]}>
+	<slot name='icon'/>
+	<Span
+		class='not-print:order-last shrink-0'
+		as='time'
+		dimension='sm'
+		variant='muted'>
+		{time}
+	</Span>
+	<div class='w-full flex flex-col'>
+		<span class='flex flec-row items-center gap-2'>
+			{url ? (
+				<Link
+					class='w-fit'
+					href={url}
+					target='_blank'
+					rel='noopener noreferrer'
+					title={`Ver ${title}`}>
+					{title}
+				</Link>
+			) : (
+				<Span class='font-primary'>
+				{title}
+			</Span>
+			)}
+			<slot name='badge'/>
+		</span>
+		<Span
+			dimension='sm'
+			variant='muted'>
+			{description}
+		</Span>
+		<slot/>
+	</div>
+</li>

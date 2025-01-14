@@ -1,0 +1,13 @@
+---
+import Section from '@components/section.astro';
+import Work from '@features/work.astro';
+import { work } from 'resume';
+---
+
+<Section
+	class='print:col-span-3'
+	title='Experiencia'>
+	<ul class='flex flex-col'>
+		{work.map(w => <Work work={w} />)}
+	</ul>
+</Section>

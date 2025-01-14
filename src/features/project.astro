@@ -1,0 +1,70 @@
+---
+import { GitIcon } from '@icons';
+import cv from 'resume';
+import Paragraph from '@mariomh/paragraph/astro';
+import Span from '@mariomh/span/astro';
+import { Code } from 'lucide-astro';
+import Article from '@components/article.astro';
+import Link from '@components/link.astro';
+
+type Project = (typeof cv.projects)[number];
+
+interface Props {
+	project: Project;
+}
+const { project } = Astro.props;
+const { description, github, highlights, isActive, name, url } = project;
+---
+
+<Article>
+	<header class='flex items-center justify-between space-x-2'>
+		<div class='flex items-center gap-2'>
+			<Code
+				aria-hidden='true'
+				class='size-4'
+			/>
+			{
+				(isActive && url) ? (
+					<Link
+						href={url}
+						target='_blank'
+						rel='noopener noreferrer'
+						title={`Ver ${name}`}>
+						{name}
+					</Link>
+				) : (
+					<Span class='font-primary'>{name}</Span>
+				)
+			}
+		</div>
+		{
+			github && (
+				<a
+					class='opacity-75 hover:opacity-100 transition-opacity motion-reduce:transition-none ease-linear'
+					href={github}
+					rel='noopener noreferrer'
+					target='_blank'
+					title='Ver el repositorio de código'>
+					<GitIcon class='size-4' />
+				</a>
+			)
+		}
+	</header>
+	<Paragraph
+		class='my-2'
+		dimension='sm'>
+		{description}
+	</Paragraph>
+	<ul
+		class:list={[
+			'text-sm text-primary-foreground/65 dark:text-primary-dark-foreground/65',
+			'list-disc space-y-1',
+			'ml-4',
+		]}>
+		{
+			highlights.map(highlight => {
+				return <li>{highlight}</li>;
+			})
+		}
+	</ul>
+</Article>

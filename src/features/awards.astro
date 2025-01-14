@@ -1,0 +1,27 @@
+---
+import Section from '@components/section.astro';
+import { awards } from 'resume';
+import { Trophy } from 'lucide-astro';
+import List from '@components/list.astro';
+import ListElement from '@components/list-element.astro';
+---
+{awards && awards.length > 0 && (
+	<Section
+		class='print:hidden'
+		title='Premios'>
+		<List>
+			{
+				awards.map(({ title, awarder, date, summary }) => {
+					const year = new Date(date).getFullYear();
+					const description = `${awarder} - ${summary}`;
+
+					return (
+						<ListElement title={title} description={description} time={year}>
+							<Trophy slot='icon' />
+						</ListElement>
+					);
+				})
+			}
+		</List>
+	</Section>
+)}

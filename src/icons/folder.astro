@@ -1,0 +1,19 @@
+---
+import type { HTMLTag, Polymorphic } from 'astro/types';
+
+type Props<Tag extends HTMLTag = 'svg'> = Polymorphic<{ as: Tag }>;
+
+const properties = Astro.props;
+---
+
+<svg
+	fill='none'
+	stroke='currentColor'
+	stroke-linecap='round'
+	stroke-linejoin='round'
+	stroke-width='2'
+	viewBox='0 0 24 24'
+	xmlns='http://www.w3.org/2000/svg'
+	{...properties}>
+	<polyline points='6 9 12 15 18 9'></polyline>
+</svg>

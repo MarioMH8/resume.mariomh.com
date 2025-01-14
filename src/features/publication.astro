@@ -1,0 +1,45 @@
+---
+import cv from 'resume';
+import Paragraph from '@mariomh/paragraph/astro';
+import Span from '@mariomh/span/astro';
+import { Pencil } from 'lucide-astro';
+import Article from '@components/article.astro';
+import Link from '@components/link.astro';
+
+type Publication = (typeof cv.publications)[number];
+
+interface Props {
+	publication: Publication;
+}
+const { publication } = Astro.props;
+const { publisher,url, summary, name, releaseDate } = publication;
+const year = releaseDate ? new Date(releaseDate).getFullYear() : undefined;
+
+const footer = [year, publisher].filter(Boolean).join(' - ');
+---
+
+<Article>
+	<header class='flex items-center justify-between space-x-2'>
+		<div class='flex items-center gap-2'>
+			<Pencil
+				aria-hidden='true'
+				class='size-4'
+			/>
+			<Link
+				href={url}
+				target='_blank'
+				rel='noopener noreferrer'
+				title={`Ver ${name}`}>
+				{name}
+			</Link>
+		</div>
+	</header>
+	<Paragraph
+		class='my-2'
+		dimension='sm'>
+		{summary}
+	</Paragraph>
+	<footer>
+		{footer ? (<Span variant='muted' dimension='sm' class='mt-2'>{footer}</Span>) : undefined}
+	</footer>
+</Article>

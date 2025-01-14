@@ -1,0 +1,13 @@
+---
+import type { HTMLTag, Polymorphic } from 'astro/types';
+
+type Props<Tag extends HTMLTag = 'ul'> = Polymorphic<{ as: Tag }>;
+
+const { class: cls, "class:list": clsList, ...properties } = Astro.props;
+---
+
+<ul
+	{...properties}
+	class:list={['space-y-2', cls, clsList]}>
+	<slot/>
+</ul>

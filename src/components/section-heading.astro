@@ -1,0 +1,22 @@
+---
+import Heading from '@mariomh/heading/astro';
+import type { HTMLTag, Polymorphic } from 'astro/types';
+
+type Props<Tag extends HTMLTag = 'h1'> = Polymorphic<{ as: Tag }> & {
+	heading?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5';
+};
+
+const { class: cls, "class:list": clsList, heading = 'h3', ...properties } = Astro.props;
+---
+
+<Heading
+	{...properties}
+	class:list={[
+		'relative w-full text-2xl print:text-xl mb-2 flex items-center gap-3 print:gap-1',
+		cls,
+		clsList,
+	]}
+	heading={heading}
+	weight='medium'>
+	<slot/>
+</Heading>

@@ -1,0 +1,17 @@
+---
+import Section from '@components/section.astro';
+import { basics } from 'resume';
+import Paragraph from '@mariomh/paragraph/astro';
+
+const { summary } = basics;
+---
+
+<Section
+	class='print:mt-1.5'
+	title='Sobre mi'>
+	<Paragraph
+		class='m-0 print:text-sm'
+		variant='muted'>
+		{summary}
+	</Paragraph>
+</Section>

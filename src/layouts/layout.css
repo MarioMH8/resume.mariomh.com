@@ -1,0 +1,17 @@
+@import "tailwindcss";
+@import "@mariomh/tailwind";
+
+@theme {
+    /*--color-cv-background: var(--color-primary-background);*/
+    --color-cv-background: #f5f5f5;
+    --color-cv-dark-background: var(--color-primary-dark-background);
+}
+
+html {
+    @apply h-screen overflow-y-auto overflow-x-hidden;
+}
+
+* {
+    scrollbar-color: var(--color-primary) transparent;
+    scrollbar-width: thin;
+}
