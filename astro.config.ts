@@ -9,6 +9,8 @@ import { defineConfig } from 'astro/config';
 import robotsTxt from 'astro-robots-txt';
 import webmanifest from 'astro-webmanifest';
 
+const { name = '', nameShort = '', summaryShort = '', url = '' } = resume.basics ?? {};
+
 export default defineConfig({
 	integrations: [
 		{
@@ -32,11 +34,11 @@ export default defineConfig({
 				insertThemeColorMeta: false,
 			},
 
-			description: resume.basics.summaryShort,
+			description: summaryShort,
 			display: 'standalone',
 			icon: 'public/favicon.svg',
-			name: resume.basics.name,
-			short_name: resume.basics.shortName,
+			name,
+			short_name: nameShort,
 			start_url: '/',
 
 			theme_color: '#FFFFFF',
@@ -50,7 +52,7 @@ export default defineConfig({
 		compress(),
 	],
 	prefetch: false,
-	site: resume.basics.url,
+	site: url,
 	vite: {
 		plugins: [tailwindcss()],
 	},
