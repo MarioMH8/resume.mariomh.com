@@ -3,15 +3,15 @@
 	"compilerOptions": {
 		"emitDecoratorMetadata": false,
 		"baseUrl": ".",
-		"allowImportingTsExtensions": true,
 		"paths": {
 			"@assets/*": ["src/assets/*"],
 			"@components/*": ["src/components/*"],
 			"@features/*": ["src/features/*"],
 			"@icons/*": ["src/icons/*"],
 			"@icons": ["src/icons/index.ts"],
-			"@layout": ["src/layouts/layout.astro"],
+			"@layout": ["src/layouts/layout.astro"]
 		},
+		"allowImportingTsExtensions": true,
 		"plugins": [
 			{
 				"name": "@astrojs/ts-plugin"

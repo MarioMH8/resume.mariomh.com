@@ -16,9 +16,9 @@ import '@fontsource/dm-sans/800.css';
 import '@fontsource/dm-sans/900.css';
 import './layout.css';
 
-import cv from 'resume';
-import { SEO } from 'astro-seo';
+import cv from '@mariomh/resume';
 import type { HTMLTag, Polymorphic } from 'astro/types';
+import { SEO } from 'astro-seo';
 
 type Props<Tag extends HTMLTag = 'body'> = Polymorphic<{ as: Tag }> & {
 	title?: string;
@@ -65,7 +65,9 @@ const computedDescription = description ?? cv.basics.summaryShort;
 			rel='sitemap'
 		/>
 	</head>
-	<body {...properties} class:list={['bg-cv-background dark:bg-cv-dark-background', properties.class]}>
+	<body
+		{...properties}
+		class:list={['bg-cv-background dark:bg-cv-dark-background', properties.class]}>
 		<slot />
 	</body>
 </html>

@@ -3,7 +3,7 @@ import type { HTMLTag, Polymorphic } from 'astro/types';
 
 type Props<Tag extends HTMLTag = 'article'> = Polymorphic<{ as: Tag }>;
 
-const { as: Tag = 'article', class: cls, "class:list": clsList, ...properties } = Astro.props;
+const { as: Tag = 'article', class: cls, 'class:list': clsList, ...properties } = Astro.props;
 ---
 
 <Tag
@@ -16,6 +16,7 @@ const { as: Tag = 'article', class: cls, "class:list": clsList, ...properties } 
 		'ring ring-primary-foreground/10 dark:ring-primary-dark-foreground/10',
 		'rounded-md bg-skin-button-muted/50 p-5',
 		cls,
-		clsList]}>
+		clsList,
+	]}>
 	<slot />
 </Tag>

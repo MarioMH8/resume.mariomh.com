@@ -1,5 +1,7 @@
+/* eslint-disable typescript/no-explicit-any */
 import type { Props } from 'astro';
-import {Camera, MountainSnow, Dices} from 'lucide-astro';
+import { Camera, Dices, MountainSnow } from 'lucide-astro';
+
 import AstroIcon from './astro.astro';
 import CssIcon from './css.astro';
 import GitIcon from './git.astro';
@@ -14,17 +16,17 @@ import TailwindIcon from './tailwind.astro';
 import XIcon from './x.astro';
 
 const INTEREST_ICONS = {
-	'Naturaleza': MountainSnow,
-	'Fotografía': Camera,
-	'Juegos': Dices,
+	Fotografía: Camera,
+	Juegos: Dices,
+	Naturaleza: MountainSnow,
 	'X (Twitter)': XIcon,
-} as Record<string, (_props: Props) => any>;
+} as Record<string, (properties: Props) => any>;
 
 const SOCIAL_ICONS = {
 	GitHub: GithubIcon,
 	LinkedIn: LinkedinIcon,
 	'X (Twitter)': XIcon,
-} as Record<string, (_props: Props) => any>;
+} as Record<string, (properties: Props) => any>;
 
 const SKILLS_ICONS = {
 	Astro: AstroIcon,
@@ -37,9 +39,9 @@ const SKILLS_ICONS = {
 	NodeJS: NodeJSIcon,
 	React: ReactIcon,
 	Tailwind: TailwindIcon,
-} as Record<string, (_props: Props) => any>;
+} as Record<string, (properties: Props) => any>;
 
-export { SKILLS_ICONS, SOCIAL_ICONS, INTEREST_ICONS };
+export { INTEREST_ICONS, SKILLS_ICONS, SOCIAL_ICONS };
 
 export { default as ArrowIcon } from './arrow.astro';
 export { default as AstroIcon } from './astro.astro';

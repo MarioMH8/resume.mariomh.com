@@ -1,3 +1,7 @@
 import { default as hexadrop } from '@hexadrop/eslint-config';
 
-export default hexadrop();
+export default hexadrop({
+	rules: {
+		'import/no-unresolved': 'off',
+	},
+});

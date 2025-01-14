@@ -1,12 +1,13 @@
 ---
 import type { HTMLTag, Polymorphic } from 'astro/types';
+
 import { ArrowIcon } from '../icons';
 
 type Props<Tag extends HTMLTag = 'a'> = Polymorphic<{ as: Tag }> & {
 	variant?: 'bright';
 };
 
-const { variant, class: cls, "class:list": clsList, ...properties } = Astro.props;
+const { class: cls, 'class:list': clsList, variant, ...properties } = Astro.props;
 ---
 
 <a
@@ -21,7 +22,7 @@ const { variant, class: cls, "class:list": clsList, ...properties } = Astro.prop
 		cls,
 		clsList,
 	]}>
-	<slot/>
+	<slot />
 	<ArrowIcon
 		aria-hidden='true'
 		class:list={[

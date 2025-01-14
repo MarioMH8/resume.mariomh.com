@@ -22,4 +22,4 @@ node_modules/
 .firebase
 
 # gha-creds
-gha-creds*
+gha-creds*\
