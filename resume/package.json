@@ -1,0 +1,30 @@
+{
+	"name": "@mariomh/resume",
+	"version": "0.0.0",
+	"author": "MarioMH <dev@mariomh.com>",
+	"description": "Curriculum Vitae de MarioMH",
+	"keywords": [
+		"curriculum",
+		"vitae",
+		"resume"
+	],
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/MarioMH8/resume.mariomh.com.git",
+		"directory": "resume"
+	},
+	"homepage": "https://resume.mariomh.com",
+	"bugs": {
+		"url": "https://github.com/MarioMH8/resume.mariomh.com/issues"
+	},
+	"license": "PRIVATE",
+	"type": "module",
+	"files": [
+		"resume.json"
+	],
+	"exports": {
+		".": {
+			"default": "./resume.json"
+		}
+	}
+}
