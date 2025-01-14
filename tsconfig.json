@@ -1,0 +1,22 @@
+{
+	"extends": "@hexadrop/tsconfig",
+	"compilerOptions": {
+		"emitDecoratorMetadata": false,
+		"baseUrl": ".",
+		"allowImportingTsExtensions": true,
+		"paths": {
+			"@assets/*": ["src/assets/*"],
+			"@components/*": ["src/components/*"],
+			"@features/*": ["src/features/*"],
+			"@icons/*": ["src/icons/*"],
+			"@icons": ["src/icons/index.ts"],
+			"@layout": ["src/layouts/layout.astro"],
+		},
+		"plugins": [
+			{
+				"name": "@astrojs/ts-plugin"
+			}
+		]
+	},
+	"include": [".astro/types.d.ts", "**/*"]
+}

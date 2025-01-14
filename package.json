@@ -1,0 +1,36 @@
+{
+	"name": "resume.mariomh.com",
+	"version": "0.0.0",
+	"author": "MarioMH <dev@mariomh.com>",
+	"description": "Curriculum Vitae imprimible de MarioMH",
+	"keywords": [
+		"curriculum",
+		"vitae",
+		"resume",
+		"portfolio",
+		"astro",
+		"tailwind"
+	],
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/MarioMH8/resume.mariomh.com.git"
+	},
+	"homepage": "https://resume.mariomh.com",
+	"bugs": {
+		"url": "https://github.com/MarioMH8/resume.mariomh.com/issues"
+	},
+	"license": "PRIVATE",
+	"private": true,
+	"type": "module",
+	"workspaces": [
+		"resume"
+	],
+	"devDependencies": {
+		"@changesets/cli": "2.27.11",
+		"@hexadrop/eslint-config": "0.0.2",
+		"@hexadrop/tsconfig": "0.0.5",
+		"@types/bun": "1.1.16",
+		"eslint": "9.18.0",
+		"typescript": "5.7.3"
+	}
+}
