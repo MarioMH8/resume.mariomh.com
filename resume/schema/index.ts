@@ -1,0 +1,17 @@
+export { default as award } from './award.schema';
+export { default as basics } from './basics.schema';
+export { default as certificate } from './certificate.schema';
+export { default as date } from './date.schema';
+export { default as education } from './education.schema';
+export { default as interest } from './interest.schema';
+export { default as language } from './language.schema';
+export { default as location } from './location.schema';
+export { default as meta } from './meta.schema';
+export { default as profile } from './profile.schema';
+export { default as project } from './project.schema';
+export { default as publication } from './publication.schema';
+export { default as reference } from './reference.schema';
+export { default } from './resume.schema';
+export { default as skill } from './skill.schema';
+export { default as volunteer } from './volunteer.schema';
+export { default as work } from './work.schema';

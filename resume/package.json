@@ -20,11 +20,33 @@
 	"license": "PRIVATE",
 	"type": "module",
 	"files": [
-		"resume.json"
+		"dist"
 	],
 	"exports": {
 		".": {
-			"default": "./resume.json"
+			"types": "./dist/index.d.ts",
+			"default": "./dist/index.js"
+		},
+		"./package.json": {
+			"default": "./package.json"
+		},
+		"./resume.json": {
+			"default": "./dist/resume.json"
+		},
+		"./schema.json": {
+			"default": "./dist/resume.json"
 		}
+	},
+	"scripts": {
+		"build": "tsup",
+		"lint:packages": "publint",
+		"prepublishOnly": "tsup && publint"
+	},
+	"devDependencies": {
+		"@duplojs/zod-to-typescript": "0.2.4",
+		"publint": "0.3.2",
+		"tsup": "8.3.5",
+		"zod": "3.24.1",
+		"zod-to-json-schema": "3.24.1"
 	}
 }
