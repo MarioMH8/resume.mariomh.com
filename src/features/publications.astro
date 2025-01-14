@@ -1,15 +1,19 @@
 ---
 import Section from '@components/section.astro';
-import { publications } from 'resume';
 import Publication from '@features/publication.astro';
+import { publications } from 'resume';
 ---
-{publications && publications.length > 0 && (
-	<Section
-		class='print:hidden'
-		title='Publicaciones'>
 
-		<div class='grid grid-cols-1 md:grid-cols-2 gap-3'>
-			{publications.map(publication => <Publication publication={publication} />)}
-		</div>
-	</Section>
-)}
+{
+	publications && publications.length > 0 && (
+		<Section
+			class='print:hidden'
+			title='Publicaciones'>
+			<div class='grid grid-cols-1 md:grid-cols-2 gap-3'>
+				{publications.map(publication => (
+					<Publication publication={publication} />
+				))}
+			</div>
+		</Section>
+	)
+}

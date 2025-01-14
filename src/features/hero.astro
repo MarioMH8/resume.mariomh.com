@@ -2,11 +2,11 @@
 import me from '@assets/me.png';
 import Section from '@components/section.astro';
 import { LinkedinIcon, SOCIAL_ICONS } from '@icons';
-import { basics } from 'resume';
 import Heading from '@mariomh/heading/astro';
 import Span from '@mariomh/span/astro';
 import { Image } from 'astro:assets';
 import { Globe, Mail, MapPin, Phone } from 'lucide-astro';
+import { basics } from 'resume';
 
 const { email, label, location, name, phone, profiles, url } = basics;
 
@@ -85,8 +85,8 @@ const portfolioUrl = url.replace('https://', '');
 						'hover:bg-primary hover:text-primary-foreground dark:hover:text-primary-foreground',
 						'transition-all duration-300 ease-linear',
 					]}
-					rel='noopener noreferrer'
-					href={url}>
+					href={url}
+					rel='noopener noreferrer'>
 					<Globe class='w-4.5 h-4.5' />
 				</a>
 				<a
@@ -97,8 +97,8 @@ const portfolioUrl = url.replace('https://', '');
 						'hover:bg-primary hover:text-primary-foreground dark:hover:text-primary-foreground',
 						'transition-all duration-300 ease-linear',
 					]}
-					rel='noopener noreferrer'
-					href={`mailto:${email}`}>
+					href={`mailto:${email}`}
+					rel='noopener noreferrer'>
 					<Mail class='w-4.5 h-4.5' />
 				</a>
 				{
@@ -111,8 +111,8 @@ const portfolioUrl = url.replace('https://', '');
 								'hover:bg-primary hover:text-primary-foreground dark:hover:text-primary-foreground',
 								'transition-all duration-300 ease-linear',
 							]}
-							rel='noopener noreferrer'
-							href={`tel:${phone}`}>
+							href={`tel:${phone}`}
+							rel='noopener noreferrer'>
 							<Phone class='w-4.5 h-4.5' />
 						</a>
 					)
@@ -134,8 +134,8 @@ const portfolioUrl = url.replace('https://', '');
 									'hover:bg-primary hover:text-primary-foreground dark:hover:text-primary-foreground',
 									'transition-all duration-300 ease-linear',
 								]}
-								rel='noopener noreferrer'
 								href={profile.url ?? ''}
+								rel='noopener noreferrer'
 								target='_blank'>
 								<Icon class='w-4.5 h-4.5' />
 							</a>

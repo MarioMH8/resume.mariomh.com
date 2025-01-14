@@ -1,11 +1,11 @@
 ---
+import Article from '@components/article.astro';
+import Link from '@components/link.astro';
 import { GitIcon } from '@icons';
-import cv from 'resume';
 import Paragraph from '@mariomh/paragraph/astro';
 import Span from '@mariomh/span/astro';
 import { Code } from 'lucide-astro';
-import Article from '@components/article.astro';
-import Link from '@components/link.astro';
+import cv from 'resume';
 
 type Project = (typeof cv.projects)[number];
 
@@ -24,11 +24,11 @@ const { description, github, highlights, isActive, name, url } = project;
 				class='size-4'
 			/>
 			{
-				(isActive && url) ? (
+				isActive && url ? (
 					<Link
 						href={url}
-						target='_blank'
 						rel='noopener noreferrer'
+						target='_blank'
 						title={`Ver ${name}`}>
 						{name}
 					</Link>

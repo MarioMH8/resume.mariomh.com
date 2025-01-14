@@ -1,33 +1,31 @@
 ---
-import type cv from 'resume';
 import type { HTMLTag, Polymorphic } from 'astro/types';
+
 import { SKILLS_ICONS } from '../icons';
 
-type Skill = typeof cv.skills[number];
+// TODO: Incluir level y keywords
+
+interface Skill {
+	name: string;
+	level: string;
+	keywords: string[];
+}
 
 type Props<Tag extends HTMLTag = 'ul'> = Polymorphic<{ as: Tag }> & {
 	big?: boolean;
-	skills: string[] | Skill[];
+	skills: Skill[] | string[];
 };
 
-const { class: cls, "class:list": clsList, big, skills, ...properties } = Astro.props;
-
+const { big, class: cls, 'class:list': clsList, skills, ...properties } = Astro.props;
 ---
 
 <ul
 	{...properties}
-	class:list={[
-		'flex flex-row flex-wrap',
-		big ? 'gap-x-6 gap-y-4' : 'gap-2',
-		cls,
-		clsList,
-	]}>
+	class:list={['flex flex-row flex-wrap', { 'gap-2': !big, 'gap-x-6 gap-y-4': big }, cls, clsList]}>
 	{
 		skills.map(skill => {
 			const name = typeof skill === 'string' ? skill : skill.name;
 			const Icon = SKILLS_ICONS[name];
-
-			<!--TODO: Incluir level y keywords-->
 
 			return (
 				<li
@@ -39,7 +37,7 @@ const { class: cls, "class:list": clsList, big, skills, ...properties } = Astro.
 						'border border-primary-border dark:border-primary-dark-border',
 						'flex gap-2 items-center flex-row',
 					]}>
-					{Icon && <Icon class={big ? 'size-5' : 'size-4'} />}
+					{Icon && <Icon class:list={{ 'size-4': !big, 'size-5': big }} />}
 					<span>{name}</span>
 				</li>
 			);

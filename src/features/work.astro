@@ -1,13 +1,12 @@
 ---
-import cv from 'resume';
+import Link from '@components/link.astro';
+import SkillList from '@components/skill-list.astro';
+import { CaretDownIcon } from '@icons';
 import Heading from '@mariomh/heading/astro';
 import Paragraph from '@mariomh/paragraph/astro';
 import cn from '@mariomh/paragraph/class-name';
 import Span from '@mariomh/span/astro';
-
-import {  CaretDownIcon } from '@icons';
-import SkillList from '@components/skill-list.astro';
-import Link from '@components/link.astro';
+import cv from 'resume';
 
 type Work = (typeof cv.work)[number];
 
@@ -81,11 +80,11 @@ const endYear = endDate ? new Date(endDate).getFullYear() : 'Presente';
 				{
 					url ? (
 						<Link
-							variant='bright'
 							href={url}
-							target='_blank'
 							rel='noopener noreferrer'
-							title={`Ver ${name}`}>
+							target='_blank'
+							title={`Ver ${name}`}
+							variant='bright'>
 							{name}
 						</Link>
 					) : (
@@ -209,7 +208,8 @@ const endYear = endDate ? new Date(endDate).getFullYear() : 'Presente';
 						<SkillList
 							aria-label='Tecnologías utilizadas'
 							class='print:hidden'
-							skills={skills}/>
+							skills={skills}
+						/>
 					)
 				}
 			</div>

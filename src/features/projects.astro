@@ -1,15 +1,19 @@
 ---
-import Project from '@features/project.astro';
 import Section from '@components/section.astro';
+import Project from '@features/project.astro';
 import { projects } from 'resume';
 ---
 
-{projects && projects.length > 0 && (
-	<Section
-		class='print:hidden'
-		title='Proyectos'>
-		<div class='grid grid-cols-1 md:grid-cols-2 gap-3'>
-			{projects.map(project => <Project project={project} />)}
-		</div>
-	</Section>
-)}
+{
+	projects && projects.length > 0 && (
+		<Section
+			class='print:hidden'
+			title='Proyectos'>
+			<div class='grid grid-cols-1 md:grid-cols-2 gap-3'>
+				{projects.map(project => (
+					<Project project={project} />
+				))}
+			</div>
+		</Section>
+	)
+}

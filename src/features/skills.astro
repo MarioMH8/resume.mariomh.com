@@ -1,13 +1,18 @@
 ---
-import SkillList from '@components/skill-list.astro';
 import Section from '@components/section.astro';
+import SkillList from '@components/skill-list.astro';
 import { skills } from 'resume';
 ---
 
-{skills && skills.length > 0 && (
-	<Section
-		class='print:hidden'
-		title='Tecnologías'>
-		<SkillList skills={skills} big/>
-	</Section>
-)}
+{
+	skills && skills.length > 0 && (
+		<Section
+			class='print:hidden'
+			title='Tecnologías'>
+			<SkillList
+				big
+				skills={skills}
+			/>
+		</Section>
+	)
+}
