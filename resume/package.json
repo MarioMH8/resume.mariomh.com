@@ -43,7 +43,7 @@
 		"prepublishOnly": "tsup && publint"
 	},
 	"devDependencies": {
-		"@duplojs/zod-to-typescript": "0.2.4",
+		"@duplojs/zod-to-typescript": "0.3.0",
 		"publint": "0.3.2",
 		"tsup": "8.3.5",
 		"zod": "3.24.1",
