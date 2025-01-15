@@ -17,11 +17,6 @@ const basics = z
 			.optional(),
 		profiles: profiles.optional(),
 		summary: z.string().describe('Write a short 2-3 sentence biography about yourself').optional(),
-		summaryShort: z
-			.string()
-			.max(160)
-			.describe('Write a short 2-3 sentence biography about yourself (Max 160)')
-			.optional(),
 		url: z.string().url().describe('URL (as per RFC 3986) to your website, e.g. personal homepage').optional(),
 	})
 	.catchall(z.unknown());

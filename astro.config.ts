@@ -9,7 +9,7 @@ import { defineConfig } from 'astro/config';
 import robotsTxt from 'astro-robots-txt';
 import webmanifest from 'astro-webmanifest';
 
-const { name = '', nameShort = '', summaryShort = '', url = '' } = resume.basics ?? {};
+const { name = '', nameShort = '', summaryShort, url = '' } = resume.basics ?? {};
 
 export default defineConfig({
 	integrations: [
@@ -34,7 +34,7 @@ export default defineConfig({
 				insertThemeColorMeta: false,
 			},
 
-			description: summaryShort,
+			description: typeof summaryShort === 'string' ? summaryShort : '',
 			display: 'standalone',
 			icon: 'public/favicon.svg',
 			name,
