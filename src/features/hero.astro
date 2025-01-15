@@ -3,155 +3,202 @@ import me from '@assets/me.png';
 import Section from '@components/section.astro';
 import { LinkedinIcon, SOCIAL_ICONS } from '@icons';
 import Heading from '@mariomh/heading/astro';
-import { basics } from '@mariomh/resume';
+import resume from '@mariomh/resume';
 import Span from '@mariomh/span/astro';
 import { Image } from 'astro:assets';
-import { Globe, Mail, MapPin, Phone } from 'lucide-astro';
+import { Globe, Mail, MapPin, Phone, Link } from 'lucide-astro';
 
-const { email, label, location, name, phone, profiles, url } = basics;
+const { email, label, location, name, phone, profiles, url, image } = resume.basics ?? {};
 
-const linkedInfo = profiles.find(({ network }) => network === 'LinkedIn');
+const linkedInfo = profiles?.find(({ network }) => network === 'LinkedIn');
 const linkedUrl = linkedInfo?.url?.replace('https://', '');
-const portfolioUrl = url.replace('https://', '');
+const portfolioUrl = url?.replace('https://', '');
+
+const locationCompose = [location?.city, location?.region].filter(Boolean).join(', ');
+
+const printLinks = Boolean(portfolioUrl || email || phone || linkedUrl);
+const notPrintLinks = Boolean(url || email || phone || profiles?.length);
+const hero = Boolean(name || label || locationCompose || printLinks || notPrintLinks);
+const print = Boolean(hero || image);
 ---
 
-<Section>
-	<div class='flex flex-col-reverse gap-8'>
-		<div class='flex flex-col gap-1 pr-8 print:gap-0 print:pr-0'>
-			<Heading
-				class='mb-0 text-3xl print:text-2xl'
-				heading='h1'
-				weight='bold'>
-				{name}
-			</Heading>
-			<Heading
-				class='mb-0 text-lg print:text-base'
-				heading='h2'
-				subtitle
-				weight='base'>
-				{label}
-			</Heading>
-			<Span
-				class='flex items-center gap-2 pt-2'
-				dimension='sm'
-				variant='muted'>
-				<MapPin class='w-3 h-3' />
-				{location.city}, {location.region}
-			</Span>
-			<footer class='not-print:hidden flex flex-wrap flex-row gap-x-4'>
-				<Span
-					class='flex items-center gap-2 pt-2'
-					dimension='sm'
-					variant='muted'>
-					<Globe class='w-3 h-3' />
-					{portfolioUrl}
-				</Span>
-				<Span
-					class='flex items-center gap-2 pt-2'
-					dimension='sm'
-					variant='muted'>
-					<Mail class='w-3 h-3' />
-					{email}
-				</Span>
-				{
-					phone && (
+{print && (
+	<Section>
+		<div class='flex flex-col-reverse gap-8'>
+			{hero && (
+				<div class='flex flex-col gap-1 pr-8 print:gap-0 print:pr-0'>
+					{name && (
+						<Heading
+							class='mb-0 text-3xl print:text-2xl'
+							heading='h1'
+							weight='bold'>
+							{name}
+						</Heading>
+					)}
+					{label && (
+						<Heading
+							class='mb-0 text-lg print:text-base'
+							heading='h2'
+							subtitle
+							weight='base'>
+							{label}
+						</Heading>
+					)}
+					{locationCompose && (
 						<Span
 							class='flex items-center gap-2 pt-2'
 							dimension='sm'
 							variant='muted'>
-							<Phone class='w-3 h-3' />
-							{phone}
-						</Span>
-					)
-				}
-				{
-					linkedUrl && (
-						<Span
-							class='flex items-center gap-2 pt-2'
-							dimension='sm'
-							variant='muted'>
-							<LinkedinIcon class='w-3 h-3' />
-							{linkedUrl}
-						</Span>
-					)
-				}
-			</footer>
-			<footer class='print:hidden mt-2 flex gap-1 text-sm'>
-				<a
-					class:list={[
-						'size-8',
-						'inline-flex items-center justify-center rounded-md p-1',
-						'text-primary-foreground-highlight dark:text-primary',
-						'hover:bg-primary hover:text-primary-foreground dark:hover:text-primary-foreground',
-						'transition-all duration-300 ease-linear',
-					]}
-					href={url}
-					rel='noopener noreferrer'>
-					<Globe class='w-4.5 h-4.5' />
-				</a>
-				<a
-					class:list={[
-						'size-8',
-						'inline-flex items-center justify-center rounded-md p-1',
-						'text-primary-foreground-highlight dark:text-primary',
-						'hover:bg-primary hover:text-primary-foreground dark:hover:text-primary-foreground',
-						'transition-all duration-300 ease-linear',
-					]}
-					href={`mailto:${email}`}
-					rel='noopener noreferrer'>
-					<Mail class='w-4.5 h-4.5' />
-				</a>
-				{
-					phone && (
-						<a
-							class:list={[
-								'size-8',
-								'inline-flex items-center justify-center rounded-md p-1',
-								'text-primary-foreground-highlight dark:text-primary',
-								'hover:bg-primary hover:text-primary-foreground dark:hover:text-primary-foreground',
-								'transition-all duration-300 ease-linear',
-							]}
-							href={`tel:${phone}`}
-							rel='noopener noreferrer'>
-							<Phone class='w-4.5 h-4.5' />
-						</a>
-					)
-				}
-				{
-					profiles.map(profile => {
-						const Icon = SOCIAL_ICONS[profile.network];
+						<MapPin class='w-3 h-3' />
+							{locationCompose}
+					</Span>
+					)}
+					<!-- PRINT LINKS -->
+					{printLinks && (
+						<footer class='not-print:hidden flex flex-wrap flex-row gap-x-4'>
+							{portfolioUrl && url && (
+								<Span
+									as='a'
+									href={url}
+									title='Visitar portafolio'
+									class='flex items-center gap-2 pt-2'
+									dimension='sm'
+									variant='muted'>
+								<Globe class='w-3 h-3' />
+									{portfolioUrl}
+							</Span>
+							)}
+							{email && (
+								<Span
+									as='a'
+									href={`mailto:${email}`}
+									title='Enviar correo'
+									class='flex items-center gap-2 pt-2'
+									dimension='sm'
+									variant='muted'>
+								<Mail class='w-3 h-3' />
+									{email}
+							</Span>
+							)}
 
-						if (!Icon) {
-							return <> </>;
-						}
+							{phone && (
+								<Span
+									as='a'
+									href={`tel:${phone}`}
+									title='Llamar por teléfono'
+									class='flex items-center gap-2 pt-2'
+									dimension='sm'
+									variant='muted'>
+								<Phone class='w-3 h-3' />
+									{phone}
+							</Span>
+							)}
+							{linkedUrl && (
+								<Span
+									as='a'
+									href={linkedUrl}
+									title='Visitar perfil de LinkedIn'
+									class='flex items-center gap-2 pt-2'
+									dimension='sm'
+									variant='muted'>
+								<LinkedinIcon class='w-3 h-3' />
+									{linkedUrl}
+							</Span>
+							)}
+						</footer>
+					)}
+					<!-- NOT PRINT LINKS -->
+					{notPrintLinks && (
+						<footer class='print:hidden mt-2 flex gap-1 text-sm'>
+							{url && (
+								<a
+									class:list={[
+										'size-8',
+										'inline-flex items-center justify-center rounded-md p-1',
+										'text-primary-foreground-highlight dark:text-primary',
+										'hover:bg-primary hover:text-primary-foreground dark:hover:text-primary-foreground',
+										'transition-all duration-300 ease-linear',
+									]}
+									target='_blank'
+									title='Visitar portafolio'
+									href={url}
+									rel='noopener noreferrer'>
+									<Globe class='w-4.5 h-4.5' />
+								</a>
+							)}
+							{email && (
+								<a
+									class:list={[
+										'size-8',
+										'inline-flex items-center justify-center rounded-md p-1',
+										'text-primary-foreground-highlight dark:text-primary',
+										'hover:bg-primary hover:text-primary-foreground dark:hover:text-primary-foreground',
+										'transition-all duration-300 ease-linear',
+									]}
+									target='_blank'
+									title='Enviar correo'
+									href={`mailto:${email}`}
+									rel='noopener noreferrer'>
+									<Mail class='w-4.5 h-4.5' />
+								</a>
+							)}
+							{
+								phone && (
+									<a
+										class:list={[
+											'size-8',
+											'inline-flex items-center justify-center rounded-md p-1',
+											'text-primary-foreground-highlight dark:text-primary',
+											'hover:bg-primary hover:text-primary-foreground dark:hover:text-primary-foreground',
+											'transition-all duration-300 ease-linear',
+										]}
+										target='_blank'
+										title='Llamar por teléfono'
+										href={`tel:${phone}`}
+										rel='noopener noreferrer'>
+										<Phone class='w-4.5 h-4.5' />
+									</a>
+								)
+							}
+							{
+								profiles?.map(({url, network}) => {
+									if (!url) return undefined;
 
-						return (
-							<a
-								class:list={[
-									'size-8',
-									'inline-flex items-center justify-center rounded-md p-1',
-									'text-primary-foreground-highlight dark:text-primary',
-									'hover:bg-primary hover:text-primary-foreground dark:hover:text-primary-foreground',
-									'transition-all duration-300 ease-linear',
-								]}
-								href={profile.url ?? ''}
-								rel='noopener noreferrer'
-								target='_blank'>
-								<Icon class='w-4.5 h-4.5' />
-							</a>
-						);
-					})
-				}
-			</footer>
+									const Icon = SOCIAL_ICONS[network ?? ''] ?? Link;
+
+									return (
+										<a
+											class:list={[
+												'size-8',
+												'inline-flex items-center justify-center rounded-md p-1',
+												'text-primary-foreground-highlight dark:text-primary',
+												'hover:bg-primary hover:text-primary-foreground dark:hover:text-primary-foreground',
+												'transition-all duration-300 ease-linear',
+											]}
+											title={network ? `Visitar perfil de ${network}` : 'Visitar perfil'}
+											href={url}
+											rel='noopener noreferrer'
+											target='_blank'>
+											<Icon class='w-4.5 h-4.5' />
+										</a>
+									);
+								})
+							}
+						</footer>
+					)}
+				</div>
+			)}
+			{image && (
+				<Image
+					alt={name ?? label ?? ''}
+					class:list={[
+						'print:hidden w-fit max-w-48 relative',
+						'after:absolute after:block after:left-0 after:right-0 after:bottom-0 after:z-1 after:h-2',
+					]}
+					src={me}
+					style='mask-image: linear-gradient(to bottom, black 98%, transparent 100%);'
+				/>
+			)}
 		</div>
-		<Image
-			alt={name}
-			class:list={[
-				'print:hidden w-fit max-w-48 relative',
-				'after:absolute after:block after:left-0 after:right-0 after:bottom-0 after:z-1 after:h-2',
-			]}
-			src={me}
-			style='mask-image: linear-gradient(to bottom, black 98%, transparent 100%);'
-		/>
-	</div>
-</Section>
+	</Section>
+)}
