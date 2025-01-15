@@ -1,13 +1,17 @@
 ---
 import Section from '@components/section.astro';
 import Work from '@features/work.astro';
-import { work } from '@mariomh/resume';
+import resume from '@mariomh/resume';
+
+const { work } = resume ?? {};
 ---
 
-<Section
-	class='print:col-span-3'
-	title='Experiencia'>
-	<ul class='flex flex-col'>
-		{work.map(w => <Work work={w} />)}
-	</ul>
-</Section>
+{work && work.length > 0 && (
+	<Section
+		class='print:col-span-3'
+		title='Experiencia'>
+		<ul class='flex flex-col'>
+			{work.map(w => <Work work={w} />)}
+		</ul>
+	</Section>
+)}
