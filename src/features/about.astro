@@ -1,17 +1,19 @@
 ---
 import Section from '@components/section.astro';
 import Paragraph from '@mariomh/paragraph/astro';
-import { basics } from '@mariomh/resume';
+import resume from '@mariomh/resume';
 
-const { summary } = basics;
+const { summary } = resume.basics ?? {};
 ---
 
-<Section
-	class='print:mt-1.5'
-	title='Sobre mi'>
-	<Paragraph
-		class='m-0 print:text-sm'
-		variant='muted'>
-		{summary}
-	</Paragraph>
-</Section>
+{summary && (
+	<Section
+		class='print:mt-1.5'
+		title='Sobre mi'>
+		<Paragraph
+			class='m-0 print:text-sm'
+			variant='muted'>
+			{summary}
+		</Paragraph>
+	</Section>
+)}
