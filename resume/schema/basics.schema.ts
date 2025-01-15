@@ -10,7 +10,6 @@ const basics = z
 		label: z.string().describe('e.g. Web Developer').optional(),
 		location: location.optional(),
 		name: z.string().optional(),
-		nameShort: z.string().optional(),
 		phone: z
 			.string()
 			.describe('Phone numbers are stored as strings so use any format you like, e.g. 712-117-2923')
