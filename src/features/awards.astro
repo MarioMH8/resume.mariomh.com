@@ -2,8 +2,10 @@
 import List from '@components/list.astro';
 import ListElement from '@components/list-element.astro';
 import Section from '@components/section.astro';
-import { awards } from '@mariomh/resume';
+import resume from '@mariomh/resume';
 import { Trophy } from 'lucide-astro';
+
+const { awards } = resume ?? {};
 ---
 
 {
@@ -13,8 +15,10 @@ import { Trophy } from 'lucide-astro';
 			title='Premios'>
 			<List>
 				{awards.map(({ awarder, date, summary, title }) => {
-					const year = new Date(date).getFullYear();
-					const description = `${awarder} - ${summary}`;
+					if (!title) return undefined;
+
+					const year = date ? new Date(date).getFullYear() : undefined;
+					const description = [awarder, summary].filter(Boolean).join(' - ');
 
 					return (
 						<ListElement
