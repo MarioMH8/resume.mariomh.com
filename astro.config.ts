@@ -7,9 +7,10 @@ import tailwindcss from '@tailwindcss/vite';
 import pwa from '@vite-pwa/astro';
 import { defineConfig } from 'astro/config';
 import robotsTxt from 'astro-robots-txt';
-import webmanifest from 'astro-webmanifest';
+import type { WebmanifestOptions } from 'astro-webmanifest';
+import manifest from 'astro-webmanifest';
 
-const { name = '', nameShort = '', summaryShort, url = '' } = resume.basics ?? {};
+const { name = '', nameShort, summaryShort, url } = resume.basics ?? {};
 
 export default defineConfig({
 	integrations: [
@@ -26,7 +27,7 @@ export default defineConfig({
 		},
 		sitemap(),
 		robotsTxt(),
-		webmanifest({
+		manifest({
 			background_color: '#0F1214',
 
 			config: {
@@ -34,15 +35,15 @@ export default defineConfig({
 				insertThemeColorMeta: false,
 			},
 
-			description: typeof summaryShort === 'string' ? summaryShort : '',
+			description: typeof summaryShort === 'string' ? summaryShort : undefined,
 			display: 'standalone',
 			icon: 'public/favicon.svg',
 			name,
-			short_name: nameShort,
+			short_name: typeof nameShort === 'string' ? nameShort : undefined,
 			start_url: '/',
 
 			theme_color: '#FFFFFF',
-		}),
+		} as WebmanifestOptions),
 		pwa({
 			registerType: 'autoUpdate',
 			workbox: {
@@ -52,7 +53,8 @@ export default defineConfig({
 		compress(),
 	],
 	prefetch: false,
-	site: url,
+	// eslint-disable-next-line typescript/no-non-null-assertion
+	site: url!,
 	vite: {
 		plugins: [tailwindcss()],
 	},
