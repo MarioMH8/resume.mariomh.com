@@ -15,16 +15,22 @@ const { volunteer } = resume ?? {};
 			class='print:hidden space-y-6'
 			title='Voluntariados'>
 			<List>
-				{volunteer.map(({ position, summary, organization, url, startDate, endDate, highlights }) => {
-					if (!organization) return undefined;
-					const years = [startDate, endDate].filter(Boolean).map(d => new Date(d ?? '')).map(d => d.getFullYear()).join(' - ');
+				{volunteer.map(({ endDate, highlights, organization, position, startDate, summary, url }) => {
+					if (!organization) {
+						return <Fragment />;
+					}
+					const years = [startDate, endDate]
+						.filter(Boolean)
+						.map(d => new Date(d ?? ''))
+						.map(d => d.getFullYear())
+						.join(' - ');
 
 					return (
 						<ListElement
-							url={url}
-							time={years}
 							description={summary}
-							title={organization}>
+							time={years}
+							title={organization}
+							url={url}>
 							<HeartHandshake slot='icon' />
 							{position && (
 								<Span

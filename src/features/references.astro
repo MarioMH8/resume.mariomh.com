@@ -12,23 +12,25 @@ const { references } = resume ?? {};
 		<Section
 			class='print:hidden space-y-6'
 			title='Referencias'>
-			{references.filter(reference => reference.name).map(({ name, reference }) => {
-				return (
-					<figure class='mb-0'>
-						<Paragraph
-							as='blockquote'
-							class='mb-0'>
-							{reference}
-						</Paragraph>
-						<Span
-							as='figcaption'
-							dimension='sm'
-							variant='muted'>
-							&mdash; {name}
-						</Span>
-					</figure>
-				);
-			})}
+			{references
+				.filter(reference => reference.name)
+				.map(({ name, reference }) => {
+					return (
+						<figure class='mb-0'>
+							<Paragraph
+								as='blockquote'
+								class='mb-0'>
+								{reference}
+							</Paragraph>
+							<Span
+								as='figcaption'
+								dimension='sm'
+								variant='muted'>
+								&mdash; {name}
+							</Span>
+						</figure>
+					);
+				})}
 		</Section>
 	)
 }

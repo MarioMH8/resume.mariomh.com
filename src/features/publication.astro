@@ -24,17 +24,19 @@ const footer = [year, publisher].filter(Boolean).join(' - ');
 				aria-hidden='true'
 				class='size-4'
 			/>
-			{url ? (
-				<Link
-					href={url}
-					rel='noopener noreferrer'
-					target='_blank'
-					title={`Ver ${name}`}>
-					{name}
-				</Link>
-			) : (
-				<Span class='font-primary'>{name}</Span>
-			)}
+			{
+				url ? (
+					<Link
+						href={url}
+						rel='noopener noreferrer'
+						target='_blank'
+						title={`Ver ${name}`}>
+						{name}
+					</Link>
+				) : (
+					<Span class='font-primary'>{name}</Span>
+				)
+			}
 		</div>
 	</header>
 	<Paragraph

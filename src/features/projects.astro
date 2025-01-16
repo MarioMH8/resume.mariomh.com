@@ -12,9 +12,11 @@ const { projects } = resume ?? {};
 			class='print:hidden'
 			title='Proyectos'>
 			<div class='grid grid-cols-1 md:grid-cols-2 gap-3'>
-				{projects.filter(project => project.name).map(project => (
-					<Project project={project} />
-				))}
+				{projects
+					.filter(project => project.name)
+					.map(project => (
+						<Project project={project} />
+					))}
 			</div>
 		</Section>
 	)

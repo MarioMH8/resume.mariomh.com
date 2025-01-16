@@ -22,15 +22,17 @@ const { class: cls, 'class:list': clsList, description, time, title, url, ...pro
 		clsList,
 	]}>
 	<slot name='icon' />
-	{time && time !== 0 && (
-		<Span
-			as='time'
-			class='not-print:order-last shrink-0'
-			dimension='sm'
-			variant='muted'>
-			{time}
-		</Span>
-	)}
+	{
+		time && time !== 0 && (
+			<Span
+				as='time'
+				class='not-print:order-last shrink-0'
+				dimension='sm'
+				variant='muted'>
+				{time}
+			</Span>
+		)
+	}
 	<div class='w-full flex flex-col'>
 		<span class='flex flec-row items-center gap-2'>
 			{
@@ -49,13 +51,15 @@ const { class: cls, 'class:list': clsList, description, time, title, url, ...pro
 			}
 			<slot name='badge' />
 		</span>
-		{description && (
-			<Span
-				class='print:text-sm'
-				variant='muted'>
-				{description}
-			</Span>
-		)}
+		{
+			description && (
+				<Span
+					class='print:text-sm'
+					variant='muted'>
+					{description}
+				</Span>
+			)
+		}
 		<slot />
 	</div>
 </li>

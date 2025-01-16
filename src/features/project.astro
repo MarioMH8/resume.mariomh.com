@@ -12,11 +12,17 @@ interface Props {
 }
 
 const { project } = Astro.props;
-const { type, keywords, roles, entity, description, github, highlights, name, url, startDate, endDate } = project;
+const { description, endDate, entity, github, highlights, keywords, name, roles, startDate, type, url } = project;
 
-const hashtags = keywords?.map(keyword => keyword.replaceAll(' ', '')).map(keyword => `#${keyword}`).join(' ');
+const hashtags = keywords
+	?.map(keyword => keyword.replaceAll(' ', ''))
+	.map(keyword => `#${keyword}`)
+	.join(' ');
 const rolesJoin = roles?.join(', ');
-const years = [startDate, endDate].filter(Boolean).map(date => new Date(date ?? '').getFullYear()).join(' - ');
+const years = [startDate, endDate]
+	.filter(Boolean)
+	.map(date => new Date(date ?? '').getFullYear())
+	.join(' - ');
 const subtitle = [years, entity, type, rolesJoin].filter(Boolean).join(' • ');
 ---
 
@@ -42,7 +48,7 @@ const subtitle = [years, entity, type, rolesJoin].filter(Boolean).join(' • ');
 			}
 		</div>
 		{
-			github && typeof github ==='string' && (
+			github && typeof github === 'string' && (
 				<a
 					class='opacity-75 hover:opacity-100 transition-opacity motion-reduce:transition-none ease-linear'
 					href={github}
@@ -54,35 +60,45 @@ const subtitle = [years, entity, type, rolesJoin].filter(Boolean).join(' • ');
 			)
 		}
 	</header>
-	{subtitle && (
-		<Span dimension='xs' variant='muted'>
-			{subtitle}
-		</Span>
-	)}
-	{description && (
-		<Paragraph
-			class='mb-2'
-			dimension='sm'>
-			{description}
-		</Paragraph>
-	)}
-	{highlights && highlights.length > 0 && (
-		<ul
-			class:list={[
-				'text-sm text-primary-foreground/65 dark:text-primary-dark-foreground/65',
-				'list-disc space-y-1',
-				'ml-4',
-			]}>
-			{
-				highlights.map(highlight => {
+	{
+		subtitle && (
+			<Span
+				dimension='xs'
+				variant='muted'>
+				{subtitle}
+			</Span>
+		)
+	}
+	{
+		description && (
+			<Paragraph
+				class='mb-2'
+				dimension='sm'>
+				{description}
+			</Paragraph>
+		)
+	}
+	{
+		highlights && highlights.length > 0 && (
+			<ul
+				class:list={[
+					'text-sm text-primary-foreground/65 dark:text-primary-dark-foreground/65',
+					'list-disc space-y-1',
+					'ml-4',
+				]}>
+				{highlights.map(highlight => {
 					return <li>{highlight}</li>;
-				})
-			}
-		</ul>
-	)}
-	{hashtags && (
-		<Span dimension='xs' variant='muted'>
-			{hashtags}
-		</Span>
-	)}
+				})}
+			</ul>
+		)
+	}
+	{
+		hashtags && (
+			<Span
+				dimension='xs'
+				variant='muted'>
+				{hashtags}
+			</Span>
+		)
+	}
 </Article>

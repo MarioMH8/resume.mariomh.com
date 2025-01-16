@@ -15,7 +15,9 @@ const { awards } = resume ?? {};
 			title='Premios'>
 			<List>
 				{awards.map(({ awarder, date, summary, title }) => {
-					if (!title) return undefined;
+					if (!title) {
+						return <Fragment />;
+					}
 
 					const year = date ? new Date(date).getFullYear() : undefined;
 					const description = [awarder, summary].filter(Boolean).join(' - ');

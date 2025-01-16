@@ -18,7 +18,9 @@ const { big, class: cls, 'class:list': clsList, skills, ...properties } = Astro.
 	{
 		skills.map(skill => {
 			const name = typeof skill === 'string' ? skill : skill.name;
-			if (!name) return undefined;
+			if (!name) {
+				return <Fragment />;
+			}
 
 			const Icon = SKILLS_ICONS[name];
 
