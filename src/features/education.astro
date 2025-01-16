@@ -4,115 +4,124 @@ import ListElement from '@components/list-element.astro';
 import Section from '@components/section.astro';
 import SectionHeading from '@components/section-heading.astro';
 import Heading from '@mariomh/heading/astro';
-import { certificates, education, languages } from '@mariomh/resume';
+import resume from '@mariomh/resume';
 import Span from '@mariomh/span/astro';
 import { GraduationCap, Languages, ScrollText } from 'lucide-astro';
+
+const { certificates, education, languages } = resume ?? {};
+
+const hasEducation = Boolean(education && education.length);
+const hasCertificates = Boolean(certificates && certificates.length);
+const hasLanguages = Boolean(languages && languages.length);
+const hasCertificatesOrLanguages = hasCertificates || hasLanguages;
+
+const hasAnyEduction = hasEducation || hasCertificatesOrLanguages;
 ---
 
-{
-	((education && education.length > 0) ||
-		(certificates && certificates.length > 0) ||
-		(languages && languages.length > 0)) && (
-		<Section
-			class='order-first'
-			title='Educación'>
-			<List>
-				{education.map(({ area, courses, endDate, institution, score, startDate, studyType, url }) => {
-					const startYear = new Date(startDate).getFullYear();
-					const endYear = endDate === undefined ? 'Presente' : new Date(endDate).getFullYear();
-					const years = `${startYear} - ${endYear}`;
-					const description = `${area} - ${studyType}`;
-					const badge = score ? `Nota: ${score}` : undefined;
-					const badgeAriaLabel = `Nota de ${institution}`;
+{hasAnyEduction && (
+	<Section
+		class='order-first'
+		title='Educación'>
+		<List>
+			{education?.map(({ area, courses, endDate, institution, score, startDate, studyType, url }) => {
+				if (!institution) return undefined;
 
-					return (
-						<ListElement
-							description={description}
-							time={years}
-							title={institution}
-							url={url}>
-							<GraduationCap slot='icon' />
-							{score && (
-								<Span
-									aria-label={badgeAriaLabel}
-									class='print:hidden'
-									dimension='xs'
-									slot='badge'
-									variant='muted'>
-									{badge}
-								</Span>
-							)}
-							{courses && courses.length > 0 && (
-								<Fragment>
-									<Heading
-										as='span'
-										class='mt-2 print:hidden'
-										heading='h5'
-										subtitle>
-										Asignaturas
-									</Heading>
-									<ul class='print:hidden list-disc ml-4 space-y-2'>
-										{courses.map(course => {
-											return (
-												<Span
-													as='li'
-													dimension='sm'
-													variant='muted'>
-													{course}
-												</Span>
-											);
-										})}
-									</ul>
-								</Fragment>
-							)}
-						</ListElement>
-					);
-				})}
-			</List>
-			{certificates && certificates.length > 0 && (
-				<>
-					<SectionHeading
-						class='text-lg print:text-lg mt-4 print:mb-1'
-						heading='h4'>
-						Certificados
-					</SectionHeading>
-					<List>
-						{certificates.map(({ date, issuer, name, url }) => {
-							const year = new Date(date).getFullYear();
+				const years = [startDate, endDate].filter(Boolean).map(d => new Date(d)).map(d => d.getFullYear()).join(' - ');
+				const description = [area, studyType].filter(Boolean).join(' - ');
+				const badge = score ? `Nota: ${score}` : undefined;
+				const badgeAriaLabel = `Nota de ${institution}`;
 
-							return (
-								<ListElement
-									description={issuer}
-									time={year}
-									title={name}
-									url={url}>
-									<ScrollText slot='icon' />
-								</ListElement>
-							);
-						})}
-					</List>
-				</>
-			)}
-			{languages && languages.length > 0 && (
-				<>
-					<SectionHeading
-						class='text-lg print:text-lg mt-4 print:mb-1'
-						heading='h4'>
-						Idiomas
-					</SectionHeading>
-					<List>
-						{languages.map(({ fluency, language }) => {
-							return (
-								<ListElement
-									description={fluency}
-									title={language}>
-									<Languages slot='icon' />
-								</ListElement>
-							);
-						})}
-					</List>
-				</>
-			)}
-		</Section>
-	)
-}
+				return (
+					<ListElement
+						description={description}
+						time={years}
+						title={institution}
+						url={url}>
+						<GraduationCap slot='icon' />
+						{score && (
+							<Span
+								aria-label={badgeAriaLabel}
+								class='print:hidden'
+								dimension='xs'
+								slot='badge'
+								variant='muted'>
+								{badge}
+							</Span>
+						)}
+						{courses && courses.length > 0 && (
+							<Fragment>
+								<Heading
+									as='span'
+									class='mt-2 print:hidden'
+									heading='h5'
+									subtitle>
+									Asignaturas
+								</Heading>
+								<ul class='print:hidden list-disc ml-4 space-y-2'>
+									{courses.map(course => {
+										return (
+											<Span
+												as='li'
+												dimension='sm'
+												variant='muted'>
+												{course}
+											</Span>
+										);
+									})}
+								</ul>
+							</Fragment>
+						)}
+					</ListElement>
+				);
+			})}
+		</List>
+		{certificates && certificates.length > 0 && (
+			<>
+				<SectionHeading
+					class='text-lg print:text-lg mt-4 print:mb-1'
+					heading='h4'>
+					Certificados
+				</SectionHeading>
+				<List>
+					{certificates.map(({ date, issuer, name, url }) => {
+						if (!name) return undefined;
+
+						const year = date ? new Date(date).getFullYear() : undefined;
+
+						return (
+							<ListElement
+								description={issuer}
+								time={year}
+								title={name}
+								url={url}>
+								<ScrollText slot='icon' />
+							</ListElement>
+						);
+					})}
+				</List>
+			</>
+		)}
+		{languages && languages.length > 0 && (
+			<>
+				<SectionHeading
+					class='text-lg print:text-lg mt-4 print:mb-1'
+					heading='h4'>
+					Idiomas
+				</SectionHeading>
+				<List>
+					{languages.map(({ fluency, language }) => {
+						if (!language) return undefined;
+
+						return (
+							<ListElement
+								description={fluency}
+								title={language}>
+								<Languages slot='icon' />
+							</ListElement>
+						);
+					})}
+				</List>
+			</>
+		)}
+	</Section>
+)}
