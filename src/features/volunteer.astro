@@ -1,0 +1,57 @@
+---
+import List from '@components/list.astro';
+import ListElement from '@components/list-element.astro';
+import Section from '@components/section.astro';
+import resume from '@mariomh/resume';
+import Span from '@mariomh/span/astro';
+import { HeartHandshake } from 'lucide-astro';
+
+const { volunteer } = resume ?? {};
+---
+
+{
+	volunteer && volunteer.length > 0 && (
+		<Section
+			class='print:hidden space-y-6'
+			title='Voluntariados'>
+			<List>
+				{volunteer.map(({ position, summary, organization, url, startDate, endDate, highlights }) => {
+					if (!organization) return undefined;
+					const years = [startDate, endDate].filter(Boolean).map(d => new Date(d ?? '')).map(d => d.getFullYear()).join(' - ');
+
+					return (
+						<ListElement
+							url={url}
+							time={years}
+							description={summary}
+							title={organization}>
+							<HeartHandshake slot='icon' />
+							{position && (
+								<Span
+									dimension='xs'
+									slot='badge'
+									variant='muted'>
+									{position}
+								</Span>
+							)}
+							{highlights && highlights.length > 0 && (
+								<ul class='list-disc ml-4 space-y-2'>
+									{highlights.filter(Boolean).map(highlight => {
+										return (
+											<Span
+												as='li'
+												dimension='sm'
+												variant='muted'>
+												{highlight}
+											</Span>
+										);
+									})}
+								</ul>
+							)}
+						</ListElement>
+					);
+				})}
+			</List>
+		</Section>
+	)
+}
