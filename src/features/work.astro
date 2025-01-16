@@ -7,6 +7,7 @@ import Paragraph from '@mariomh/paragraph/astro';
 import cn from '@mariomh/paragraph/class-name';
 import type { Work } from '@mariomh/resume';
 import Span from '@mariomh/span/astro';
+import Time from '@components/time.astro';
 
 interface Props {
 	work: Work;
@@ -27,9 +28,6 @@ const {
 	url,
 } = work;
 
-const startYear = startDate ?  new Date(startDate).getFullYear() : undefined;
-const endYear = endDate ? new Date(endDate).getFullYear() : 'Presente';
-
 const filterAchievements = Array.isArray(achievements) ? achievements.filter(Boolean).filter(achievement => typeof achievement === 'string') as string[] : undefined;
 const filterResponsibilities = Array.isArray(responsibilities) ? responsibilities.filter(Boolean).filter(responsibility => typeof responsibility === 'string') as string[] : undefined;
 const filterSkills = Array.isArray(skills) ? skills.filter(Boolean).filter(skill => typeof skill === 'string') as string[] : undefined;
@@ -49,19 +47,13 @@ const showContent = Boolean(summary || showAchievements || showResponsibilities)
 			'lg:hover:!opacity-100',
 		]}>
 		<header class='relative text-sm mt-1 pr-4 font-medium not-print:text-right print:font-semibold md:col-span-2'>
-			{startYear && (
-				<time
-					data-title={startDate}
-					datetime={startDate}>
-					{startYear}
-				</time>
+			<Time date={startDate} />
+			{startDate && (' - ')}
+			{endDate ? (
+				<Time date={endDate} />
+			) : (
+				<span>Presente</span>
 			)}
-			{startYear && '-'}
-			<time
-				data-title={endDate}
-				datetime={endDate}>
-				{endYear}
-			</time>
 		</header>
 		<div
 			class:list={[

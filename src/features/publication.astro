@@ -5,6 +5,7 @@ import Paragraph from '@mariomh/paragraph/astro';
 import type { Publication } from '@mariomh/resume';
 import Span from '@mariomh/span/astro';
 import { Pencil } from 'lucide-astro';
+import Time from '../components/time.astro';
 
 interface Props {
 	publication: Publication;
@@ -12,12 +13,9 @@ interface Props {
 
 const { publication } = Astro.props;
 const { name, publisher, releaseDate, summary, url } = publication;
-const year = releaseDate ? new Date(releaseDate).getFullYear() : undefined;
-
-const footer = [year, publisher].filter(Boolean).join(' - ');
 ---
 
-<Article>
+<Article class='space-y-2'>
 	<header class='flex items-center justify-between space-x-2'>
 		<div class='flex items-center gap-2'>
 			<Pencil
@@ -39,21 +37,21 @@ const footer = [year, publisher].filter(Boolean).join(' - ');
 			}
 		</div>
 	</header>
-	<Paragraph
-		class='my-2'
-		dimension='sm'>
-		{summary}
-	</Paragraph>
-	<footer>
-		{
-			footer ? (
-				<Span
-					class='mt-2'
-					dimension='sm'
-					variant='muted'>
-					{footer}
-				</Span>
-			) : undefined
-		}
-	</footer>
+	{summary && (
+		<Paragraph
+			class='mb-2'
+			dimension='sm'>
+			{summary}
+		</Paragraph>
+	)}
+	{(releaseDate || publisher) && (
+		<Span
+			as='footer'
+			dimension='sm'
+			variant='muted'>
+			<Time date={releaseDate} />
+			{releaseDate && publisher && ' - '}
+			{publisher}
+		</Span>
+	)}
 </Article>

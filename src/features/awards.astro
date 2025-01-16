@@ -19,13 +19,12 @@ const { awards } = resume ?? {};
 						return <Fragment />;
 					}
 
-					const year = date ? new Date(date).getFullYear() : undefined;
 					const description = [awarder, summary].filter(Boolean).join(' - ');
 
 					return (
 						<ListElement
 							description={description}
-							time={year}
+							time={date}
 							title={title}>
 							<Trophy slot='icon' />
 						</ListElement>

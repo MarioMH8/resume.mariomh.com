@@ -5,14 +5,15 @@ import dateFn from './time'
 import type { DateType } from './time'
 
 type Props<Tag extends HTMLTag = 'time'> = Polymorphic<{ as: Tag }> & {
-	date: DateType | [DateType, DateType];
+	date: (DateType | undefined) | [(DateType | undefined), (DateType | undefined)];
 	format?: 'year' | 'year-month';
 };
 
 const { format = 'year', date, as: Tag = 'time', class: cls, 'class:list': clsList, ...properties } = Astro.props;
 
 const array = Array.isArray(date) ? date : [date];
-const formattedArray = array.map(d => dateFn(d, format)).filter(Boolean);
+const formattedArray = array.filter(Boolean).map(d => dateFn(d, format)).filter(Boolean);
+
 ---
 
 {formattedArray.length === 1 ? (
@@ -22,7 +23,7 @@ const formattedArray = array.map(d => dateFn(d, format)).filter(Boolean);
 		datetime={formattedArray[0]}>
 		{formattedArray[0]}
 	</Tag>
-) : (
+) : formattedArray.length === 2 && (
 	<Fragment>
 		<Tag
 			{...properties}

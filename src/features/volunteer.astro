@@ -19,16 +19,11 @@ const { volunteer } = resume ?? {};
 					if (!organization) {
 						return <Fragment />;
 					}
-					const years = [startDate, endDate]
-						.filter(Boolean)
-						.map(d => new Date(d ?? ''))
-						.map(d => d.getFullYear())
-						.join(' - ');
 
 					return (
 						<ListElement
 							description={summary}
-							time={years}
+							time={[startDate, endDate]}
 							title={organization}
 							url={url}>
 							<HeartHandshake slot='icon' />

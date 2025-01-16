@@ -6,6 +6,7 @@ import Paragraph from '@mariomh/paragraph/astro';
 import type { Project } from '@mariomh/resume';
 import Span from '@mariomh/span/astro';
 import { Code } from 'lucide-astro';
+import Time from '../components/time.astro';
 
 interface Props {
 	project: Project;
@@ -18,12 +19,10 @@ const hashtags = keywords
 	?.map(keyword => keyword.replaceAll(' ', ''))
 	.map(keyword => `#${keyword}`)
 	.join(' ');
+
 const rolesJoin = roles?.join(', ');
-const years = [startDate, endDate]
-	.filter(Boolean)
-	.map(date => new Date(date ?? '').getFullYear())
-	.join(' - ');
-const subtitle = [years, entity, type, rolesJoin].filter(Boolean).join(' • ');
+
+const subtitle = [entity, type, rolesJoin].filter(Boolean).join(' • ');
 ---
 
 <Article class='space-y-2'>
@@ -61,10 +60,12 @@ const subtitle = [years, entity, type, rolesJoin].filter(Boolean).join(' • ');
 		}
 	</header>
 	{
-		subtitle && (
+		(subtitle || startDate || endDate) && (
 			<Span
 				dimension='xs'
 				variant='muted'>
+				<Time date={[startDate, endDate]} />
+				{(startDate || endDate) && subtitle && ' • '}
 				{subtitle}
 			</Span>
 		)
@@ -95,6 +96,7 @@ const subtitle = [years, entity, type, rolesJoin].filter(Boolean).join(' • ');
 	{
 		hashtags && (
 			<Span
+				as='footer'
 				dimension='xs'
 				variant='muted'>
 				{hashtags}

@@ -29,11 +29,6 @@ const hasAnyEduction = hasEducation || hasCertificatesOrLanguages;
 						return <Fragment />;
 					}
 
-					const years = [startDate, endDate]
-						.filter(Boolean)
-						.map(d => new Date(d))
-						.map(d => d.getFullYear())
-						.join(' - ');
 					const description = [area, studyType].filter(Boolean).join(' - ');
 					const badge = score ? `Nota: ${score}` : undefined;
 					const badgeAriaLabel = `Nota de ${institution}`;
@@ -41,7 +36,7 @@ const hasAnyEduction = hasEducation || hasCertificatesOrLanguages;
 					return (
 						<ListElement
 							description={description}
-							time={years}
+							time={[startDate, endDate]}
 							title={institution}
 							url={url}>
 							<GraduationCap slot='icon' />
@@ -95,12 +90,10 @@ const hasAnyEduction = hasEducation || hasCertificatesOrLanguages;
 								return <Fragment />;
 							}
 
-							const year = date ? new Date(date).getFullYear() : undefined;
-
 							return (
 								<ListElement
 									description={issuer}
-									time={year}
+									time={date}
 									title={name}
 									url={url}>
 									<ScrollText slot='icon' />

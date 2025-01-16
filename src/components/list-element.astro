@@ -2,9 +2,11 @@
 import Link from '@components/link.astro';
 import Span from '@mariomh/span/astro';
 import type { HTMLTag, Polymorphic } from 'astro/types';
+import type { DateType } from '@components/time';
+import Time from '@components/time.astro';
 
 type Props<Tag extends HTMLTag = 'li'> = Polymorphic<{ as: Tag }> & {
-	time?: number | string | undefined;
+	time?: (DateType | undefined) | [(DateType | undefined), (DateType | undefined)] | undefined;
 	title: string;
 	description?: string | undefined;
 	url?: string | undefined;
@@ -22,17 +24,14 @@ const { class: cls, 'class:list': clsList, description, time, title, url, ...pro
 		clsList,
 	]}>
 	<slot name='icon' />
-	{
-		time && time !== 0 && (
-			<Span
-				as='time'
-				class='not-print:order-last shrink-0'
-				dimension='sm'
-				variant='muted'>
-				{time}
+	{time && (
+		<Span
+			class='not-print:order-last shrink-0'
+			dimension='sm'
+			variant='muted'>
+				<Time date={time}/>
 			</Span>
-		)
-	}
+	)}
 	<div class='w-full flex flex-col'>
 		<span class='flex flec-row items-center gap-2'>
 			{
