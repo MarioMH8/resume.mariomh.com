@@ -12,7 +12,7 @@ const { work } = resume ?? {};
 			class='print:col-span-3'
 			title='Experiencia'>
 			<ul class='flex flex-col'>
-				{work.map(w => (
+				{work.filter(w => w.name).map(w => (
 					<Work work={w} />
 				))}
 			</ul>
