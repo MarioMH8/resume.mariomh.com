@@ -1,7 +1,7 @@
 ---
 import type { HTMLTag, Polymorphic } from 'astro/types';
 
-import { ArrowIcon } from '../icons';
+import { ArrowIcon } from '@icons';
 
 type Props<Tag extends HTMLTag = 'a'> = Polymorphic<{ as: Tag }> & {
 	variant?: 'bright';

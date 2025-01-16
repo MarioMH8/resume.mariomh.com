@@ -2,7 +2,7 @@
 import type { Skill } from '@mariomh/resume';
 import type { HTMLTag, Polymorphic } from 'astro/types';
 
-import { SKILLS_ICONS } from '../icons';
+import { SKILLS_ICONS } from '@icons';
 
 type Props<Tag extends HTMLTag = 'ul'> = Polymorphic<{ as: Tag }> & {
 	big?: boolean;
