@@ -1,7 +1,9 @@
 ---
 import Section from '@components/section.astro';
 import Publication from '@features/publication.astro';
-import { publications } from '@mariomh/resume';
+import resume from '@mariomh/resume';
+
+const { publications } = resume ?? {};
 ---
 
 {
@@ -10,7 +12,7 @@ import { publications } from '@mariomh/resume';
 			class='print:hidden'
 			title='Publicaciones'>
 			<div class='grid grid-cols-1 md:grid-cols-2 gap-3'>
-				{publications.map(publication => (
+				{publications.filter(publication => publication.name).map(publication => (
 					<Publication publication={publication} />
 				))}
 			</div>

@@ -2,15 +2,14 @@
 import Article from '@components/article.astro';
 import Link from '@components/link.astro';
 import Paragraph from '@mariomh/paragraph/astro';
-import cv from '@mariomh/resume';
+import type { Publication } from '@mariomh/resume';
 import Span from '@mariomh/span/astro';
 import { Pencil } from 'lucide-astro';
-
-type Publication = (typeof cv.publications)[number];
 
 interface Props {
 	publication: Publication;
 }
+
 const { publication } = Astro.props;
 const { name, publisher, releaseDate, summary, url } = publication;
 const year = releaseDate ? new Date(releaseDate).getFullYear() : undefined;
@@ -25,13 +24,17 @@ const footer = [year, publisher].filter(Boolean).join(' - ');
 				aria-hidden='true'
 				class='size-4'
 			/>
-			<Link
-				href={url}
-				rel='noopener noreferrer'
-				target='_blank'
-				title={`Ver ${name}`}>
-				{name}
-			</Link>
+			{url ? (
+				<Link
+					href={url}
+					rel='noopener noreferrer'
+					target='_blank'
+					title={`Ver ${name}`}>
+					{name}
+				</Link>
+			) : (
+				<Span class='font-primary'>{name}</Span>
+			)}
 		</div>
 	</header>
 	<Paragraph
