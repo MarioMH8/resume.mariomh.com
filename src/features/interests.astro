@@ -2,9 +2,11 @@
 import List from '@components/list.astro';
 import ListElement from '@components/list-element.astro';
 import Section from '@components/section.astro';
-import { interests } from '@mariomh/resume';
+import resume from '@mariomh/resume';
 
-import { INTEREST_ICONS } from '../icons';
+import { INTEREST_ICONS } from '@icons';
+
+const { interests } = resume ?? {};
 ---
 
 {
@@ -14,7 +16,9 @@ import { INTEREST_ICONS } from '../icons';
 			title='Aficiones'>
 			<List>
 				{interests.map(({ keywords, name }) => {
-					const description = keywords.join(' • ');
+					if (!name) return undefined;
+
+					const description = keywords?.join(' • ');
 					const Icon = INTEREST_ICONS[name];
 
 					return (
