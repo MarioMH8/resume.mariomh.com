@@ -1,0 +1,41 @@
+---
+import type { HTMLTag, Polymorphic } from 'astro/types';
+
+import dateFn from './time'
+import type { DateType } from './time'
+
+type Props<Tag extends HTMLTag = 'time'> = Polymorphic<{ as: Tag }> & {
+	date: DateType | [DateType, DateType];
+	format?: 'year' | 'year-month';
+};
+
+const { format = 'year', date, as: Tag = 'time', class: cls, 'class:list': clsList, ...properties } = Astro.props;
+
+const array = Array.isArray(date) ? date : [date];
+const formattedArray = array.map(d => dateFn(d, format)).filter(Boolean);
+---
+
+{formattedArray.length === 1 ? (
+	<Tag
+		{...properties}
+		data-title={formattedArray[0]}
+		datetime={formattedArray[0]}>
+		{formattedArray[0]}
+	</Tag>
+) : (
+	<Fragment>
+		<Tag
+			{...properties}
+			data-title={formattedArray[0]}
+			datetime={formattedArray[0]}>
+			{formattedArray[0]}
+		</Tag>
+		{' - '}
+		<Tag
+			{...properties}
+			data-title={formattedArray[1]}
+			datetime={formattedArray[1]}>
+			{formattedArray[1]}
+		</Tag>
+	</Fragment>
+)}
