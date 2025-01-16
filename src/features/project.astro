@@ -1,30 +1,34 @@
 ---
 import Article from '@components/article.astro';
 import Link from '@components/link.astro';
-import { GitIcon } from '@icons';
+import { GithubIcon } from '@icons';
 import Paragraph from '@mariomh/paragraph/astro';
-import cv from '@mariomh/resume';
+import type { Project } from '@mariomh/resume';
 import Span from '@mariomh/span/astro';
 import { Code } from 'lucide-astro';
-
-type Project = (typeof cv.projects)[number];
 
 interface Props {
 	project: Project;
 }
+
 const { project } = Astro.props;
-const { description, github, highlights, isActive, name, url } = project;
+const { type, keywords, roles, entity, description, github, highlights, name, url, startDate, endDate } = project;
+
+const hashtags = keywords?.map(keyword => keyword.replaceAll(' ', '')).map(keyword => `#${keyword}`).join(' ');
+const rolesJoin = roles?.join(', ');
+const years = [startDate, endDate].filter(Boolean).map(date => new Date(date ?? '').getFullYear()).join(' - ');
+const subtitle = [years, entity, type, rolesJoin].filter(Boolean).join(' • ');
 ---
 
-<Article>
-	<header class='flex items-center justify-between space-x-2'>
+<Article class='space-y-2'>
+	<header class='flex items-center justify-between gap-2'>
 		<div class='flex items-center gap-2'>
 			<Code
 				aria-hidden='true'
 				class='size-4'
 			/>
 			{
-				isActive && url ? (
+				url ? (
 					<Link
 						href={url}
 						rel='noopener noreferrer'
@@ -38,33 +42,47 @@ const { description, github, highlights, isActive, name, url } = project;
 			}
 		</div>
 		{
-			github && (
+			github && typeof github ==='string' && (
 				<a
 					class='opacity-75 hover:opacity-100 transition-opacity motion-reduce:transition-none ease-linear'
 					href={github}
 					rel='noopener noreferrer'
 					target='_blank'
 					title='Ver el repositorio de código'>
-					<GitIcon class='size-4' />
+					<GithubIcon class='size-4' />
 				</a>
 			)
 		}
 	</header>
-	<Paragraph
-		class='my-2'
-		dimension='sm'>
-		{description}
-	</Paragraph>
-	<ul
-		class:list={[
-			'text-sm text-primary-foreground/65 dark:text-primary-dark-foreground/65',
-			'list-disc space-y-1',
-			'ml-4',
-		]}>
-		{
-			highlights.map(highlight => {
-				return <li>{highlight}</li>;
-			})
-		}
-	</ul>
+	{subtitle && (
+		<Span dimension='xs' variant='muted'>
+			{subtitle}
+		</Span>
+	)}
+	{description && (
+		<Paragraph
+			class='mb-2'
+			dimension='sm'>
+			{description}
+		</Paragraph>
+	)}
+	{highlights && highlights.length > 0 && (
+		<ul
+			class:list={[
+				'text-sm text-primary-foreground/65 dark:text-primary-dark-foreground/65',
+				'list-disc space-y-1',
+				'ml-4',
+			]}>
+			{
+				highlights.map(highlight => {
+					return <li>{highlight}</li>;
+				})
+			}
+		</ul>
+	)}
+	{hashtags && (
+		<Span dimension='xs' variant='muted'>
+			{hashtags}
+		</Span>
+	)}
 </Article>
