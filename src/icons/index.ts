@@ -13,6 +13,7 @@ import SQLIcon from './mysql.astro';
 import NodeJSIcon from './node.astro';
 import ReactIcon from './react.astro';
 import TailwindIcon from './tailwind.astro';
+import TypeScriptIcon from './typescript.astro';
 import XIcon from './x.astro';
 
 const INTEREST_ICONS = {
@@ -39,6 +40,7 @@ const SKILLS_ICONS = {
 	NodeJS: NodeJSIcon,
 	React: ReactIcon,
 	Tailwind: TailwindIcon,
+	TypeScript: TypeScriptIcon,
 } as Record<string, (properties: Props) => any>;
 
 export { INTEREST_ICONS, SKILLS_ICONS, SOCIAL_ICONS };
