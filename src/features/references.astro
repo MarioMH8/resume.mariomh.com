@@ -1,8 +1,10 @@
 ---
 import Section from '@components/section.astro';
 import Paragraph from '@mariomh/paragraph/astro';
-import { references } from '@mariomh/resume';
+import resume from '@mariomh/resume';
 import Span from '@mariomh/span/astro';
+
+const { references } = resume ?? {};
 ---
 
 {
@@ -10,7 +12,7 @@ import Span from '@mariomh/span/astro';
 		<Section
 			class='print:hidden space-y-6'
 			title='Referencias'>
-			{references.map(({ name, reference }) => {
+			{references.filter(reference => reference.name).map(({ name, reference }) => {
 				return (
 					<figure class='mb-0'>
 						<Paragraph
