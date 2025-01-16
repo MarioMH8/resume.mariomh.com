@@ -6,7 +6,7 @@ import type { HTMLTag, Polymorphic } from 'astro/types';
 type Props<Tag extends HTMLTag = 'li'> = Polymorphic<{ as: Tag }> & {
 	time?: number | string | undefined;
 	title: string;
-	description?: string;
+	description?: string | undefined;
 	url?: string | undefined;
 };
 
