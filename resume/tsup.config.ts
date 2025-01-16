@@ -31,7 +31,7 @@ async function writeResume() {
 }
 
 async function writeResumeDefinition() {
-	const content = `import type { JSONResume } from './schema';\n\ndeclare const resume: JSONResume;\n\nexport default resume;\n`;
+	const content = `import type { JSONResume } from './schema';\n\ndeclare const resume: JSONResume;\n\nexport type * from './schema';\n\nexport default resume;\n`;
 
 	await writeFile('dist/index.d.ts', content);
 }
