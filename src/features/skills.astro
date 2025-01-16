@@ -1,17 +1,21 @@
 ---
 import Section from '@components/section.astro';
 import SkillList from '@components/skill-list.astro';
-import { skills } from '@mariomh/resume';
+import resume from '@mariomh/resume';
+
+const { skills } = resume ?? {};
+
+let filteredSkills = skills?.filter(skill => skill.name);
 ---
 
 {
-	skills && skills.length > 0 && (
+	filteredSkills && filteredSkills.length > 0 && (
 		<Section
 			class='print:hidden'
 			title='Tecnologías'>
 			<SkillList
 				big
-				skills={skills}
+				skills={filteredSkills}
 			/>
 		</Section>
 	)
