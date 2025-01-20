@@ -43,7 +43,7 @@
 		"@mariomh/resume": "0.0.0",
 		"@mariomh/span": "0.0.2",
 		"@mariomh/tailwind": "0.0.1",
-		"lucide-astro": "0.471.0"
+		"lucide-astro": "0.473.0"
 	},
 	"devDependencies": {
 		"@astrojs/check": "0.9.4",
