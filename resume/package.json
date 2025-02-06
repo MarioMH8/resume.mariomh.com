@@ -44,8 +44,8 @@
 	},
 	"devDependencies": {
 		"@duplojs/zod-to-typescript": "0.3.0",
-		"publint": "0.3.2",
-		"tsup": "8.3.5",
+		"publint": "0.3.3",
+		"tsup": "8.3.6",
 		"zod": "3.24.1",
 		"zod-to-json-schema": "3.24.1"
 	}
