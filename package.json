@@ -51,7 +51,7 @@
 		"@astrojs/sitemap": "3.2.1",
 		"@astrojs/ts-plugin": "1.10.4",
 		"@changesets/cli": "2.27.12",
-		"@hexadrop/eslint-config": "0.0.2",
+		"@hexadrop/eslint-config": "0.1.0",
 		"@hexadrop/tsconfig": "0.0.5",
 		"@playform/compress": "0.1.7",
 		"@tailwindcss/vite": "4.0.4",
