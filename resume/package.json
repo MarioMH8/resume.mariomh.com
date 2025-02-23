@@ -47,6 +47,6 @@
 		"publint": "0.3.3",
 		"tsup": "8.3.6",
 		"zod": "3.24.1",
-		"zod-to-json-schema": "3.24.1"
+		"zod-to-json-schema": "3.24.3"
 	}
 }
