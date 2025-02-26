@@ -28,7 +28,7 @@ export default defineConfig({
 		sitemap(),
 		robotsTxt(),
 		manifest({
-			background_color: '#0F1214',
+			background_color: '#001C16',
 
 			config: {
 				insertAppleTouchLinks: true,
@@ -42,12 +42,12 @@ export default defineConfig({
 			short_name: typeof nameShort === 'string' ? nameShort : undefined,
 			start_url: '/',
 
-			theme_color: '#FFFFFF',
+			theme_color: '#c6f118',
 		} as WebmanifestOptions),
 		pwa({
 			registerType: 'autoUpdate',
 			workbox: {
-				globPatterns: ['**/*.{js,css,html,svg,png}'],
+				globPatterns: ['**/*.{js,css,html,svg,png,webp,otf,woff2}'],
 			},
 		}),
 		compress(),
