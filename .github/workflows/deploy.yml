@@ -49,9 +49,8 @@ jobs:
                 run: bun ${{ matrix.command }}
 
     release:
-        name: Release
+        name: Deploy
         runs-on: ubuntu-latest
-        if: ${{ github.event_name == 'push' }}
         needs: [ check ]
         permissions:
             contents: 'write'
