@@ -6,7 +6,7 @@ import Heading from '@mariomh/heading/astro';
 import resume from '@mariomh/resume';
 import Span from '@mariomh/span/astro';
 import { Image } from 'astro:assets';
-import { Globe, Link, Mail, MapPin, Phone } from 'lucide-astro';
+import { Globe, Link, Mail, MapPin, Phone, Download } from 'lucide-astro';
 
 const { email, image, label, location, name, phone, profiles, url } = resume.basics ?? {};
 
@@ -28,7 +28,7 @@ const print = Boolean(hero || image);
 			<div
 				class:list={[
 					'flex gap-8 not-print:flex-wrap-reverse not-print:justify-end not-print:items-start not-print:flex-row-reverse xl:not-print:flex-col-reverse xl:not-print:items-end',
-					'print:flex-row-reverse',
+					'print:flex-row-reverse print:gap-12',
 				]}>
 				{hero && (
 					<div class='flex flex-col gap-1 pr-8 print:gap-0 print:pr-0'>
@@ -185,6 +185,20 @@ const print = Boolean(hero || image);
 										</a>
 									);
 								})}
+								<a
+									class:list={[
+										'size-8',
+										'inline-flex items-center justify-center rounded-md p-1',
+										'text-primary-foreground-highlight dark:text-primary',
+										'hover:bg-primary hover:text-primary-foreground dark:hover:text-primary-foreground',
+										'transition-all duration-300 ease-linear',
+									]}
+									href='/Mario Menéndez Hidalgo - Solution Architect.pdf'
+									rel='noopener noreferrer'
+									target='_blank'
+									title='Descargar currículum'>
+									<Download class='w-4.5 h-4.5' />
+								</a>
 							</footer>
 						)}
 					</div>
@@ -195,7 +209,7 @@ const print = Boolean(hero || image);
 						class:list={[
 							'w-fit max-w-48 relative xl:ml-[10%]',
 							'after:absolute after:block after:left-0 after:right-0 after:bottom-0 after:z-1 after:h-2',
-							'print:max-w-[135px]',
+							'print:max-w-[130px]',
 						]}
 						src={me}
 						style='mask-image: linear-gradient(to bottom, black 98%, transparent 100%);'

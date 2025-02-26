@@ -47,7 +47,7 @@ export default defineConfig({
 		pwa({
 			registerType: 'autoUpdate',
 			workbox: {
-				globPatterns: ['**/*.{js,css,html,svg,png,webp,otf,woff2,json}'],
+				globPatterns: ['**/*.{js,css,html,svg,png,webp,otf,woff2,json,pdf}'],
 			},
 		}),
 		compress(),
