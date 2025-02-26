@@ -4,7 +4,6 @@ import sitemap from '@astrojs/sitemap';
 import resume from '@mariomh/resume';
 import compress from '@playform/compress';
 import tailwindcss from '@tailwindcss/vite';
-import pwa from '@vite-pwa/astro';
 import { defineConfig } from 'astro/config';
 import robotsTxt from 'astro-robots-txt';
 import type { WebmanifestOptions } from 'astro-webmanifest';
@@ -44,12 +43,6 @@ export default defineConfig({
 
 			theme_color: '#c6f118',
 		} as WebmanifestOptions),
-		pwa({
-			registerType: 'autoUpdate',
-			workbox: {
-				globPatterns: ['**/*.{js,css,html,svg,png,webp,otf,woff2,json,pdf}'],
-			},
-		}),
 		compress(),
 	],
 	prefetch: false,

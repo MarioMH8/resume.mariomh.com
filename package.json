@@ -41,7 +41,7 @@
 		"@mariomh/font": "0.0.1",
 		"@mariomh/heading": "0.0.3",
 		"@mariomh/paragraph": "0.0.2",
-		"@mariomh/resume": "0.0.1",
+		"@mariomh/resume": "0.0.2",
 		"@mariomh/span": "0.0.2",
 		"@mariomh/tailwind": "0.0.1",
 		"lucide-astro": "0.473.0"
@@ -56,7 +56,6 @@
 		"@playform/compress": "0.1.7",
 		"@tailwindcss/vite": "4.0.9",
 		"@types/bun": "1.2.3",
-		"@vite-pwa/astro": "0.5.0",
 		"astro": "5.3.1",
 		"astro-robots-txt": "1.0.0",
 		"astro-seo": "0.8.4",
