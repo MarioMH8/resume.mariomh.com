@@ -18,7 +18,7 @@ export default defineConfig({
 			hooks: {
 				'astro:build:done': ({ dir }) => {
 					const cvContent = JSON.stringify(resume, undefined, '\t');
-					const url = new URL('resume/resume.json', dir);
+					const url = new URL('resume.json', dir);
 
 					fs.writeFileSync(url, cvContent);
 				},
