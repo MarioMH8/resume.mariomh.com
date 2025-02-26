@@ -28,10 +28,10 @@ type Props<Tag extends HTMLTag = 'body'> = Polymorphic<{ as: Tag }> & {
 const { description, title, ...properties } = Astro.props;
 const { label, name } = resume.basics ?? {};
 const nameLabel = [name, label].filter(Boolean).join(' - ');
-const summaryShort = resume.basics?.summaryShort;
+const summary = resume.basics?.summary;
 const titleName = [title, name].filter(Boolean).join(' - ');
 const computedTitle = title ? titleName : nameLabel;
-const computedDescription = description ?? (typeof summaryShort === 'string' ? summaryShort : '');
+const computedDescription = description ?? (typeof summary === 'string' ? summary : '');
 ---
 
 <!doctype html>

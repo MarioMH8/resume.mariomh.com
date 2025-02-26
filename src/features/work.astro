@@ -1,13 +1,13 @@
 ---
 import Link from '@components/link.astro';
 import SkillList from '@components/skill-list.astro';
+import Time from '@components/time.astro';
 import { CaretDownIcon } from '@icons';
 import Heading from '@mariomh/heading/astro';
 import Paragraph from '@mariomh/paragraph/astro';
 import cn from '@mariomh/paragraph/class-name';
 import type { Work } from '@mariomh/resume';
 import Span from '@mariomh/span/astro';
-import Time from '@components/time.astro';
 
 interface Props {
 	work: Work;
@@ -28,16 +28,30 @@ const {
 	url,
 } = work;
 
-const filterAchievements = Array.isArray(achievements) ? achievements.filter(Boolean).filter(achievement => typeof achievement === 'string') as string[] : undefined;
-const filterResponsibilities = Array.isArray(responsibilities) ? responsibilities.filter(Boolean).filter(responsibility => typeof responsibility === 'string') as string[] : undefined;
-const filterSkills = Array.isArray(skills) ? skills.filter(Boolean).filter(skill => typeof skill === 'string') as string[] : undefined;
-const locationSubtitle = [location, locationType].filter(Boolean).filter(skill => typeof skill === 'string').join(' - ');
+const filterAchievements = Array.isArray(achievements)
+	? (achievements.filter(Boolean).filter(achievement => typeof achievement === 'string') as string[])
+	: undefined;
+const filterResponsibilities = Array.isArray(responsibilities)
+	? (responsibilities.filter(Boolean).filter(responsibility => typeof responsibility === 'string') as string[])
+	: undefined;
+const filterSkills = Array.isArray(skills)
+	? (skills.filter(Boolean).filter(skill => typeof skill === 'string') as string[])
+	: undefined;
+const locationSubtitle = [location, locationType]
+	.filter(Boolean)
+	.filter(skill => typeof skill === 'string')
+	.join(' - ');
 const showResponsibilities = Boolean(filterResponsibilities && filterResponsibilities.length > 0);
 const showAchievements = Boolean(filterAchievements && filterAchievements.length > 0);
 const showContent = Boolean(summary || showAchievements || showResponsibilities);
+const sameYear =
+	startDate !== undefined &&
+	endDate !== undefined &&
+	new Date(startDate).getFullYear() === new Date(endDate).getFullYear();
+const hidePrint = 'hidePrint' in work && work.hidePrint === true;
 ---
 
-<li class='break-inside-avoid'>
+<li class='break-inside-avoid group/work'>
 	<div
 		class:list={[
 			'relative',
@@ -45,21 +59,21 @@ const showContent = Boolean(summary || showAchievements || showResponsibilities)
 			'print:grid-cols-1 md:grid-cols-10',
 			'md:gap-8 lg:gap-6 print:gap-1',
 			'lg:hover:!opacity-100',
+			hidePrint && 'print:hidden',
 		]}>
-		<header class='relative text-sm mt-1 pr-4 font-medium not-print:text-right print:font-semibold md:col-span-2'>
+		<header
+			class='relative text-sm mt-1 pr-4 font-medium md:not-print:text-right print:font-semibold md:col-span-2'>
 			<Time date={startDate} />
-			{startDate && (' - ')}
-			{endDate ? (
-				<Time date={endDate} />
-			) : (
-				<span>Presente</span>
-			)}
+			{startDate && !sameYear && ' - '}
+			{endDate ? sameYear ? <Fragment /> : <Time date={endDate} /> : <span>Presente</span>}
 		</header>
 		<div
 			class:list={[
 				'relative md:col-span-8',
 				'flex flex-col',
-				'before:absolute print:before:hidden before:w-px before:h-full before:-ml-6 before:mt-2 before:bg-primary-foreground-highlight',
+				'before:absolute print:before:hidden before:w-px before:-ml-6 before:mt-2',
+				'group-not-last/work:before:h-[110%] group-not-last/work:before:lg:h-full group-last/work:before:h-[85%]',
+				'before:bg-primary-foreground-highlight',
 			]}>
 			<div
 				class:list={[
@@ -75,33 +89,37 @@ const showContent = Boolean(summary || showAchievements || showResponsibilities)
 				class='inline-flex items-center gap-2 font-primary w-fit'
 				dimension='lg'
 				weight='base'>
-				{position && (<span>{position}</span>)}
+				{position && <span>{position}</span>}
 				{position && '@'}
-				{url ? (
-					<Link
-						href={url}
-						rel='noopener noreferrer'
-						target='_blank'
-						title={`Ver ${name}`}
-						variant='bright'>
-						{name}
-					</Link>
-				) : (
-					<span>{name}</span>
-				)}
+				{
+					url ? (
+						<Link
+							href={url}
+							rel='noopener noreferrer'
+							target='_blank'
+							title={`Ver ${name}`}
+							variant='bright'>
+							{name}
+						</Link>
+					) : (
+						<span>{name}</span>
+					)
+				}
 			</Span>
-			{locationSubtitle && (
-				<Span
-					class='print:text-xs'
-					dimension='sm'
-					variant='muted'>
-					{locationSubtitle}
-				</Span>
-			)}
-			{showContent && (
-				<div class='mt-4 mb-6 print:mt-2 print:mb-4 flex flex-col gap-3 print:gap-1'>
-					{
-						summary && (
+			{
+				locationSubtitle && (
+					<Span
+						class='print:text-xs'
+						dimension='sm'
+						variant='muted'>
+						{locationSubtitle}
+					</Span>
+				)
+			}
+			{
+				showContent && (
+					<div class='mt-4 mb-6 print:mt-2 print:mb-4 flex flex-col gap-3 print:gap-1'>
+						{summary && (
 							<div>
 								<Heading
 									class='text-base print:text-sm mb-0'
@@ -115,10 +133,8 @@ const showContent = Boolean(summary || showAchievements || showResponsibilities)
 									{summary}
 								</Paragraph>
 							</div>
-						)
-					}
-					{
-						(showResponsibilities || showAchievements) && (
+						)}
+						{(showResponsibilities || showAchievements) && (
 							<>
 								<div
 									class:list={[
@@ -126,14 +142,14 @@ const showContent = Boolean(summary || showAchievements || showResponsibilities)
 										'flex flex-col gap-3 print:gap-1',
 										'overflow-y-hidden',
 										'data-expanded:max-h-fit not-data-expanded:max-h-12',
-										`lg:after:absolute lg:after:content-[''] lg:after:bottom-0 lg:after:w-full lg:after:h-12`,
-										'lg:after:bg-gradient-to-t',
-										'lg:after:from-cv-background lg:after:to-cv-background/0',
-										'dark:lg:after:from-cv-dark-background dark:lg:after:to-cv-dark-background/0',
+										`after:absolute after:content-[''] after:bottom-0 after:w-full after:h-12`,
+										'after:bg-gradient-to-t',
+										'after:from-cv-background after:to-cv-background/0',
+										'dark:after:from-cv-dark-background dark:after:to-cv-dark-background/0',
 										'max-md:!h-auto print:!max-h-fit print:after:hidden',
 										'not-print:data-expanded:after:hidden',
 									]}>
-									{filterResponsibilities && (
+									{showResponsibilities && (
 										<div>
 											<Heading
 												class='text-base print:text-sm mb-0'
@@ -145,7 +161,7 @@ const showContent = Boolean(summary || showAchievements || showResponsibilities)
 													{ dimension: 'sm', variant: 'muted' },
 													'print:text-xs mb-0 list-disc'
 												)}>
-												{filterResponsibilities.map(r => (
+												{filterResponsibilities?.map(r => (
 													<li class='ml-4 marker:text-primary-foreground-highlight dark:marker:text-primary'>
 														{r}
 													</li>
@@ -153,7 +169,7 @@ const showContent = Boolean(summary || showAchievements || showResponsibilities)
 											</ul>
 										</div>
 									)}
-									{filterAchievements && (
+									{showAchievements && (
 										<div>
 											<Heading
 												class='text-base print:text-sm mb-0'
@@ -165,7 +181,7 @@ const showContent = Boolean(summary || showAchievements || showResponsibilities)
 													{ dimension: 'sm', variant: 'muted' },
 													'print:text-xs mb-0 list-disc'
 												)}>
-												{filterAchievements.map(r => (
+												{filterAchievements?.map(r => (
 													<li class='ml-4 marker:text-primary-foreground-highlight dark:marker:text-primary'>
 														{r}
 													</li>
@@ -198,19 +214,17 @@ const showContent = Boolean(summary || showAchievements || showResponsibilities)
 									/>
 								</button>
 							</>
-						)
-					}
-					{
-						filterSkills && (
+						)}
+						{filterSkills && (
 							<SkillList
 								aria-label='Tecnologías utilizadas'
 								class='print:hidden'
 								skills={filterSkills}
 							/>
-						)
-					}
-				</div>
-			)}
+						)}
+					</div>
+				)
+			}
 		</div>
 	</div>
 </li>

@@ -2,16 +2,22 @@
 import type { Props } from 'astro';
 import { Camera, Dices, MountainSnow } from 'lucide-astro';
 
+import AngularIcon from './angular.astro';
 import AstroIcon from './astro.astro';
 import CssIcon from './css.astro';
 import GitIcon from './git.astro';
 import GithubIcon from './github.astro';
+import GoogleIcon from './google.astro';
 import HTMLIcon from './html.astro';
+import JavaIcon from './java.astro';
 import JavaScriptIcon from './javascript.astro';
 import LinkedinIcon from './linkedin.astro';
 import SQLIcon from './mysql.astro';
 import NodeJSIcon from './node.astro';
 import ReactIcon from './react.astro';
+import RemixIcon from './remix.astro';
+import SpringIcon from './spring.astro';
+import StorybookIcon from './storybook.astro';
 import TailwindIcon from './tailwind.astro';
 import TypeScriptIcon from './typescript.astro';
 import XIcon from './x.astro';
@@ -30,15 +36,22 @@ const SOCIAL_ICONS = {
 } as Record<string, (properties: Props) => any>;
 
 const SKILLS_ICONS = {
+	Angular: AngularIcon,
 	Astro: AstroIcon,
 	CSS: CssIcon,
 	Git: GitIcon,
 	GitHub: GithubIcon,
+	'Google Cloud': GoogleIcon,
 	HTML: HTMLIcon,
+	Java: JavaIcon,
 	JavaScript: JavaScriptIcon,
 	MySQL: SQLIcon,
+	Node: NodeJSIcon,
 	NodeJS: NodeJSIcon,
 	React: ReactIcon,
+	Remix: RemixIcon,
+	'Spring Boot': SpringIcon,
+	Storybook: StorybookIcon,
 	Tailwind: TailwindIcon,
 	TypeScript: TypeScriptIcon,
 } as Record<string, (properties: Props) => any>;

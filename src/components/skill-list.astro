@@ -1,8 +1,7 @@
 ---
+import { SKILLS_ICONS } from '@icons';
 import type { Skill } from '@mariomh/resume';
 import type { HTMLTag, Polymorphic } from 'astro/types';
-
-import { SKILLS_ICONS } from '@icons';
 
 type Props<Tag extends HTMLTag = 'ul'> = Polymorphic<{ as: Tag }> & {
 	big?: boolean;
@@ -14,7 +13,12 @@ const { big, class: cls, 'class:list': clsList, skills, ...properties } = Astro.
 
 <ul
 	{...properties}
-	class:list={['flex flex-row flex-wrap', { 'gap-2': !big, 'gap-x-6 gap-y-4': big }, cls, clsList]}>
+	class:list={[
+		'flex flex-row flex-wrap',
+		{ 'gap-2': !big, 'gap-x-6 gap-y-4 print:gap-x-3 print:gap-y-1.5': big },
+		cls,
+		clsList,
+	]}>
 	{
 		skills.map(skill => {
 			const name = typeof skill === 'string' ? skill : skill.name;
@@ -33,8 +37,9 @@ const { big, class: cls, 'class:list': clsList, skills, ...properties } = Astro.
 						'bg-primary-background-subtle/40 dark:bg-primary-dark-background-subtle',
 						'border border-primary-border dark:border-primary-dark-border',
 						'flex gap-2 items-center flex-row',
+						'print:gap-1',
 					]}>
-					{Icon && <Icon class:list={{ 'size-4': !big, 'size-5': big }} />}
+					{Icon && <Icon class:list={{ 'size-4': !big, 'size-5 print:size-4': big }} />}
 					<span>{name}</span>
 				</li>
 			);
