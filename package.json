@@ -41,7 +41,7 @@
 		"@mariomh/font": "0.0.1",
 		"@mariomh/heading": "0.0.3",
 		"@mariomh/paragraph": "0.0.2",
-		"@mariomh/resume": "0.0.2",
+		"@mariomh/resume": "workspace:*",
 		"@mariomh/span": "0.0.2",
 		"@mariomh/tailwind": "0.0.1",
 		"lucide-astro": "0.473.0"
