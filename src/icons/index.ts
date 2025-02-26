@@ -50,6 +50,7 @@ const SKILLS_ICONS = {
 	NodeJS: NodeJSIcon,
 	React: ReactIcon,
 	Remix: RemixIcon,
+	Spring: SpringIcon,
 	'Spring Boot': SpringIcon,
 	Storybook: StorybookIcon,
 	Tailwind: TailwindIcon,
