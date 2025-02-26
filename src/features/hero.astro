@@ -6,7 +6,7 @@ import Heading from '@mariomh/heading/astro';
 import resume from '@mariomh/resume';
 import Span from '@mariomh/span/astro';
 import { Image } from 'astro:assets';
-import { Download, Globe, Link, Mail, MapPin, Phone } from 'lucide-astro';
+import { Download, Printer, Globe, Link, Mail, MapPin, Phone } from 'lucide-astro';
 
 const { email, image, label, location, name, phone, profiles, url } = resume.basics ?? {};
 
@@ -193,9 +193,7 @@ const print = Boolean(hero || image);
 										'hover:bg-primary hover:text-primary-foreground dark:hover:text-primary-foreground',
 										'transition-all duration-300 ease-linear',
 									]}
-									href='/Mario Menéndez Hidalgo - Solution Architect.pdf'
-									rel='noopener noreferrer'
-									target='_blank'
+									href='/resume.pdf'
 									title='Descargar currículum'>
 									<Download class='w-4.5 h-4.5' />
 								</a>
