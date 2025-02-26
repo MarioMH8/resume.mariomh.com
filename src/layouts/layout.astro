@@ -43,6 +43,21 @@ const computedDescription = description ?? (typeof summary === 'string' ? summar
 			name='viewport'
 		/>
 
+		<meta
+			content='#0F1214'
+			name='theme-color'
+		/>
+
+		<meta
+			content={Astro.generator}
+			name='generator'
+		/>
+
+		<link
+			href='/sitemap-index.xml'
+			rel='sitemap'
+		/>
+
 		<SEO
 			description={computedDescription}
 			openGraph={{
@@ -55,19 +70,7 @@ const computedDescription = description ?? (typeof summary === 'string' ? summar
 			title={computedTitle}
 		/>
 
-		<meta
-			content='#0F1214'
-			name='theme-color'
-		/>
-		<meta
-			content={Astro.generator}
-			name='generator'
-		/>
-
-		<link
-			href='/sitemap-index.xml'
-			rel='sitemap'
-		/>
+		<script src='/src/pwa.ts'/>
 	</head>
 	<body
 		{...properties}
