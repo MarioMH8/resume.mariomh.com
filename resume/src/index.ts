@@ -97,12 +97,12 @@ const resume = {
 		},
 		{
 			keywords: ['Version Control', 'Collaboration', 'Source Code'],
-			level: 'Intermedio',
+			level: 'Avanzado',
 			name: 'Git',
 		},
 		{
 			keywords: ['Web Development', 'Frontend', 'JavaScript Library', 'UI'],
-			level: 'Intermedio',
+			level: 'Avanzado',
 			name: 'React',
 		},
 		{
@@ -112,7 +112,7 @@ const resume = {
 		},
 		{
 			keywords: ['Web Development', 'Backend', 'JavaScript', 'Server'],
-			level: 'Intermedio',
+			level: 'Avanzado',
 			name: 'Node',
 		},
 		{
@@ -134,6 +134,10 @@ const resume = {
 			keywords: ['Web Development', 'Frontend', 'React Framework', 'SSR', 'Static Generation'],
 			level: 'Intermedio',
 			name: 'Remix',
+		},
+		{
+			level: 'Intermedio',
+			name: 'Spring',
 		},
 		{
 			keywords: ['Design', 'Design System'],
