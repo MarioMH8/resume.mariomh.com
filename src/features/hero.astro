@@ -25,10 +25,11 @@ const print = Boolean(hero || image);
 {
 	print && (
 		<Section class='print:col-span-8'>
-			<div class:list={[
-				'flex gap-8 not-print:flex-wrap-reverse not-print:justify-end not-print:items-start not-print:flex-row-reverse xl:not-print:flex-col-reverse xl:not-print:items-end',
-				'print:flex-row-reverse'
-			]}>
+			<div
+				class:list={[
+					'flex gap-8 not-print:flex-wrap-reverse not-print:justify-end not-print:items-start not-print:flex-row-reverse xl:not-print:flex-col-reverse xl:not-print:items-end',
+					'print:flex-row-reverse',
+				]}>
 				{hero && (
 					<div class='flex flex-col gap-1 pr-8 print:gap-0 print:pr-0'>
 						{name && (
@@ -194,7 +195,7 @@ const print = Boolean(hero || image);
 						class:list={[
 							'w-fit max-w-48 relative xl:ml-[10%]',
 							'after:absolute after:block after:left-0 after:right-0 after:bottom-0 after:z-1 after:h-2',
-							'print:max-w-[135px]'
+							'print:max-w-[135px]',
 						]}
 						src={me}
 						style='mask-image: linear-gradient(to bottom, black 98%, transparent 100%);'
