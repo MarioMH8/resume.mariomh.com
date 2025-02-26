@@ -1,6 +1,6 @@
 {
 	"name": "@mariomh/resume",
-	"version": "0.0.0",
+	"version": "0.0.1",
 	"author": "MarioMH <dev@mariomh.com>",
 	"description": "Curriculum Vitae de MarioMH",
 	"keywords": [
@@ -44,9 +44,9 @@
 	},
 	"devDependencies": {
 		"@duplojs/zod-to-typescript": "0.3.0",
-		"publint": "0.3.3",
-		"tsup": "8.3.6",
-		"zod": "3.24.1",
-		"zod-to-json-schema": "3.24.1"
+		"publint": "0.3.6",
+		"tsup": "8.4.0",
+		"zod": "3.24.2",
+		"zod-to-json-schema": "3.24.3"
 	}
 }
