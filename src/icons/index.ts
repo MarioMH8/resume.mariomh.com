@@ -4,6 +4,7 @@ import { Camera, Dices, MountainSnow } from 'lucide-astro';
 
 import AngularIcon from './angular.astro';
 import AstroIcon from './astro.astro';
+import AWSIcon from './aws.astro';
 import CssIcon from './css.astro';
 import GitIcon from './git.astro';
 import GithubIcon from './github.astro';
@@ -38,6 +39,7 @@ const SOCIAL_ICONS = {
 const SKILLS_ICONS = {
 	Angular: AngularIcon,
 	Astro: AstroIcon,
+	AWS: AWSIcon,
 	CSS: CssIcon,
 	Git: GitIcon,
 	GitHub: GithubIcon,
