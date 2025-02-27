@@ -77,7 +77,8 @@ The project is organized into several main directories and files:
 
 ## Inspiration and Credits
 
-Here are some inspiration for this kind of terminal website. Only some features and functionalities are inspired by these following websites. All codes are written on my own.
+Here are some inspiration for this kind of resume website. Only some features and functionalities are inspired by 
+these following websites. All codes are written on my own.
 
 - [Résumé minimalista by midudev](https://github.com/midudev/minimalist-portfolio-json)
 - [Print-friendly portfolio CV by Ariel Cerda](https://github.com/Smilesharks/dev-portfolio)
