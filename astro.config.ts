@@ -9,7 +9,7 @@ import robotsTxt from 'astro-robots-txt';
 import type { WebmanifestOptions } from 'astro-webmanifest';
 import manifest from 'astro-webmanifest';
 
-const { name = '', nameShort, summary, url } = resume.basics ?? {};
+const { name = '', nameShort, summary } = resume.basics ?? {};
 
 export default defineConfig({
 	integrations: [
@@ -46,8 +46,7 @@ export default defineConfig({
 		compress(),
 	],
 	prefetch: false,
-	// eslint-disable-next-line typescript/no-non-null-assertion
-	site: url!,
+	site: 'https://resume.mariomh.com',
 	vite: {
 		plugins: [tailwindcss()],
 	},
