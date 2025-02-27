@@ -77,7 +77,7 @@ The project is organized into several main directories and files:
 
 ## Inspiration and Credits
 
-Here are some inspiration for this kind of resume website. Only some features and functionalities are inspired by 
+Here are some inspiration for this kind of resume website. Only some features and functionalities are inspired by
 these following websites. All codes are written on my own.
 
 - [Résumé minimalista by midudev](https://github.com/midudev/minimalist-portfolio-json)
