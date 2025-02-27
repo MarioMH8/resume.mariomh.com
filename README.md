@@ -3,7 +3,7 @@
 </h1>
 
 <p align="center">
-    Printable curriculum vitae 
+    Printable curriculum vitae
 </p>
 
 ![mariomh-resume--portfolio](docs/resume.mriomh.com.webp)
