@@ -39,7 +39,7 @@
 		"@fontsource/dm-sans": "5.1.1",
 		"@mariomh/archia": "0.0.1",
 		"@mariomh/font": "0.0.1",
-		"@mariomh/heading": "0.0.3",
+		"@mariomh/heading": "0.0.5",
 		"@mariomh/paragraph": "0.0.2",
 		"@mariomh/resume": "workspace:*",
 		"@mariomh/span": "0.0.2",
