@@ -40,7 +40,7 @@
 		"@mariomh/archia": "0.0.1",
 		"@mariomh/font": "0.0.1",
 		"@mariomh/heading": "0.0.3",
-		"@mariomh/paragraph": "0.0.2",
+		"@mariomh/paragraph": "0.0.4",
 		"@mariomh/resume": "workspace:*",
 		"@mariomh/span": "0.0.2",
 		"@mariomh/tailwind": "0.0.1",
