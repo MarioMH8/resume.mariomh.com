@@ -36,7 +36,7 @@
 		"typecheck": "astro check & tsc --noEmit"
 	},
 	"dependencies": {
-		"@fontsource/dm-sans": "5.1.1",
+		"@fontsource/dm-sans": "5.2.8",
 		"@mariomh/archia": "0.0.1",
 		"@mariomh/font": "0.0.1",
 		"@mariomh/heading": "0.0.3",
