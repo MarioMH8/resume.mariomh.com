@@ -30,12 +30,6 @@ async function writeResume() {
 	await writeFile('dist/resume.json', json);
 }
 
-async function writeResumeDefinition() {
-	const content = `import type { JSONResume } from './schema';\n\ndeclare const resume: JSONResume;\n\nexport type * from './schema';\n\nexport default resume;\n`;
-
-	await writeFile('dist/index.d.ts', content);
-}
-
 async function writeSchema() {
 	const generated = zodToJsonSchema(schema, {
 		definitions: {
@@ -117,7 +111,10 @@ async function writeDefinitions() {
 		name: 'JSONResume',
 	});
 
-	await writeFile('dist/schema.d.ts', tsType);
+	const content = [tsType, 'declare const resume: JSONResume;', 'export default resume;'].join('\n\n');
+
+	await writeFile('dist/index.d.ts', content);
+	await writeFile('dist/index.d.cts', content);
 }
 
 export default defineConfig([
@@ -126,10 +123,36 @@ export default defineConfig([
 		dts: false,
 		entry: ['src/index.ts'],
 		format: ['esm'],
-		onSuccess: async () => {
-			await Promise.all([writeResume(), writeSchema(), writeDefinitions(), writeResumeDefinition()]);
-		},
+		minify: false,
 		platform: 'neutral',
+		sourcemap: false,
+		splitting: false,
+	},
+	{
+		clean: false,
+		dts: false,
+		entry: ['src/index.ts'],
+		format: ['cjs'],
+		minify: false,
+		platform: 'neutral',
+		sourcemap: false,
+		splitting: false,
+	},
+	{
+		clean: false,
+		dts: false,
+		entry: ['src/index.ts'],
+		format: ['esm', 'cjs'],
+		minify: true,
+		onSuccess: async () => {
+			await Promise.all([writeResume(), writeSchema(), writeDefinitions()]);
+		},
+		outExtension({ format }) {
+			return {
+				js: `.min.${format === 'esm' ? 'js' : 'cjs'}`,
+			};
+		},
+		// platform: 'neutral',
 		sourcemap: false,
 		splitting: false,
 	},
