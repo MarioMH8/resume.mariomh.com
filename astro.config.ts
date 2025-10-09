@@ -9,7 +9,7 @@ import robotsTxt from 'astro-robots-txt';
 import type { WebmanifestOptions } from 'astro-webmanifest';
 import manifest from 'astro-webmanifest';
 
-const { name = '', nameShort, summary } = resume.basics ?? {};
+const { name = '', shortName, summary } = resume.basics ?? {};
 
 export default defineConfig({
 	integrations: [
@@ -38,7 +38,7 @@ export default defineConfig({
 			display: 'standalone',
 			icon: 'public/favicon.svg',
 			name,
-			short_name: typeof nameShort === 'string' ? nameShort : undefined,
+			short_name: typeof shortName === 'string' ? shortName : undefined,
 			start_url: '/',
 
 			theme_color: '#c6f118',

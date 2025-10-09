@@ -11,12 +11,12 @@
 			"@icons": ["src/icons/index.ts"],
 			"@layout": ["src/layouts/layout.astro"]
 		},
-		"allowImportingTsExtensions": true,
 		"plugins": [
 			{
 				"name": "@astrojs/ts-plugin"
 			}
 		]
 	},
-	"include": [".astro/types.d.ts", "**/*"]
+	"include": [".astro/types.d.ts", "**/*"],
+	"exclude": ["node_modules", "**/dist/*"]
 }
