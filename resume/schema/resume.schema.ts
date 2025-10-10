@@ -15,7 +15,7 @@ import skills from './skills.schema';
 import volunteers from './volunteers.schema';
 import works from './works.schema';
 
-export default z
+const resume = z
 	.object({
 		$schema: $schema.optional(),
 		awards: awards.optional(),
@@ -33,3 +33,7 @@ export default z
 		work: works.optional(),
 	})
 	.catchall(z.unknown());
+
+export type JSONResume = z.infer<typeof resume>;
+
+export default resume;

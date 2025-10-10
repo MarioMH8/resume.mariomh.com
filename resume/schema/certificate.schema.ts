@@ -11,4 +11,6 @@ const certificate = z
 	})
 	.catchall(z.unknown());
 
+export type Certificate = z.infer<typeof certificate>;
+
 export default certificate;

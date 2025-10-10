@@ -18,4 +18,6 @@ const education = z
 	})
 	.catchall(z.unknown());
 
+export type Education = z.infer<typeof education>;
+
 export default education;

@@ -20,4 +20,6 @@ const basics = z
 	})
 	.catchall(z.unknown());
 
+export type Basics = z.infer<typeof basics>;
+
 export default basics;
