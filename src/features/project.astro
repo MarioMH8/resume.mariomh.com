@@ -1,13 +1,12 @@
 ---
 import Article from '@components/article.astro';
 import Link from '@components/link.astro';
+import Time from '@components/time.astro';
 import { GithubIcon } from '@icons';
 import Paragraph from '@mariomh/paragraph/astro';
-import type { Project } from '@mariomh/resume';
 import Span from '@mariomh/span/astro';
+import type { Project } from '@resume';
 import { Code } from 'lucide-astro';
-
-import Time from '../components/time.astro';
 
 interface Props {
 	project: Project;
@@ -88,9 +87,9 @@ const subtitle = [entity, type, rolesJoin].filter(Boolean).join(' • ');
 					'list-disc space-y-1',
 					'ml-4',
 				]}>
-				{highlights.map(highlight => {
-					return <li>{highlight}</li>;
-				})}
+				{highlights.map(highlight => (
+					<li>{highlight}</li>
+				))}
 			</ul>
 		)
 	}

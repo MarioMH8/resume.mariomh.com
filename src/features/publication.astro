@@ -1,12 +1,11 @@
 ---
 import Article from '@components/article.astro';
 import Link from '@components/link.astro';
+import Time from '@components/time.astro';
 import Paragraph from '@mariomh/paragraph/astro';
-import type { Publication } from '@mariomh/resume';
 import Span from '@mariomh/span/astro';
+import type { Publication } from '@resume';
 import { Pencil } from 'lucide-astro';
-
-import Time from '../components/time.astro';
 
 interface Props {
 	publication: Publication;

@@ -1,15 +1,18 @@
 import fs from 'node:fs';
 
 import sitemap from '@astrojs/sitemap';
-import resume from '@mariomh/resume';
 import compress from '@playform/compress';
 import tailwindcss from '@tailwindcss/vite';
 import { defineConfig } from 'astro/config';
 import robotsTxt from 'astro-robots-txt';
 import type { WebmanifestOptions } from 'astro-webmanifest';
 import manifest from 'astro-webmanifest';
+import paths from 'vite-tsconfig-paths';
 
-const { name = '', shortName, summary } = resume.basics ?? {};
+// eslint-disable-next-line import/no-relative-packages
+const { default: resume } = await import('./resume/src');
+
+const { name = '', shortName, summary } = resume.basics;
 
 export default defineConfig({
 	integrations: [
@@ -48,6 +51,6 @@ export default defineConfig({
 	prefetch: false,
 	site: 'https://resume.mariomh.com',
 	vite: {
-		plugins: [tailwindcss()],
+		plugins: [tailwindcss(), paths()],
 	},
 });

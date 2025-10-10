@@ -4,6 +4,7 @@
 		"emitDecoratorMetadata": false,
 		"baseUrl": ".",
 		"paths": {
+			"@resume": ["resume/src/index.ts", "resume/schema/index.ts"],
 			"@assets/*": ["src/assets/*"],
 			"@components/*": ["src/components/*"],
 			"@features/*": ["src/features/*"],
