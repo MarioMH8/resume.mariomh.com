@@ -45,9 +45,6 @@ jobs:
             -   name: Build resume
                 run: 'bun build:resume'
 
-            -   name: Astro sync
-                run: bun astro sync
-
             -   name: ${{ matrix.command }}
                 run: bun ${{ matrix.command }}
 
