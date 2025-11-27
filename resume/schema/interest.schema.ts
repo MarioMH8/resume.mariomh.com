@@ -7,4 +7,6 @@ const interest = z
 	})
 	.catchall(z.unknown());
 
+export type Interest = z.infer<typeof interest>;
+
 export default interest;

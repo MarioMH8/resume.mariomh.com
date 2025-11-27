@@ -15,4 +15,6 @@ const volunteer = z
 	})
 	.catchall(z.unknown());
 
+export type Volunteer = z.infer<typeof volunteer>;
+
 export default volunteer;

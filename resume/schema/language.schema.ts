@@ -7,4 +7,6 @@ const language = z
 	})
 	.catchall(z.unknown());
 
+export type Language = z.infer<typeof language>;
+
 export default language;

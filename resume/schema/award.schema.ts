@@ -11,4 +11,6 @@ const award = z
 	})
 	.catchall(z.unknown());
 
+export type Award = z.infer<typeof award>;
+
 export default award;

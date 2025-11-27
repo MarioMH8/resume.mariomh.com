@@ -8,4 +8,6 @@ const profile = z
 	})
 	.catchall(z.unknown());
 
+export type SocialProfile = z.infer<typeof profile>;
+
 export default profile;

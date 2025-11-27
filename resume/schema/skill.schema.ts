@@ -11,4 +11,6 @@ const skill = z
 	})
 	.catchall(z.unknown());
 
+export type Skill = z.infer<typeof skill>;
+
 export default skill;

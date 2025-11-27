@@ -18,4 +18,6 @@ const location = z
 	})
 	.catchall(z.unknown());
 
+export type Location = z.infer<typeof location>;
+
 export default location;

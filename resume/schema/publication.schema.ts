@@ -19,4 +19,6 @@ const publication = z
 	})
 	.catchall(z.unknown());
 
+export type Publication = z.infer<typeof publication>;
+
 export default publication;

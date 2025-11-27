@@ -12,4 +12,6 @@ const reference = z
 	})
 	.catchall(z.unknown());
 
+export type Reference = z.infer<typeof reference>;
+
 export default reference;

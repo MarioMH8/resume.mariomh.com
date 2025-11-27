@@ -17,4 +17,6 @@ const work = z
 	})
 	.catchall(z.unknown());
 
+export type Work = z.infer<typeof work>;
+
 export default work;
