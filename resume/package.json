@@ -53,10 +53,10 @@
 		"prepublishOnly": "tsup && publint"
 	},
 	"devDependencies": {
-		"@duplojs/zod-to-typescript": "0.3.0",
+		"@duplojs/zod-to-typescript": "0.4.2",
 		"publint": "0.3.14",
 		"tsup": "8.5.0",
 		"zod": "3.25.76",
-		"zod-to-json-schema": "3.24.6"
+		"zod-to-json-schema": "3.25.0"
 	}
 }
