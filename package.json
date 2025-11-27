@@ -55,7 +55,7 @@
 		"@hexadrop/tsconfig": "0.0.5",
 		"@playform/compress": "0.2.0",
 		"@tailwindcss/vite": "4.1.14",
-		"@types/bun": "1.2.23",
+		"@types/bun": "1.3.3",
 		"astro": "5.14.1",
 		"astro-robots-txt": "1.0.0",
 		"astro-seo": "0.8.4",
