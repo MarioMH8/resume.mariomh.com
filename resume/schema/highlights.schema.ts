@@ -1,7 +1,9 @@
 import { z } from 'zod';
 
-const highlights = z
-	.array(z.string().describe('e.g. Increased profits by 20% from 2011-2012 through viral advertising'))
-	.describe('Specify multiple accomplishments');
+import highlight from './highlight.schema';
+
+const highlights = z.array(highlight).describe('Specify multiple accomplishments').meta({
+	id: 'highlights',
+});
 
 export default highlights;
