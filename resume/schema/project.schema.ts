@@ -32,4 +32,6 @@ const project = z
 	})
 	.catchall(z.unknown());
 
+export type Project = z.infer<typeof project>;
+
 export default project;

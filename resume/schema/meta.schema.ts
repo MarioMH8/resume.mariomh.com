@@ -9,4 +9,6 @@ const meta = z
 	.describe('The schema version and any other tooling configuration lives here')
 	.catchall(z.unknown());
 
+export type Meta = z.infer<typeof meta>;
+
 export default meta;
