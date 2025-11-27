@@ -50,7 +50,7 @@
 		"@astrojs/check": "0.9.6",
 		"@astrojs/sitemap": "3.6.0",
 		"@astrojs/ts-plugin": "1.10.6",
-		"@changesets/cli": "2.29.7",
+		"@changesets/cli": "2.29.8",
 		"@hexadrop/eslint-config": "0.1.15",
 		"@hexadrop/tsconfig": "0.0.5",
 		"@playform/compress": "0.2.0",
