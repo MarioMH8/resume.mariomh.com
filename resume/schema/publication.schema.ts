@@ -12,7 +12,6 @@ const publication = z
 			.describe('Short summary of publication. e.g. Discussion of the World Wide Web, HTTP, HTML.')
 			.optional(),
 		url: z
-			.string()
 			.url()
 			.describe('e.g. http://www.computer.org.example.com/csdl/mags/co/1996/10/rx069-abs.html')
 			.optional(),

@@ -11,7 +11,7 @@ const volunteer = z
 		position: z.string().describe('e.g. Software Engineer').optional(),
 		startDate: date.optional(),
 		summary: z.string().describe('Give an overview of your responsibilities at the company').optional(),
-		url: z.string().url().describe('e.g. http://facebook.example.com').optional(),
+		url: z.url().describe('e.g. http://facebook.example.com').optional(),
 	})
 	.catchall(z.unknown());
 

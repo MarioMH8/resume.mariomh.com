@@ -5,7 +5,7 @@ import profiles from './profiles.schema';
 
 const basics = z
 	.object({
-		email: z.string().email().describe('e.g. thomas@gmail.com').optional(),
+		email: z.email().describe('e.g. thomas@gmail.com').optional(),
 		image: z.string().describe('URL (as per RFC 3986) to a image in JPEG or PNG format').optional(),
 		label: z.string().describe('e.g. Web Developer').optional(),
 		location: location.optional(),
@@ -16,7 +16,7 @@ const basics = z
 			.optional(),
 		profiles: profiles.optional(),
 		summary: z.string().describe('Write a short 2-3 sentence biography about yourself').optional(),
-		url: z.string().url().describe('URL (as per RFC 3986) to your website, e.g. personal homepage').optional(),
+		url: z.url().describe('URL (as per RFC 3986) to your website, e.g. personal homepage').optional(),
 	})
 	.catchall(z.unknown());
 

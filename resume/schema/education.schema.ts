@@ -14,7 +14,7 @@ const education = z
 		score: z.string().describe('grade point average, e.g. 3.67/4.0').optional(),
 		startDate: date.optional(),
 		studyType: z.string().describe('e.g. Bachelor').optional(),
-		url: z.string().url().describe('e.g. http://facebook.example.com').optional(),
+		url: z.url().describe('e.g. http://facebook.example.com').optional(),
 	})
 	.catchall(z.unknown());
 
