@@ -44,7 +44,7 @@
 		"@mariomh/paragraph": "0.0.12",
 		"@mariomh/resume": "workspace:*",
 		"@mariomh/span": "0.0.12",
-		"@mariomh/tailwind": "0.0.6",
+		"@mariomh/tailwind": "0.0.8",
 		"lucide-astro": "0.555.0"
 	},
 	"devDependencies": {
