@@ -4,6 +4,7 @@ import sitemap from '@astrojs/sitemap';
 import compress from '@playform/compress';
 import tailwindcss from '@tailwindcss/vite';
 import { defineConfig } from 'astro/config';
+import obfuscation from 'astro-mail-obfuscation';
 import robotsTxt from 'astro-robots-txt';
 import type { WebmanifestOptions } from 'astro-webmanifest';
 import manifest from 'astro-webmanifest';
@@ -27,6 +28,7 @@ export default defineConfig({
 			},
 			name: 'astro-include-resume',
 		},
+		obfuscation(),
 		sitemap(),
 		robotsTxt(),
 		manifest({

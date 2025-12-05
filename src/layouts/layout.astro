@@ -18,6 +18,7 @@ import './layout.css';
 
 import resume from '@resume';
 import type { HTMLTag, Polymorphic } from 'astro/types';
+import { ClientRouter } from 'astro:transitions';
 import { SEO } from 'astro-seo';
 
 type Props<Tag extends HTMLTag = 'body'> = Polymorphic<{ as: Tag }> & {
@@ -79,6 +80,8 @@ const computedDescription = description ?? (typeof summary === 'string' ? summar
 			}}
 			title={computedTitle}
 		/>
+
+		<ClientRouter />
 	</head>
 	<body
 		{...properties}
