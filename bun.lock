@@ -8,7 +8,7 @@
         "@fontsource/dm-sans": "5.2.8",
         "@mariomh/archia": "0.0.4",
         "@mariomh/font": "0.0.9",
-        "@mariomh/heading": "0.0.13",
+        "@mariomh/heading": "0.0.14",
         "@mariomh/paragraph": "0.0.12",
         "@mariomh/resume": "workspace:*",
         "@mariomh/span": "0.0.12",
@@ -330,7 +330,7 @@
 
     "@mariomh/font": ["@mariomh/font@0.0.9", "https://europe-npm.pkg.dev/mariomh/npm/@mariomh/font/-/@mariomh/font-0.0.9.tgz", { "dependencies": { "@mariomh/cva": "0.0.8" }, "peerDependencies": { "radix-ui": "^1", "react": "^19" }, "optionalPeers": ["radix-ui", "react"] }, "sha512-GYVfF/JVCF21qYSemd2rTmRy8MYtfrrC7aekPIweZPc89e8rhmL8T2GxIdX8wcL3K7es+h03aQu9/WRsQwgWkA=="],
 
-    "@mariomh/heading": ["@mariomh/heading@0.0.13", "https://europe-npm.pkg.dev/mariomh/npm/@mariomh/heading/-/@mariomh/heading-0.0.13.tgz", { "dependencies": { "@mariomh/cva": "0.0.8" }, "peerDependencies": { "@mariomh/font": "0.0.9", "astro": "^5", "radix-ui": "^1", "react": "^19" }, "optionalPeers": ["@mariomh/font", "astro", "radix-ui", "react"] }, "sha512-GunGMv8MiqS5aIFSAcYkfl+pE8qncEzsetWcIdznqUXH5F1zscCNceMgdBx+iq8stVmCS+qsfungXm+mx9AcRg=="],
+    "@mariomh/heading": ["@mariomh/heading@0.0.14", "https://europe-npm.pkg.dev/mariomh/npm/@mariomh/heading/-/@mariomh/heading-0.0.14.tgz", { "dependencies": { "@mariomh/cva": "0.0.8" }, "peerDependencies": { "@mariomh/font": "0.0.10", "astro": "^5", "radix-ui": "^1", "react": "^19" }, "optionalPeers": ["@mariomh/font", "astro", "radix-ui", "react"] }, "sha512-sL/OpMWEVxOrtY3QfUsckqxg9ShzHTIPiJsFEwnLSIwiM1XdcY6nRxs0wuMIrESU3QTLAh2p6TsOj+KU+JydQA=="],
 
     "@mariomh/paragraph": ["@mariomh/paragraph@0.0.12", "https://europe-npm.pkg.dev/mariomh/npm/@mariomh/paragraph/-/@mariomh/paragraph-0.0.12.tgz", { "dependencies": { "@mariomh/cva": "0.0.8" }, "peerDependencies": { "@mariomh/font": "0.0.9", "astro": "^5", "radix-ui": "^1", "react": "^19" }, "optionalPeers": ["@mariomh/font", "astro", "radix-ui", "react"] }, "sha512-svO7K+5Mji85y+oPIE2ZYJxTD0Yes7eYyoFL0BDMPXCWIhU93kibgw82ozWVEPgoXfyxyegwFK2qkelmysS7/Q=="],
 
