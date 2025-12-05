@@ -7,7 +7,7 @@
       "dependencies": {
         "@fontsource/dm-sans": "5.2.8",
         "@mariomh/archia": "0.0.4",
-        "@mariomh/font": "0.0.9",
+        "@mariomh/font": "0.0.10",
         "@mariomh/heading": "0.0.13",
         "@mariomh/paragraph": "0.0.12",
         "@mariomh/resume": "workspace:*",
@@ -328,7 +328,7 @@
 
     "@mariomh/cva": ["@mariomh/cva@0.0.8", "https://europe-npm.pkg.dev/mariomh/npm/@mariomh/cva/-/@mariomh/cva-0.0.8.tgz", { "dependencies": { "cva": "1.0.0-beta.4", "tailwind-merge": "3.4.0" } }, "sha512-YN2068dNE6b4UmHHCrSUWmNFWVf0cw7gtPAynxPk0+qXUmoJ2obnuUCdkS1hxhQbRzDTV3qR+T/SB7o0qodArw=="],
 
-    "@mariomh/font": ["@mariomh/font@0.0.9", "https://europe-npm.pkg.dev/mariomh/npm/@mariomh/font/-/@mariomh/font-0.0.9.tgz", { "dependencies": { "@mariomh/cva": "0.0.8" }, "peerDependencies": { "radix-ui": "^1", "react": "^19" }, "optionalPeers": ["radix-ui", "react"] }, "sha512-GYVfF/JVCF21qYSemd2rTmRy8MYtfrrC7aekPIweZPc89e8rhmL8T2GxIdX8wcL3K7es+h03aQu9/WRsQwgWkA=="],
+    "@mariomh/font": ["@mariomh/font@0.0.10", "https://europe-npm.pkg.dev/mariomh/npm/@mariomh/font/-/@mariomh/font-0.0.10.tgz", { "dependencies": { "@mariomh/cva": "0.0.8" }, "peerDependencies": { "radix-ui": "^1", "react": "^19" }, "optionalPeers": ["radix-ui", "react"] }, "sha512-eqF6g96wq+MiDMfIcu71Ym+EIPMdOK3wer6d83HLZdPmMIfuNrlb/ZtsLe9iVYM+EnLHJHqZ2acY+DQoCVuQqw=="],
 
     "@mariomh/heading": ["@mariomh/heading@0.0.13", "https://europe-npm.pkg.dev/mariomh/npm/@mariomh/heading/-/@mariomh/heading-0.0.13.tgz", { "dependencies": { "@mariomh/cva": "0.0.8" }, "peerDependencies": { "@mariomh/font": "0.0.9", "astro": "^5", "radix-ui": "^1", "react": "^19" }, "optionalPeers": ["@mariomh/font", "astro", "radix-ui", "react"] }, "sha512-GunGMv8MiqS5aIFSAcYkfl+pE8qncEzsetWcIdznqUXH5F1zscCNceMgdBx+iq8stVmCS+qsfungXm+mx9AcRg=="],
 
