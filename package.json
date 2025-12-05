@@ -43,7 +43,7 @@
 		"@mariomh/heading": "0.0.13",
 		"@mariomh/paragraph": "0.0.12",
 		"@mariomh/resume": "workspace:*",
-		"@mariomh/span": "0.0.12",
+		"@mariomh/span": "0.0.13",
 		"@mariomh/tailwind": "0.0.6",
 		"lucide-astro": "0.555.0"
 	},
