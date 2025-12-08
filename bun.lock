@@ -12,7 +12,7 @@
         "@mariomh/paragraph": "0.0.13",
         "@mariomh/resume": "workspace:*",
         "@mariomh/span": "0.0.13",
-        "@mariomh/tailwind": "0.0.8",
+        "@mariomh/tailwind": "0.0.10",
         "astro": "5.16.4",
         "astro-seo": "0.8.4",
         "lucide-astro": "0.556.0",
@@ -339,7 +339,7 @@
 
     "@mariomh/span": ["@mariomh/span@0.0.13", "https://europe-npm.pkg.dev/mariomh/npm/@mariomh/span/-/@mariomh/span-0.0.13.tgz", { "dependencies": { "@mariomh/cva": "0.0.8" }, "peerDependencies": { "@mariomh/font": "0.0.10", "astro": "^5", "radix-ui": "^1", "react": "^19" }, "optionalPeers": ["@mariomh/font", "astro", "radix-ui", "react"] }, "sha512-rT6kb2ooHZbL3KERBe+jHWPlqGv/M8NZaC4qlJP8crn1ZKul/G4T+YD+EM2KK+Gn8RW5VzyM/mSpk33VCRGUUQ=="],
 
-    "@mariomh/tailwind": ["@mariomh/tailwind@0.0.8", "https://europe-npm.pkg.dev/mariomh/npm/@mariomh/tailwind/-/@mariomh/tailwind-0.0.8.tgz", { "dependencies": { "tailwindcss-flow-type": "0.0.2" }, "peerDependencies": { "tailwindcss": ">=4.1.16" } }, "sha512-6BbeEw5FVNR27y8C76VtscU+O+N2KetVMtykWVYSvS4bOINaZ7WYEd4vAymekh3j6wpNSNFgeStAMJ6RJzANiw=="],
+    "@mariomh/tailwind": ["@mariomh/tailwind@0.0.10", "https://europe-npm.pkg.dev/mariomh/npm/@mariomh/tailwind/-/@mariomh/tailwind-0.0.10.tgz", { "dependencies": { "tailwindcss-flow-type": "0.0.2" }, "peerDependencies": { "tailwindcss": ">=4.1.16" } }, "sha512-xfQVRg8papFuFztWUUt/CtRGvBBu9LMhcWH6I5y+qAtB3GlsFauNiCcxpzUq/5h9Uqz8tA4VXxbIlzICxVH8SA=="],
 
     "@napi-rs/wasm-runtime": ["@napi-rs/wasm-runtime@0.2.12", "", { "dependencies": { "@emnapi/core": "^1.4.3", "@emnapi/runtime": "^1.4.3", "@tybys/wasm-util": "^0.10.0" } }, "sha512-ZVWUcfwY4E/yPitQJl481FjFo3K22D6qF0DuFH6Y/nbnE11GY5uguDxZMGXPQ8WQ0128MXQD7TnfHyK4oWoIJQ=="],
 

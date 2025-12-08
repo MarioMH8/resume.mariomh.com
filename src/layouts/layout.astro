@@ -83,9 +83,7 @@ const computedDescription = description ?? (typeof summary === 'string' ? summar
 
 		<ClientRouter />
 	</head>
-	<body
-		{...properties}
-		class:list={['bg-cv-background dark:bg-cv-dark-background', properties.class]}>
+	<body {...properties}>
 		<slot />
 	</body>
 </html>
