@@ -44,7 +44,7 @@
 		"@mariomh/paragraph": "0.0.13",
 		"@mariomh/resume": "workspace:*",
 		"@mariomh/span": "0.0.13",
-		"@mariomh/tailwind": "0.0.10",
+		"@mariomh/tailwind": "0.0.11",
 		"astro": "5.16.4",
 		"astro-seo": "0.8.4",
 		"lucide-astro": "0.556.0"

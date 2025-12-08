@@ -82,6 +82,18 @@ const computedDescription = description ?? (typeof summary === 'string' ? summar
 		/>
 
 		<ClientRouter />
+
+		<script>
+			import ThemeManager from '@features/theme-manager';
+
+			const manager = new ThemeManager();
+
+			document.addEventListener('astro:page-load', () => {
+				manager.applyCurrentTheme();
+			});
+
+			manager.applyCurrentTheme();
+		</script>
 	</head>
 	<body {...properties}>
 		<slot />
