@@ -47,7 +47,7 @@
 		"@mariomh/tailwind": "0.0.8",
 		"astro": "5.16.4",
 		"astro-seo": "0.8.4",
-		"lucide-astro": "0.555.0"
+		"lucide-astro": "0.556.0"
 	},
 	"devDependencies": {
 		"@astrojs/check": "0.9.6",
