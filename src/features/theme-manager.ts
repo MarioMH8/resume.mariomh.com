@@ -29,16 +29,23 @@ class ThemeManager {
 		this.#matchMedia = globalThis.matchMedia('(prefers-color-scheme: dark)');
 		this.#onThemeChangeCallbacks = [];
 		this.#matchMedia.addEventListener('change', (event: MediaQueryListEvent) => {
+			const newTheme = event.matches ? THEME.DARK : THEME.LIGHT;
 			const storedTheme = this.getStoredPreference();
 
-			if (storedTheme && !overrideSystemPreference) {
-				return;
-			}
+			if (overrideSystemPreference) {
+				this.apply(newTheme);
+				this.notifyThemeChange(newTheme);
+				if (storedTheme !== undefined) {
+					this.setManualPreference(newTheme);
+				}
+			} else {
+				if (storedTheme) {
+					return;
+				}
 
-			const newTheme = event.matches ? THEME.DARK : THEME.LIGHT;
-			this.removeManualPreference();
-			this.apply(newTheme);
-			this.notifyThemeChange(newTheme);
+				this.apply(newTheme);
+				this.notifyThemeChange(newTheme);
+			}
 		});
 	}
 
