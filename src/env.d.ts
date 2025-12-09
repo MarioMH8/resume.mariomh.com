@@ -6,3 +6,7 @@ declare module '*.astro' {
 	const component: (properties: Props) => unknown;
 	export default component;
 }
+
+interface Window {
+	themeManager: import('@features/theme-manager').default;
+}

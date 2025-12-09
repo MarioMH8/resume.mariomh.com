@@ -86,13 +86,17 @@ const computedDescription = description ?? (typeof summary === 'string' ? summar
 		<script>
 			import ThemeManager from '@features/theme-manager';
 
-			const manager = new ThemeManager();
+			const manager = new ThemeManager({
+				overrideSystemPreference: true,
+			});
 
 			document.addEventListener('astro:page-load', () => {
 				manager.applyCurrentTheme();
 			});
 
 			manager.applyCurrentTheme();
+
+			window.themeManager = manager;
 		</script>
 	</head>
 	<body {...properties}>
