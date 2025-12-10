@@ -78,7 +78,22 @@ const resume = {
 	},
 	projects: [],
 	publications: [],
-	references: [],
+	references: [
+		{
+			name: 'Pablo Llamazares',
+			position: 'Partner & CEO',
+			reference:
+				'Mario ha sido una pieza clave desde los inicios de la compañía. Durante estos 8 años desarrolló soluciones de gran valor para grandes clientes, generando un retorno muy positivo para la empresa y creando productos web que, a día de hoy, siguen aportando impacto, eficiencia y rentabilidad. Su profesionalidad, visión estratégica y capacidad para abordar problemas complejos han marcado la diferencia. Ha sido un privilegio trabajar con él.',
+			url: 'https://www.linkedin.com/in/pablollamazares/',
+		},
+		{
+			name: 'Francisco Salazar',
+			position: 'Full Stack Developer',
+			reference:
+				'Trabajar con Mario durante estos siete años ha sido un auténtico privilegio. Ha sido un referente, un mentor, un compañero y un amigo. Siempre dispuesto a ayudar, a enseñar y a impulsar a quienes trabajan a su lado.',
+			url: 'https://www.linkedin.com/in/fransalazar95/',
+		},
+	],
 	skills: [
 		{
 			keywords: ['Web Development', 'Frontend'],

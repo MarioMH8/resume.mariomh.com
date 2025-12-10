@@ -16,19 +16,26 @@ const { references } = resume ?? {};
 				.filter(reference => reference.name)
 				.map(({ name, reference }) => {
 					return (
-						<figure class='mb-0'>
+						<blockquote
+							class:list={[
+								'mb-3',
+								'border-primary-foreground-highlight',
+								'even:border-l-3 even:pl-4',
+								'odd:border-r-3 odd:pr-4 odd:text-right',
+							]}>
 							<Paragraph
-								as='blockquote'
-								class='mb-0'>
+								class='mb-1 italic before:content-["“"] after:content-["”"]'
+								weight='light'>
 								{reference}
 							</Paragraph>
 							<Span
-								as='figcaption'
+								as='footer'
+								class='before:content-["—_"] before:mr-1'
 								dimension='sm'
 								variant='muted'>
-								&mdash; {name}
+								{name}
 							</Span>
-						</figure>
+						</blockquote>
 					);
 				})}
 		</Section>

@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "@mariomh/tailwind";
+@source "../../node_modules/@mariomh";
 
 @theme {
     --color-primary-background: #f5f5f5;
