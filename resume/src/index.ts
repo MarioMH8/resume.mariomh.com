@@ -90,7 +90,7 @@ const resume = {
 			name: 'Francisco Salazar',
 			position: 'Full Stack Developer',
 			reference:
-				'Trabajar con Mario durante estos 8 años ha sido un auténtico privilegio. Ha sido un referente, un mentor, un compañero y un amigo. Siempre dispuesto a ayudar, a enseñar y a impulsar a quienes trabajan a su lado.',
+				'Trabajar con Mario durante estos años ha sido un auténtico privilegio. Ha sido un referente, un mentor, un compañero y un amigo. Siempre dispuesto a ayudar, a enseñar y a impulsar a quienes trabajan a su lado.',
 			url: 'https://www.linkedin.com/in/fransalazar95/',
 		},
 	],
