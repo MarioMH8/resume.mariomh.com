@@ -226,6 +226,8 @@ const print = Boolean(hero || image);
 							'after:absolute after:block after:left-0 after:right-0 after:bottom-0 after:z-1 after:h-2',
 							'print:max-w-[130px]',
 						]}
+						fetchpriority='high'
+						loading='lazy'
 						src={me}
 						style='mask-image: linear-gradient(to bottom, black 98%, transparent 100%);'
 					/>
