@@ -1,5 +1,11 @@
 # @mariomh/resume
 
+## 0.0.4
+
+### Patch Changes
+
+- c4b1911: Add references for key collaborators with testimonials
+
 ## 0.0.3
 
 ### Patch Changes
