@@ -14,7 +14,7 @@ const { references } = resume ?? {};
 			title='Referencias'>
 			{references
 				.filter(reference => reference.name)
-				.map(({ name, reference }) => {
+				.map(({ name, reference, position }) => {
 					return (
 						<blockquote
 							class:list={[
@@ -33,7 +33,7 @@ const { references } = resume ?? {};
 								class='before:content-["—_"] before:mr-1'
 								dimension='sm'
 								variant='muted'>
-								{name}
+								{name} {position && (<> &middot; {position}</>)}
 							</Span>
 						</blockquote>
 					);
