@@ -1,5 +1,11 @@
 # @mariomh/resume
 
+## 0.0.5
+
+### Patch Changes
+
+- 69426c6: Add testimonial reference for Javier Morejón
+
 ## 0.0.4
 
 ### Patch Changes
