@@ -80,6 +80,13 @@ const resume = {
 	publications: [],
 	references: [
 		{
+			name: 'Javier Morejón',
+			position: 'Partner & CEO',
+			reference:
+				'Mario y yo hemos trabajando juntos durante 10 años. Ha sido un referente en todos los proyectos tecnologicos, con un alto conocimiento técnico y del negocio, excelente comunicador y una persona muy enfocada en la obtencion de resultados. Su calidad humana le hace un perfil muy completo y facilita el éxito de los proyectos en los que participa.',
+			url: 'https://www.linkedin.com/in/pablollamazares/',
+		},
+		{
 			name: 'Pablo Llamazares',
 			position: 'Partner & CEO',
 			reference:
