@@ -17,7 +17,7 @@
 ## Tech Stack
 
 - **Runtime** - [Bun](https://bun.sh)
-- **Frontend** - [Astro](https://astro.build/), [Preact](https://preactjs.com/)
+- **Frontend** - [Astro](https://astro.build/)
 - **Styling** - [TailwindCSS](https://tailwindcss.com)
 - **Deployment** - [Cloudflare Pages](https://pages.cloudflare.com/)
 - **Languages** - [TypeScript](https://www.typescriptlang.org/)
