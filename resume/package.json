@@ -55,7 +55,7 @@
 	"devDependencies": {
 		"publint": "0.3.16",
 		"tsup": "8.5.1",
-		"zod": "4.1.13",
+		"zod": "4.2.1",
 		"zod-to-ts": "2.0.0"
 	}
 }
