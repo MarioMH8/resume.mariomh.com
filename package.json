@@ -46,7 +46,7 @@
 		"@mariomh/span": "0.0.13",
 		"@mariomh/tailwind": "0.0.12",
 		"astro": "5.16.6",
-		"astro-seo": "0.8.4",
+		"astro-seo": "1.1.0",
 		"lucide-astro": "0.556.0"
 	},
 	"devDependencies": {
