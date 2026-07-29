@@ -8,12 +8,11 @@ import obfuscation from 'astro-mail-obfuscation';
 import robotsTxt from 'astro-robots-txt';
 import type { WebmanifestOptions } from 'astro-webmanifest';
 import manifest from 'astro-webmanifest';
-import paths from 'vite-tsconfig-paths';
 
 // eslint-disable-next-line import/no-relative-packages
 const { default: resume } = await import('./resume/src');
 
-const { name = '', shortName, summary } = resume.basics;
+const { name, shortName, summary } = resume.basics;
 
 export default defineConfig({
 	integrations: [
@@ -53,6 +52,6 @@ export default defineConfig({
 	prefetch: false,
 	site: 'https://resume.mariomh.com',
 	vite: {
-		plugins: [tailwindcss(), paths()],
+		plugins: [tailwindcss()],
 	},
 });

@@ -7,7 +7,7 @@ const certificate = z
 		date: date.optional(),
 		issuer: z.string().describe('e.g. CNCF').optional(),
 		name: z.string().describe('e.g. Certified Kubernetes Administrator').optional(),
-		url: z.url().describe('e.g. http://example.com').optional(),
+		url: z.url().describe('e.g. https://example.com').optional(),
 	})
 	.catchall(z.unknown());
 

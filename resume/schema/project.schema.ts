@@ -28,7 +28,7 @@ const project = z
 			.string()
 			.describe(` e.g. 'volunteering', 'presentation', 'talk', 'application', 'conference'`)
 			.optional(),
-		url: z.url().describe('e.g. http://www.computer.org/csdl/mags/co/1996/10/rx069-abs.html').optional(),
+		url: z.url().describe('e.g. https://www.computer.org/csdl/mags/co/1996/10/rx069-abs.html').optional(),
 	})
 	.catchall(z.unknown());
 

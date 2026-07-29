@@ -13,7 +13,7 @@ const publication = z
 			.optional(),
 		url: z
 			.url()
-			.describe('e.g. http://www.computer.org.example.com/csdl/mags/co/1996/10/rx069-abs.html')
+			.describe('e.g. https://www.computer.org.example.com/csdl/mags/co/1996/10/rx069-abs.html')
 			.optional(),
 	})
 	.catchall(z.unknown());

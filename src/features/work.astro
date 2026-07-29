@@ -41,14 +41,14 @@ const locationSubtitle = [location, locationType]
 	.filter(Boolean)
 	.filter(skill => typeof skill === 'string')
 	.join(' - ');
-const showResponsibilities = Boolean(filterResponsibilities && filterResponsibilities.length > 0);
-const showAchievements = Boolean(filterAchievements && filterAchievements.length > 0);
-const showContent = Boolean(summary || showAchievements || showResponsibilities);
-const sameYear =
+const isShowResponsibilities = Boolean(filterResponsibilities && filterResponsibilities.length > 0);
+const isShowAchievements = Boolean(filterAchievements && filterAchievements.length > 0);
+const isShowContent = Boolean(summary || isShowAchievements || isShowResponsibilities);
+const isSameYear =
 	startDate !== undefined &&
 	endDate !== undefined &&
 	new Date(startDate).getFullYear() === new Date(endDate).getFullYear();
-const hidePrint = 'hidePrint' in work && work.hidePrint === true;
+const isHidePrint = 'hidePrint' in work && work.hidePrint === true;
 ---
 
 <li class='break-inside-avoid group/work'>
@@ -59,13 +59,13 @@ const hidePrint = 'hidePrint' in work && work.hidePrint === true;
 			'print:grid-cols-1 md:grid-cols-10',
 			'md:gap-8 lg:gap-6 print:gap-1',
 			'lg:hover:!opacity-100',
-			hidePrint && 'print:hidden',
+			isHidePrint && 'print:hidden',
 		]}>
 		<header
 			class='relative text-sm mt-1 pr-4 font-medium md:not-print:text-right print:font-semibold md:col-span-2'>
 			<Time date={startDate} />
-			{startDate && !sameYear && ' - '}
-			{endDate ? sameYear ? <Fragment /> : <Time date={endDate} /> : <span>Presente</span>}
+			{startDate && !isSameYear && ' - '}
+			{endDate ? isSameYear ? <Fragment /> : <Time date={endDate} /> : <span>Presente</span>}
 		</header>
 		<div
 			class:list={[
@@ -117,7 +117,7 @@ const hidePrint = 'hidePrint' in work && work.hidePrint === true;
 				)
 			}
 			{
-				showContent && (
+				isShowContent && (
 					<div class='mt-4 mb-6 print:mt-2 print:mb-4 flex flex-col gap-3 print:gap-1'>
 						{summary && (
 							<div>
@@ -134,7 +134,7 @@ const hidePrint = 'hidePrint' in work && work.hidePrint === true;
 								</Paragraph>
 							</div>
 						)}
-						{(showResponsibilities || showAchievements) && (
+						{(isShowResponsibilities || isShowAchievements) && (
 							<>
 								<div
 									class:list={[
@@ -149,7 +149,7 @@ const hidePrint = 'hidePrint' in work && work.hidePrint === true;
 										'max-md:!h-auto print:!max-h-fit print:after:hidden',
 										'not-print:data-expanded:after:hidden',
 									]}>
-									{showResponsibilities && (
+									{isShowResponsibilities && (
 										<div>
 											<Heading
 												class='text-base print:text-sm mb-0'
@@ -169,7 +169,7 @@ const hidePrint = 'hidePrint' in work && work.hidePrint === true;
 											</ul>
 										</div>
 									)}
-									{showAchievements && (
+									{isShowAchievements && (
 										<div>
 											<Heading
 												class='text-base print:text-sm mb-0'

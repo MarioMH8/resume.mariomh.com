@@ -2,21 +2,21 @@
 	"extends": "@hexadrop/tsconfig",
 	"compilerOptions": {
 		"emitDecoratorMetadata": false,
-		"baseUrl": ".",
 		"paths": {
-			"@resume": ["resume/src/index.ts", "resume/schema/index.ts"],
-			"@assets/*": ["src/assets/*"],
-			"@components/*": ["src/components/*"],
-			"@features/*": ["src/features/*"],
-			"@icons/*": ["src/icons/*"],
-			"@icons": ["src/icons/index.ts"],
-			"@layout": ["src/layouts/layout.astro"]
+			"@resume": ["./resume/src/index.ts", "./resume/schema/index.ts"],
+			"@assets/*": ["./src/assets/*"],
+			"@components/*": ["./src/components/*"],
+			"@features/*": ["./src/features/*"],
+			"@icons/*": ["./src/icons/*"],
+			"@icons": ["./src/icons/index.ts"],
+			"@layout": ["./src/layouts/layout.astro"]
 		},
 		"plugins": [
 			{
 				"name": "@astrojs/ts-plugin"
 			}
-		]
+		],
+		"types": ["bun"]
 	},
 	"include": ["**/*"],
 	"exclude": ["node_modules", "**/dist/*"]

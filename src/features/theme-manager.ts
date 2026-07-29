@@ -26,7 +26,7 @@ class ThemeManager {
 	}: ThemeManagerOptions = {}) {
 		this.#root = root;
 		this.#storageKey = storageKey;
-		this.#matchMedia = globalThis.matchMedia('(prefers-color-scheme: dark)');
+		this.#matchMedia = matchMedia('(prefers-color-scheme: dark)');
 		this.#onThemeChangeCallbacks = [];
 		this.#matchMedia.addEventListener('change', (event: MediaQueryListEvent) => {
 			const newTheme = event.matches ? THEME.DARK : THEME.LIGHT;
