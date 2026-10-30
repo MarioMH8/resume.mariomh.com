@@ -45,14 +45,14 @@
 		"@mariomh/resume": "workspace:*",
 		"@mariomh/span": "0.0.13",
 		"@mariomh/tailwind": "0.0.12",
-		"astro": "7.1.6",
+		"astro": "7.4.0",
 		"astro-seo": "1.2.0",
 		"lucide-astro": "0.556.0"
 	},
 	"devDependencies": {
-		"@astrojs/check": "0.9.10",
-		"@astrojs/sitemap": "3.7.3",
-		"@astrojs/ts-plugin": "1.10.10",
+		"@astrojs/check": "0.9.12",
+		"@astrojs/sitemap": "3.7.4",
+		"@astrojs/ts-plugin": "1.10.12",
 		"@changesets/cli": "2.31.1",
 		"@hexadrop/eslint-config": "1.0.11",
 		"@hexadrop/tsconfig": "0.0.5",
