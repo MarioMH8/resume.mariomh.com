@@ -10,6 +10,5 @@
       "hostType": "npm"
     }
   ],
-  "npmrc": "@mariomh:registry=https://europe-npm.pkg.dev/mariomh/npm/",
-  "platformAutomerge": false
+  "npmrc": "@mariomh:registry=https://europe-npm.pkg.dev/mariomh/npm/"
 }
