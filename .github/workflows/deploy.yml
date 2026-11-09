@@ -8,11 +8,11 @@ jobs:
     name: Check
     runs-on: ubuntu-latest
     permissions:
-      contents: 'read'
-      id-token: 'write'
+      contents: read
+      packages: read
     strategy:
       matrix:
-        command: [ lint, test, typecheck ]
+        command: [lint:ci, test, typecheck, typecheck:astro]
     steps:
       - name: Checkout
         uses: actions/checkout@v7
@@ -22,35 +22,39 @@ jobs:
         with:
           bun-version: latest
 
-      - name: Authorize Google Cloud SDK
-        id: auth
-        uses: google-github-actions/auth@v3
+      - name: Setup npm registry
+        uses: actions/setup-node@v7
         with:
-          create_credentials_file: true
-          project_id: ${{ secrets.GOOGLE_PROJECT_ID }}
-          workload_identity_provider: ${{ secrets.GOOGLE_PROJECT_WORKLOAD_IDENTITY_POOL_PROVIDER}}
+          node-version: '24'
+          registry-url: 'https://npm.pkg.github.com'
+          scope: '@mariomh8'
 
-      - name: Update .npmrc
-        run: bunx google-artifactregistry-auth --credential-config .npmrc
+      - name: Export GitHub Packages token
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: echo "NODE_AUTH_TOKEN=${GH_TOKEN}" >> "$GITHUB_ENV"
 
       - name: Install dependencies
-        run: bun install
+        run: bun install --frozen-lockfile
 
-      - name: Build resume
-        run: 'bun build:resume'
+      - name: ESLint cache
+        uses: actions/cache@v6
+        if: matrix.command == 'lint:ci'
+        with:
+          path: .eslintcache
+          key: ${{ runner.os }}-${{ matrix.command }}
 
       - name: ${{ matrix.command }}
-        run: bun ${{ matrix.command }}
+        run: bun run ${{ matrix.command }}
 
   release:
     name: Deploy
     runs-on: ubuntu-latest
-    needs: [ check ]
+    needs: [check]
     permissions:
-      contents: 'write'
-      id-token: 'write'
-      issues: 'write'
-      pull-requests: 'write'
+      contents: read
+      packages: read
     steps:
       - name: Checkout
         uses: actions/checkout@v7
@@ -60,27 +64,24 @@ jobs:
         with:
           bun-version: latest
 
-      - name: Authorize Google Cloud SDK
-        id: auth
-        uses: google-github-actions/auth@v3
+      - name: Setup npm registry
+        uses: actions/setup-node@v7
         with:
-          create_credentials_file: true
-          project_id: ${{ secrets.GOOGLE_PROJECT_ID }}
-          workload_identity_provider: ${{ secrets.GOOGLE_PROJECT_WORKLOAD_IDENTITY_POOL_PROVIDER}}
+          node-version: '24'
+          registry-url: 'https://npm.pkg.github.com'
+          scope: '@mariomh8'
 
-      - name: Update .npmrc
-        run: bunx google-artifactregistry-auth --credential-config .npmrc
+      - name: Export GitHub Packages token
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: echo "NODE_AUTH_TOKEN=${GH_TOKEN}" >> "$GITHUB_ENV"
 
       - name: Install dependencies
-        run: bun install
+        run: bun install --frozen-lockfile
 
       - name: Build
-        run: 'bun run build'
-
-      - name: Configure Git User
-        run: |
-          git config --global user.email "github@mariomh.com"
-          git config --global user.name "$GITHUB_ACTOR"
+        run: bun run build
 
       - name: Deploy
         uses: cloudflare/wrangler-action@v4
