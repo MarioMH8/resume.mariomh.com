@@ -1,5 +1,5 @@
 <h1 align="center">
-  @mariomh/resume
+  @mariomh8/resume
 </h1>
 
 <p align="center">

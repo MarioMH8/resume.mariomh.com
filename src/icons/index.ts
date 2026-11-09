@@ -1,6 +1,6 @@
 /* eslint-disable typescript/no-explicit-any */
+import { Camera, Dices, MountainSnow } from '@lucide/astro';
 import type { Props } from 'astro';
-import { Camera, Dices, MountainSnow } from 'lucide-astro';
 
 import AngularIcon from './angular.astro';
 import AstroIcon from './astro.astro';

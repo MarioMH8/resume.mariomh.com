@@ -49,7 +49,7 @@ bun install
 Build resume
 
 ```bash
-bun run build:resume
+bun run build:packages
 ```
 
 Start the server

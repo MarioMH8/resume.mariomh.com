@@ -3,10 +3,10 @@ import Link from '@components/link.astro';
 import SkillList from '@components/skill-list.astro';
 import Time from '@components/time.astro';
 import { CaretDownIcon } from '@icons';
-import Heading from '@mariomh/heading/astro';
-import Paragraph from '@mariomh/paragraph/astro';
-import cn from '@mariomh/paragraph/class-name';
-import Span from '@mariomh/span/astro';
+import Heading from '@mariomh8/heading/astro';
+import Paragraph from '@mariomh8/paragraph/astro';
+import cn from '@mariomh8/paragraph/class-name';
+import Span from '@mariomh8/span/astro';
 import type { Work } from '@resume';
 
 interface Props {
@@ -48,7 +48,7 @@ const isSameYear =
 	startDate !== undefined &&
 	endDate !== undefined &&
 	new Date(startDate).getFullYear() === new Date(endDate).getFullYear();
-const isHidePrint = 'hidePrint' in work && work.hidePrint === true;
+const isHidePrint = work.hidePrint === true;
 ---
 
 <li class='break-inside-avoid group/work'>
