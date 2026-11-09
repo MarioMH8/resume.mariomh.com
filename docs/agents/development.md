@@ -89,7 +89,7 @@ bun run test
 
 ## Continuous integration
 
-`.github/workflows/ci.yml` calls the shared `hexadrop/github-workflows` `check.yml` workflow at `v1.12.0` on pushes and pull requests to `main` and `develop`. It passes `registry: github`, `registry-scope: '@mariomh8'` and the `PACKAGES_TOKEN` secret, then runs `lint:ci`, `typecheck`, `typecheck:astro`, `test` and `check:packages`.
+`.github/workflows/ci.yml` calls the shared `hexadrop/github-workflows` `check.yml` workflow at `v1.13.0` on pushes and pull requests to `main` and `develop`. It passes `registry: github`, `registry-scope: '@mariomh8'` and the `PACKAGES_TOKEN` secret, then runs `lint:ci`, `typecheck`, `typecheck:astro`, `test` and `check:packages`.
 
 The deploy workflow calls the same check workflow with `ref` pinned to the commit that passed CI, then builds and deploys to Cloudflare Pages.
 

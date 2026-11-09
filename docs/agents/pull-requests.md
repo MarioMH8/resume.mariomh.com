@@ -35,7 +35,7 @@ Add exactly one `type:*` label. Scope labels are applied automatically by `.gith
 
 ## Validation
 
-`.github/workflows/ci.yml` runs the shared `hexadrop/github-workflows` check workflow at `v1.12.0`:
+`.github/workflows/ci.yml` runs the shared `hexadrop/github-workflows` check workflow at `v1.13.0`:
 
 - `bun run lint:ci`
 - `bun run typecheck`

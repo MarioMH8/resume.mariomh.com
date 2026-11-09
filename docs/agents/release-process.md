@@ -11,7 +11,7 @@ A push to `develop` that changes a changeset triggers `release.yml` and publishe
 
 ## Release preparation
 
-`release-prepare.yml` runs after every push to `develop`. It first runs the shared check workflow, then creates or updates the draft pull request `changeset-release/main` targeting `main` through the shared `release-prepare.yml` workflow at `v1.12.0`.
+`release-prepare.yml` runs after every push to `develop`. It first runs the shared check workflow, then creates or updates the draft pull request `changeset-release/main` targeting `main` through the shared `release-prepare.yml` workflow at `v1.13.0`.
 
 The workflow uses `GITHUB_TOKEN` because this repository has no ruleset that requires an approval for bot commits. When the `hexabot` GitHub App is configured, switch to `use-app-token: true` and pass `HEXABOT_PRIVATE_KEY`.
 
