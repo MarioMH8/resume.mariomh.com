@@ -5,7 +5,7 @@ on:
     branches: [main, develop]
   pull_request:
     branches: [main, develop]
-    types: [opened, synchronize, reopened]
+    types: [opened, synchronize, reopened, edited]
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -14,92 +14,15 @@ concurrency:
 jobs:
   check:
     name: Check
-    runs-on: ubuntu-latest
+    if: github.event_name != 'pull_request' || github.event.action != 'edited' || github.event.changes.base != null
     permissions:
       contents: read
       packages: read
-    strategy:
-      matrix:
-        command: [lint:ci, typecheck, typecheck:astro, test, check:packages]
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v7
-
-      - name: Setup bun
-        uses: oven-sh/setup-bun@v2
-        with:
-          bun-version: latest
-
-      - name: Setup npm registry
-        uses: actions/setup-node@v7
-        with:
-          node-version: '24'
-          registry-url: 'https://npm.pkg.github.com'
-          scope: '@mariomh8'
-
-      - name: Export GitHub Packages token
-        shell: bash
-        env:
-          GH_TOKEN: ${{ secrets.PACKAGES_TOKEN || github.token }}
-        run: echo "NODE_AUTH_TOKEN=${GH_TOKEN}" >> "$GITHUB_ENV"
-
-      - name: Install dependencies
-        run: bun install --frozen-lockfile
-
-      - name: ESLint cache
-        uses: actions/cache@v6
-        if: matrix.command == 'lint:ci'
-        with:
-          path: .eslintcache
-          key: ${{ runner.os }}-${{ matrix.command }}
-
-      - name: ${{ matrix.command }}
-        run: bun run ${{ matrix.command }}
-
-  release:
-    name: Release
-    runs-on: ubuntu-latest
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-    needs: [check]
-    permissions:
-      contents: write
-      issues: write
-      packages: write
-      pull-requests: write
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v7
-
-      - name: Setup bun
-        uses: oven-sh/setup-bun@v2
-        with:
-          bun-version: latest
-
-      - name: Setup npm registry
-        uses: actions/setup-node@v7
-        with:
-          node-version: '24'
-          registry-url: 'https://npm.pkg.github.com'
-          scope: '@mariomh8'
-
-      - name: Export GitHub Packages token
-        shell: bash
-        env:
-          GH_TOKEN: ${{ secrets.PACKAGES_TOKEN || github.token }}
-        run: echo "NODE_AUTH_TOKEN=${GH_TOKEN}" >> "$GITHUB_ENV"
-
-      - name: Install dependencies
-        run: bun install --frozen-lockfile
-
-      - name: Build packages
-        run: bun run build:packages
-
-      - name: Create Release Pull Request or Publish to registry
-        uses: changesets/action@v2.1.2
-        with:
-          publish-script: bun changeset publish
-          version-script: bun changeset version
-          commit-message: 'chore: release'
-          pr-title: 'chore: release'
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    uses: hexadrop/github-workflows/.github/workflows/check.yml@v1.12.0
+    with:
+      commands: '["lint:ci","typecheck","typecheck:astro","test","check:packages"]'
+      cache-commands: '["lint:ci"]'
+      registry: github
+      registry-scope: '@mariomh8'
+    secrets:
+      registry-token: ${{ secrets.PACKAGES_TOKEN }}

@@ -1,0 +1,42 @@
+name: "Release: prepare"
+
+on:
+  push:
+    branches: [develop]
+
+concurrency:
+  group: release-prepare-${{ github.ref }}
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    name: Check
+    permissions:
+      contents: read
+      packages: read
+    uses: hexadrop/github-workflows/.github/workflows/check.yml@v1.12.0
+    with:
+      commands: '["lint:ci","typecheck","typecheck:astro","test","check:packages"]'
+      cache-commands: '["lint:ci"]'
+      registry: github
+      registry-scope: '@mariomh8'
+    secrets:
+      registry-token: ${{ secrets.PACKAGES_TOKEN }}
+
+  prepare:
+    name: Prepare
+    needs: [check]
+    permissions:
+      contents: write
+      packages: read
+      pull-requests: write
+    uses: hexadrop/github-workflows/.github/workflows/release-prepare.yml@v1.12.0
+    with:
+      base-branch: main
+      registry: github
+      registry-scope: '@mariomh8'
+    secrets:
+      registry-token: ${{ secrets.PACKAGES_TOKEN }}
