@@ -1,4 +1,10 @@
-# @mariomh/resume
+# @mariomh8/resume
+
+## 0.1.0
+
+### Minor Changes
+
+- Rename the package to `@mariomh8/resume` and publish it to GitHub Packages. Adopt `tsdown`, generated `resume.json` / `schema.json` / `.d.mts` assets, ESM-only output, `CHANGELOG.md` in the published files and the new repository workflows.
 
 ## 0.0.5
 
