@@ -2,7 +2,9 @@
 import SectionHeading from '@components/section-heading.astro';
 import type { HTMLTag, Polymorphic } from 'astro/types';
 
-type Props<Tag extends HTMLTag = 'section'> = Polymorphic<{ as: Tag }>;
+type Props<Tag extends HTMLTag = 'section'> = Polymorphic<{ as: Tag }> & {
+	title?: string;
+};
 
 const { class: cls, 'class:list': clsList, title, ...properties } = Astro.props;
 ---

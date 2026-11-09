@@ -1,6 +1,6 @@
 {
-	"name": "@mariomh/resume",
-	"version": "0.0.5",
+	"name": "@mariomh8/resume",
+	"version": "0.1.0",
 	"author": "MarioMH <dev@mariomh.com>",
 	"description": "Curriculum Vitae de MarioMH",
 	"keywords": [
@@ -18,24 +18,19 @@
 		"url": "https://github.com/MarioMH8/resume.mariomh.com/issues"
 	},
 	"license": "PRIVATE",
+	"publishConfig": {
+		"registry": "https://npm.pkg.github.com"
+	},
 	"type": "module",
+	"sideEffects": false,
 	"files": [
+		"CHANGELOG.md",
 		"dist"
 	],
-	"main": "./dist/index.js",
-	"module": "./dist/index.js",
-	"types": "./dist/index.d.ts",
 	"exports": {
 		".": {
-			"import": {
-				"types": "./dist/index.d.ts",
-				"default": "./dist/index.js"
-			},
-			"require": {
-				"types": "./dist/index.d.cts",
-				"default": "./dist/index.cjs"
-			},
-			"default": "./dist/index.js"
+			"types": "./dist/index.d.mts",
+			"default": "./dist/index.mjs"
 		},
 		"./package.json": {
 			"default": "./package.json"
@@ -44,17 +39,19 @@
 			"default": "./dist/resume.json"
 		},
 		"./schema.json": {
-			"default": "./dist/resume.json"
+			"default": "./dist/schema.json"
 		}
 	},
 	"scripts": {
-		"build": "tsup",
+		"build": "tsdown && bun run build:assets",
+		"build:assets": "bun run scripts/build-assets.ts",
 		"lint:packages": "publint",
-		"prepublishOnly": "tsup && publint"
+		"test": "bun test"
 	},
 	"devDependencies": {
 		"publint": "0.3.25",
-		"tsup": "8.5.1",
+		"tsdown": "0.23.7",
+		"typescript": "6.0.3",
 		"zod": "4.6.7",
 		"zod-to-ts": "2.1.0"
 	}

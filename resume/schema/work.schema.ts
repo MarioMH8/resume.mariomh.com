@@ -7,6 +7,7 @@ const work = z
 	.object({
 		description: z.string().describe('e.g. Social Media Company').optional(),
 		endDate: date.optional(),
+		hidePrint: z.boolean().describe('Hide this entry when printing').optional(),
 		highlights: highlights.optional(),
 		location: z.string().describe('e.g. Menlo Park, CA').optional(),
 		name: z.string().describe('e.g. Facebook').optional(),
