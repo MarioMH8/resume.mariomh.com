@@ -46,21 +46,32 @@ Install dependencies
 bun install
 ```
 
-Build resume
+Build the package and the site
 
 ```bash
-bun run build:resume
+bun run build
 ```
 
-Start the server
+Start the development server
 
 ```bash
-bun dev
+bun run dev
 ```
+
+## Package
+
+The repository publishes `@mariomh8/resume` to GitHub Packages. The package contains the CV data, the JSON Schema and the generated types.
+
+```bash
+bun run build:packages
+bun run check:packages
+```
+
+Local installs need a classic GitHub personal access token with `read:packages` in your user-level npm configuration. CI uses the `PACKAGES_TOKEN` Actions secret. See [CONTRIBUTING.md](CONTRIBUTING.md) for the complete setup.
 
 ## Deploying the project
 
-Access the GitHub Action [Deploy](https://github.com/MarioMH8/resume.mariomh.com/actions/workflows/deploy.yml) and run the workflow.
+The site deploys automatically after the `Continuous integration` workflow succeeds on `main`. You can also run the [Deploy](https://github.com/MarioMH8/resume.mariomh.com/actions/workflows/deploy.yml) workflow manually with `workflow_dispatch`.
 
 ## Project Structure
 

@@ -13,7 +13,7 @@ const { as: Tag = 'time', class: cls, 'class:list': clsList, date, format = 'yea
 
 const array = Array.isArray(date) ? date : [date];
 const formattedArray = array
-	.filter(Boolean)
+	.filter((d): d is DateType => d !== undefined)
 	.map(d => dateFunction(d, format))
 	.filter(Boolean);
 ---

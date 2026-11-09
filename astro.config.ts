@@ -12,7 +12,7 @@ import manifest from 'astro-webmanifest';
 // eslint-disable-next-line import/no-relative-packages
 const { default: resume } = await import('./resume/src');
 
-const { name, shortName, summary } = resume.basics;
+const { name = '', shortName, summary } = resume.basics ?? {};
 
 export default defineConfig({
 	integrations: [

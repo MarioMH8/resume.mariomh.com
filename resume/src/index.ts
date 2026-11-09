@@ -1,4 +1,6 @@
-const resume = {
+import type { JSONResume } from '../schema';
+
+const resume: JSONResume = {
 	$schema: 'https://raw.githubusercontent.com/jsonresume/resume-schema/v1.2.1/schema.json',
 	awards: [],
 	basics: {
@@ -261,3 +263,22 @@ const resume = {
 };
 
 export default resume;
+
+export type {
+	Award,
+	Basics,
+	Certificate,
+	Education,
+	Interest,
+	JSONResume,
+	Language,
+	Location,
+	Meta,
+	Project,
+	Publication,
+	Reference,
+	Skill,
+	SocialProfile,
+	Volunteer,
+	Work,
+} from '../schema';
