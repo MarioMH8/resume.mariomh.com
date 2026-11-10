@@ -1,6 +1,6 @@
 # Agent guide for resume.mariomh.com
 
-Private Astro site and the published `@mariomh8/resume` package. `develop` is the default branch; `main` holds stable releases.
+Astro site and the published `@mariomh8/resume` package. `develop` is the default branch; `main` holds stable releases.
 
 - **Package manager:** Bun 1.4.4 (`bun`)
 - **Build:** `bun run build`
