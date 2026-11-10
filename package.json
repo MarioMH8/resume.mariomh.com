@@ -19,7 +19,7 @@
 	"bugs": {
 		"url": "https://github.com/MarioMH8/resume.mariomh.com/issues"
 	},
-	"license": "PRIVATE",
+	"license": "SEE LICENSE IN LICENSE",
 	"private": true,
 	"type": "module",
 	"workspaces": [
