@@ -2,7 +2,7 @@
 
 ## Surfaces
 
-- `src/` is the private Astro site deployed to `https://resume.mariomh.com`.
+- `src/` is the Astro site deployed to `https://resume.mariomh.com`.
 - `resume/` is the published `@mariomh8/resume` package.
 - `.github/` contains the shared CI, release, deploy, label and sync workflows.
 - `docs/` contains the agent guides and the repository documentation.
