@@ -1,6 +1,6 @@
 # Contributing to resume.mariomh.com
 
-This repository contains the private Astro site at [resume.mariomh.com](https://resume.mariomh.com) and the published `@mariomh8/resume` package. `develop` is the default branch and `main` holds stable releases.
+This repository contains the Astro site at [resume.mariomh.com](https://resume.mariomh.com) and the published `@mariomh8/resume` package. The source is public and the package stays private in GitHub Packages. `develop` is the default branch and `main` holds stable releases.
 
 For a quick orientation, read [AGENTS.md](AGENTS.md); for the detailed guides, see [docs/agents/](docs/agents/).
 
@@ -123,7 +123,7 @@ See [Branches and commits](docs/agents/branches-and-commits.md) for the full bra
 
 `.github/workflows/pr-validate.yml` uses `hexadrop/validate-pr-action@v1.0.1` to check the issue, labels and changeset. `.github/workflows/ci.yml` runs the shared check workflow with `lint:ci`, `typecheck`, `typecheck:astro`, `test` and `check:packages`.
 
-The repository is private on GitHub Free, so there are no rulesets or branch protection. The checks run, but GitHub does not block a merge when they fail. Maintainers must wait for green checks and verify the policy manually.
+The `Protected branches` ruleset on `develop` and `main` requires a pull request, blocks force pushes and deletions, and requires the `Pull Request: Validate` and `Check` workflows to pass. It allows zero approving reviews; administrators and the Hexadrop app can bypass it.
 
 Use a **squash merge** for work branches into `develop`. Use a **merge commit** for `changeset-release/main` into `main` and for `internal/sync-from-main-to-develop` into `develop`. See [Pull requests](docs/agents/pull-requests.md) for the label and merge matrices.
 
@@ -144,10 +144,4 @@ New versions are published only to GitHub Packages. The site deploys automatical
 
 ## Code of conduct
 
-Be respectful. We are building something together.
-
-- Critique code, not people.
-- Be constructive in reviews.
-- Welcome newcomers.
-
-Violations may result in removal from the project.
+This project follows the [Contributor Covenant](CODE_OF_CONDUCT.md). Be respectful: critique code, not people, be constructive in reviews and welcome newcomers. Report unacceptable behavior privately to the maintainer through GitHub.
