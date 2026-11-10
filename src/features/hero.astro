@@ -1,6 +1,7 @@
 ---
 import me from '@assets/me.png';
 import Section from '@components/section.astro';
+import { PDF_HREF } from '@config';
 import { LinkedinIcon, SOCIAL_ICONS } from '@icons';
 import { Download, Globe, Link, Mail, MapPin, Moon, Phone, Sun } from '@lucide/astro';
 import Heading from '@mariomh8/heading/astro';
@@ -194,7 +195,7 @@ const isPrint = Boolean(isHero || image);
 									'hover:bg-primary hover:text-primary-foreground dark:hover:text-primary-foreground',
 									'transition-all duration-300 ease-linear',
 								]}
-								href='/Mario%20Menéndez%20Hidalgo%20-%20Solution%20Architect.pdf'
+								href={PDF_HREF}
 								rel='noopener noreferrer'
 								target='_blank'
 								title='Descargar currículum'>

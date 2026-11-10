@@ -5,6 +5,7 @@ Astro site and the published `@mariomh8/resume` package. `develop` is the defaul
 - **Package manager:** Bun 1.4.4 (`bun`)
 - **Build:** `bun run build`
 - **Build package:** `bun run build:packages`
+- **Generate PDF:** `bun run build:pdf`
 - **Test:** `bun run test`
 - **Type-check:** `bun run typecheck`
 - **Astro type-check:** `bun run typecheck:astro`

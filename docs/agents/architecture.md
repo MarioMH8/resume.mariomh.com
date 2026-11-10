@@ -23,6 +23,15 @@ The root package is private and is not published. The Bun workspace only include
 
 `files` publishes `CHANGELOG.md` and `dist`. `publishConfig.registry` points to GitHub Packages.
 
+## Printable PDF
+
+The downloadable CV is generated from the site build instead of being committed. `scripts/generate-pdf.ts` serves `dist/` on a local port, opens it with headless Chromium from `playwright-core` and calls `page.pdf()` with A4, `preferCSSPageSize` and no background graphics, which are also the defaults of the Chrome print dialog.
+
+- `bun run build:pdf` writes to `dist/`, after `bun run build`.
+- `bun run build:pdf:dev` writes to `public/` so `bun run dev` can serve it; that file is ignored by Git.
+
+The file name lives in `src/config.ts` and is shared by the hero button and the script. Print sizes and margins come from `@page` in `src/pages/index.astro`; the layout must stay a single column in print so Chromium does not overlap grid rows across pages.
+
 ## Registry
 
 New package versions are published to GitHub Packages under the `@mariomh8` scope. The repository `.npmrc` only declares the scope and never contains a token.
@@ -39,6 +48,8 @@ The site builds to `dist/` and deploys to Cloudflare Pages with the project `res
 - Manually with `workflow_dispatch`.
 
 The deploy checks out `github.event.workflow_run.head_sha` when it runs automatically, so the deployed site matches the commit that passed CI.
+
+The deploy then installs Chromium with `bunx playwright-core install --with-deps chromium` and runs `bun run build:pdf` between the build and the deploy, so `dist/` ships a PDF generated from that same build.
 
 ## Workflows
 
