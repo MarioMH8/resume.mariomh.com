@@ -7,37 +7,35 @@ import resume from '@resume';
 const { references } = resume ?? {};
 ---
 
-{
-	references && references.length > 0 && (
-		<Section
-			class='print:hidden space-y-6'
-			title='Referencias'>
-			{references
-				.filter(reference => reference.name)
-				.map(({ name, position, reference }) => {
-					return (
-						<blockquote
-							class:list={[
-								'mb-3',
-								'border-primary-foreground-highlight',
-								'even:border-l-3 even:pl-4',
-								'odd:border-r-3 odd:pr-4 odd:text-right',
-							]}>
-							<Paragraph
-								class='mb-1 italic before:content-["“"] after:content-["”"]'
-								weight='light'>
-								{reference}
-							</Paragraph>
-							<Span
-								as='footer'
-								class='before:content-["—_"] before:mr-1'
-								dimension='sm'
-								variant='muted'>
-								{name} {position && <> &middot; {position}</>}
-							</Span>
-						</blockquote>
-					);
-				})}
-		</Section>
-	)
-}
+{references && references.length > 0 && (
+	<Section
+		class='print:hidden space-y-6'
+		title='Referencias'>
+		{references
+			.filter(reference => reference.name)
+			.map(({ name, position, reference }) => {
+				return (
+					<blockquote
+						class:list={[
+							'mb-3',
+							'border-primary-foreground-highlight',
+							'even:border-l-3 even:pl-4',
+							'odd:border-r-3 odd:pr-4 odd:text-right',
+						]}>
+						<Paragraph
+							class='mb-1 italic before:content-["“"] after:content-["”"]'
+							weight='light'>
+							{reference}
+						</Paragraph>
+						<Span
+							as='footer'
+							class='before:content-["—_"] before:mr-1'
+							dimension='sm'
+							variant='muted'>
+							{name} {position && <> &middot; {position}</>}
+						</Span>
+					</blockquote>
+				);
+			})}
+	</Section>
+)}
