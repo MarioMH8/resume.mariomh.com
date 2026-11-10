@@ -11,7 +11,11 @@ const { class: cls, 'class:list': clsList, heading = 'h3', ...properties } = Ast
 
 <Heading
 	{...properties}
-	class:list={['relative w-full text-2xl print:text-xl mb-2 flex items-center gap-3 print:gap-1', cls, clsList]}
+	class:list={[
+		'relative w-full text-2xl print:text-xl mb-2 flex items-center gap-3 print:gap-1 print:break-after-avoid',
+		cls,
+		clsList,
+	]}
 	heading={heading}
 	weight='medium'>
 	<slot />

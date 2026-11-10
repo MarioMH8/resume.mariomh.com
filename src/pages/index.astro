@@ -16,7 +16,7 @@ import Layout from '@layout';
 <Layout>
 	<main
 		class:list={[
-			'relative container print:px-8 print:py-4',
+			'relative container',
 			'max-w-7xl print:max-w-none',
 			'max-lg:py-16 xl:p-16',
 			'grid',
@@ -32,11 +32,7 @@ import Layout from '@layout';
 			<Hero />
 			<About />
 		</div>
-		<div
-			class:list={[
-				'space-y-10 xl:col-span-4',
-				'print:col-span-1 print:grid print:grid-cols-4 print:gap-2 print:space-y-0 print:gap-y-0.5',
-			]}>
+		<div class:list={['space-y-10 xl:col-span-4', 'print:col-span-1 print:space-y-6']}>
 			<Works />
 			<Projects />
 			<Skills />
@@ -52,7 +48,13 @@ import Layout from '@layout';
 
 <style>
 	@page {
-		size: auto;
-		margin: 0;
+		size: A4;
+		margin: 14mm;
+	}
+
+	@media print {
+		main {
+			padding: 0;
+		}
 	}
 </style>
