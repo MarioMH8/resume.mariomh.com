@@ -1,5 +1,11 @@
 # @mariomh8/resume
 
+## 0.1.1
+
+### Patch Changes
+
+- b97925a: Document the `resume.json` and `schema.json` subpath exports, add a regression test for the export map and include the missing 0.1.0 changelog entry in the published tarball.
+
 ## 0.1.0
 
 ### Minor Changes
