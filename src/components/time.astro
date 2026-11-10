@@ -18,31 +18,29 @@ const formattedArray = array
 	.filter(Boolean);
 ---
 
-{
-	formattedArray.length === 1 ? (
-		<Tag
-			{...properties}
-			data-title={formattedArray[0]}
-			datetime={formattedArray[0]}>
-			{formattedArray[0]}
-		</Tag>
-	) : (
-		formattedArray.length === 2 && (
-			<Fragment>
-				<Tag
-					{...properties}
-					data-title={formattedArray[0]}
-					datetime={formattedArray[0]}>
-					{formattedArray[0]}
-				</Tag>
-				{' - '}
-				<Tag
-					{...properties}
-					data-title={formattedArray[1]}
-					datetime={formattedArray[1]}>
-					{formattedArray[1]}
-				</Tag>
-			</Fragment>
-		)
+{formattedArray.length === 1 ? (
+	<Tag
+		{...properties}
+		data-title={formattedArray[0]}
+		datetime={formattedArray[0]}>
+		{formattedArray[0]}
+	</Tag>
+) : (
+	formattedArray.length === 2 && (
+		<Fragment>
+			<Tag
+				{...properties}
+				data-title={formattedArray[0]}
+				datetime={formattedArray[0]}>
+				{formattedArray[0]}
+			</Tag>
+			{' - '}
+			<Tag
+				{...properties}
+				data-title={formattedArray[1]}
+				datetime={formattedArray[1]}>
+				{formattedArray[1]}
+			</Tag>
+		</Fragment>
 	)
-}
+)}

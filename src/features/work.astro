@@ -61,8 +61,7 @@ const isHidePrint = work.hidePrint === true;
 			'lg:hover:!opacity-100',
 			isHidePrint && 'print:hidden',
 		]}>
-		<header
-			class='relative text-sm mt-1 pr-4 font-medium md:not-print:text-right print:font-semibold md:col-span-2'>
+		<header class='relative text-sm mt-1 pr-4 font-medium md:not-print:text-right print:font-semibold md:col-span-2'>
 			<Time date={startDate} />
 			{startDate && !isSameYear && ' - '}
 			{endDate ? isSameYear ? <Fragment /> : <Time date={endDate} /> : <span>Presente</span>}
@@ -81,8 +80,8 @@ const isHidePrint = work.hidePrint === true;
 					'rounded-full',
 					'bg-primary-foreground-highlight',
 					'ring-4 ring-primary-background dark:ring-primary-dark-background',
-				]}>
-			</div>
+				]}
+			/>
 			<Span
 				aria-label='{position} @ {company}'
 				as='h3'
@@ -91,140 +90,134 @@ const isHidePrint = work.hidePrint === true;
 				weight='base'>
 				{position && <span>{position}</span>}
 				{position && '@'}
-				{
-					url ? (
-						<Link
-							href={url}
-							rel='noopener noreferrer'
-							target='_blank'
-							title={`Ver ${name}`}
-							variant='bright'>
-							{name}
-						</Link>
-					) : (
-						<span>{name}</span>
-					)
-				}
+				{url ? (
+					<Link
+						href={url}
+						rel='noopener noreferrer'
+						target='_blank'
+						title={`Ver ${name}`}
+						variant='bright'>
+						{name}
+					</Link>
+				) : (
+					<span>{name}</span>
+				)}
 			</Span>
-			{
-				locationSubtitle && (
-					<Span
-						class='print:text-xs'
-						dimension='sm'
-						variant='muted'>
-						{locationSubtitle}
-					</Span>
-				)
-			}
-			{
-				isShowContent && (
-					<div class='mt-4 mb-6 print:mt-2 print:mb-4 flex flex-col gap-3 print:gap-1'>
-						{summary && (
-							<div>
-								<Heading
-									class='text-base print:text-sm mb-0'
-									heading='h4'>
-									Resumen:
-								</Heading>
-								<Paragraph
-									class='print:text-xs mb-0'
-									dimension='sm'
-									variant='muted'>
-									{summary}
-								</Paragraph>
+			{locationSubtitle && (
+				<Span
+					class='print:text-xs'
+					dimension='sm'
+					variant='muted'>
+					{locationSubtitle}
+				</Span>
+			)}
+			{isShowContent && (
+				<div class='mt-4 mb-6 print:mt-2 print:mb-4 flex flex-col gap-3 print:gap-1'>
+					{summary && (
+						<div>
+							<Heading
+								class='text-base print:text-sm mb-0'
+								heading='h4'>
+								Resumen:
+							</Heading>
+							<Paragraph
+								class='print:text-xs mb-0'
+								dimension='sm'
+								variant='muted'>
+								{summary}
+							</Paragraph>
+						</div>
+					)}
+					{(isShowResponsibilities || isShowAchievements) && (
+						<>
+							<div
+								class:list={[
+									'relative',
+									'flex flex-col gap-3 print:gap-1',
+									'overflow-y-hidden',
+									'data-expanded:max-h-fit not-data-expanded:max-h-12',
+									`after:absolute after:content-[''] after:bottom-0 after:w-full after:h-12`,
+									'after:bg-gradient-to-t',
+									'after:from-primary-background after:to-primary-background/0',
+									'dark:after:from-primary-dark-background dark:after:to-primary-dark-background/0',
+									'max-md:!h-auto print:!max-h-fit print:after:hidden',
+									'not-print:data-expanded:after:hidden',
+								]}>
+								{isShowResponsibilities && (
+									<div>
+										<Heading
+											class='text-base print:text-sm mb-0'
+											heading='h4'>
+											Responsabilidades:
+										</Heading>
+										<ul
+											class:list={cn(
+												{ dimension: 'sm', variant: 'muted' },
+												'print:text-xs mb-0 list-disc'
+											)}>
+											{filterResponsibilities?.map(r => (
+												<li class='ml-4 marker:text-primary-foreground-highlight dark:marker:text-primary'>
+													{r}
+												</li>
+											))}
+										</ul>
+									</div>
+								)}
+								{isShowAchievements && (
+									<div>
+										<Heading
+											class='text-base print:text-sm mb-0'
+											heading='h4'>
+											Logros:
+										</Heading>
+										<ul
+											class:list={cn(
+												{ dimension: 'sm', variant: 'muted' },
+												'print:text-xs mb-0 list-disc'
+											)}>
+											{filterAchievements?.map(r => (
+												<li class='ml-4 marker:text-primary-foreground-highlight dark:marker:text-primary'>
+													{r}
+												</li>
+											))}
+										</ul>
+									</div>
+								)}
 							</div>
-						)}
-						{(isShowResponsibilities || isShowAchievements) && (
-							<>
-								<div
+							<button
+								class:list={[
+									'show-more',
+									'print:hidden',
+									'w-fit',
+									'text-sm',
+									'group/show-more',
+									'flex flex-row justify-center items-center gap-1.5',
+									'text-primary-foreground/65 dark:text-primary-dark-foreground/65',
+									'hover:text-primary-foreground/85 hover:dark:text-primary-dark-foreground/85',
+									'cursor-pointer underline transition-all hover:text-skin-base',
+								]}>
+								<span class='hidden group-not-data-expanded/show-more:inline'>Mostrar más</span>
+								<span class='hidden group-data-expanded/show-more:inline'>Mostrar menos</span>
+								<CaretDownIcon
 									class:list={[
-										'relative',
-										'flex flex-col gap-3 print:gap-1',
-										'overflow-y-hidden',
-										'data-expanded:max-h-fit not-data-expanded:max-h-12',
-										`after:absolute after:content-[''] after:bottom-0 after:w-full after:h-12`,
-										'after:bg-gradient-to-t',
-										'after:from-primary-background after:to-primary-background/0',
-										'dark:after:from-primary-dark-background dark:after:to-primary-dark-background/0',
-										'max-md:!h-auto print:!max-h-fit print:after:hidden',
-										'not-print:data-expanded:after:hidden',
-									]}>
-									{isShowResponsibilities && (
-										<div>
-											<Heading
-												class='text-base print:text-sm mb-0'
-												heading='h4'>
-												Responsabilidades:
-											</Heading>
-											<ul
-												class:list={cn(
-													{ dimension: 'sm', variant: 'muted' },
-													'print:text-xs mb-0 list-disc'
-												)}>
-												{filterResponsibilities?.map(r => (
-													<li class='ml-4 marker:text-primary-foreground-highlight dark:marker:text-primary'>
-														{r}
-													</li>
-												))}
-											</ul>
-										</div>
-									)}
-									{isShowAchievements && (
-										<div>
-											<Heading
-												class='text-base print:text-sm mb-0'
-												heading='h4'>
-												Logros:
-											</Heading>
-											<ul
-												class:list={cn(
-													{ dimension: 'sm', variant: 'muted' },
-													'print:text-xs mb-0 list-disc'
-												)}>
-												{filterAchievements?.map(r => (
-													<li class='ml-4 marker:text-primary-foreground-highlight dark:marker:text-primary'>
-														{r}
-													</li>
-												))}
-											</ul>
-										</div>
-									)}
-								</div>
-								<button
-									class:list={[
-										'show-more',
-										'print:hidden',
-										'w-fit',
-										'text-sm',
-										'group/show-more',
-										'flex flex-row justify-center items-center gap-1.5',
-										'text-primary-foreground/65 dark:text-primary-dark-foreground/65',
-										'hover:text-primary-foreground/85 hover:dark:text-primary-dark-foreground/85',
-										'cursor-pointer underline transition-all hover:text-skin-base',
-									]}>
-									<span class='hidden group-not-data-expanded/show-more:inline'>Mostrar más</span>
-									<span class='hidden group-data-expanded/show-more:inline'>Mostrar menos</span>
-									<CaretDownIcon
-										class:list={[
-											'w-4 h-4',
-											'transition-transform ease-out motion-reduce:transition-none',
-											'group-hover/show-more:translate-y-0.5',
-											'group-data-expanded/show-more:rotate-180',
-										]}
-									/>
-								</button>
-							</>
-						)}
-						{filterSkills && (
-							<SkillList
-								aria-label='Tecnologías utilizadas'
-								class='print:hidden'
-								skills={filterSkills}
-							/>
-						)}
-					</div>
-				)
-			}
+										'w-4 h-4',
+										'transition-transform ease-out motion-reduce:transition-none',
+										'group-hover/show-more:translate-y-0.5',
+										'group-data-expanded/show-more:rotate-180',
+									]}
+								/>
+							</button>
+						</>
+					)}
+					{filterSkills && (
+						<SkillList
+							aria-label='Tecnologías utilizadas'
+							class='print:hidden'
+							skills={filterSkills}
+						/>
+					)}
+				</div>
+			)}
 		</div>
 	</div>
 </li>

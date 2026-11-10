@@ -22,40 +22,34 @@ const { name, publisher, releaseDate, summary, url } = publication;
 				aria-hidden='true'
 				class='size-4'
 			/>
-			{
-				url ? (
-					<Link
-						href={url}
-						rel='noopener noreferrer'
-						target='_blank'
-						title={`Ver ${name}`}>
-						{name}
-					</Link>
-				) : (
-					<Span class='font-primary'>{name}</Span>
-				)
-			}
+			{url ? (
+				<Link
+					href={url}
+					rel='noopener noreferrer'
+					target='_blank'
+					title={`Ver ${name}`}>
+					{name}
+				</Link>
+			) : (
+				<Span class='font-primary'>{name}</Span>
+			)}
 		</div>
 	</header>
-	{
-		summary && (
-			<Paragraph
-				class='mb-2'
-				dimension='sm'>
-				{summary}
-			</Paragraph>
-		)
-	}
-	{
-		(releaseDate || publisher) && (
-			<Span
-				as='footer'
-				dimension='sm'
-				variant='muted'>
-				<Time date={releaseDate} />
-				{releaseDate && publisher && ' - '}
-				{publisher}
-			</Span>
-		)
-	}
+	{summary && (
+		<Paragraph
+			class='mb-2'
+			dimension='sm'>
+			{summary}
+		</Paragraph>
+	)}
+	{(releaseDate || publisher) && (
+		<Span
+			as='footer'
+			dimension='sm'
+			variant='muted'>
+			<Time date={releaseDate} />
+			{releaseDate && publisher && ' - '}
+			{publisher}
+		</Span>
+	)}
 </Article>

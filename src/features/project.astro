@@ -32,75 +32,63 @@ const subtitle = [entity, type, rolesJoin].filter(Boolean).join(' • ');
 				aria-hidden='true'
 				class='size-4'
 			/>
-			{
-				url ? (
-					<Link
-						href={url}
-						rel='noopener noreferrer'
-						target='_blank'
-						title={`Ver ${name}`}>
-						{name}
-					</Link>
-				) : (
-					<Span class='font-primary'>{name}</Span>
-				)
-			}
-		</div>
-		{
-			github && typeof github === 'string' && (
-				<a
-					class='opacity-75 hover:opacity-100 transition-opacity motion-reduce:transition-none ease-linear'
-					href={github}
+			{url ? (
+				<Link
+					href={url}
 					rel='noopener noreferrer'
 					target='_blank'
-					title='Ver el repositorio de código'>
-					<GithubIcon class='size-4' />
-				</a>
-			)
-		}
+					title={`Ver ${name}`}>
+					{name}
+				</Link>
+			) : (
+				<Span class='font-primary'>{name}</Span>
+			)}
+		</div>
+		{github && typeof github === 'string' && (
+			<a
+				class='opacity-75 hover:opacity-100 transition-opacity motion-reduce:transition-none ease-linear'
+				href={github}
+				rel='noopener noreferrer'
+				target='_blank'
+				title='Ver el repositorio de código'>
+				<GithubIcon class='size-4' />
+			</a>
+		)}
 	</header>
-	{
-		(subtitle || startDate || endDate) && (
-			<Span
-				dimension='xs'
-				variant='muted'>
-				<Time date={[startDate, endDate]} />
-				{(startDate || endDate) && subtitle && ' • '}
-				{subtitle}
-			</Span>
-		)
-	}
-	{
-		description && (
-			<Paragraph
-				class='mb-2'
-				dimension='sm'>
-				{description}
-			</Paragraph>
-		)
-	}
-	{
-		highlights && highlights.length > 0 && (
-			<ul
-				class:list={[
-					'text-sm text-primary-foreground/65 dark:text-primary-dark-foreground/65',
-					'list-disc space-y-1',
-					'ml-4',
-				]}>
-				{highlights.map(highlight => (
-					<li>{highlight}</li>
-				))}
-			</ul>
-		)
-	}
-	{
-		hashtags && (
-			<Span
-				as='footer'
-				dimension='xs'
-				variant='muted'>
-				{hashtags}
-			</Span>
-		)
-	}
+	{(subtitle || startDate || endDate) && (
+		<Span
+			dimension='xs'
+			variant='muted'>
+			<Time date={[startDate, endDate]} />
+			{(startDate || endDate) && subtitle && ' • '}
+			{subtitle}
+		</Span>
+	)}
+	{description && (
+		<Paragraph
+			class='mb-2'
+			dimension='sm'>
+			{description}
+		</Paragraph>
+	)}
+	{highlights && highlights.length > 0 && (
+		<ul
+			class:list={[
+				'text-sm text-primary-foreground/65 dark:text-primary-dark-foreground/65',
+				'list-disc space-y-1',
+				'ml-4',
+			]}>
+			{highlights.map(highlight => (
+				<li>{highlight}</li>
+			))}
+		</ul>
+	)}
+	{hashtags && (
+		<Span
+			as='footer'
+			dimension='xs'
+			variant='muted'>
+			{hashtags}
+		</Span>
+	)}
 </Article>

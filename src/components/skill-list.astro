@@ -19,30 +19,28 @@ const { big, class: cls, 'class:list': clsList, skills, ...properties } = Astro.
 		cls,
 		clsList,
 	]}>
-	{
-		skills.map(skill => {
-			const name = typeof skill === 'string' ? skill : skill.name;
-			if (!name) {
-				return <Fragment />;
-			}
+	{skills.map(skill => {
+		const name = typeof skill === 'string' ? skill : skill.name;
+		if (!name) {
+			return <Fragment />;
+		}
 
-			const Icon = SKILLS_ICONS[name];
+		const Icon = SKILLS_ICONS[name];
 
-			return (
-				<li
-					class:list={[
-						'text-sm',
-						'rounded-md px-2 py-0.5',
-						'text-primary-foreground-highlight',
-						'bg-primary-background-subtle/40 dark:bg-primary-dark-background-subtle',
-						'border border-primary-border dark:border-primary-dark-border',
-						'flex gap-2 items-center flex-row',
-						'print:gap-1',
-					]}>
-					{Icon && <Icon class:list={{ 'size-4': !big, 'size-5 print:size-4': big }} />}
-					<span>{name}</span>
-				</li>
-			);
-		})
-	}
+		return (
+			<li
+				class:list={[
+					'text-sm',
+					'rounded-md px-2 py-0.5',
+					'text-primary-foreground-highlight',
+					'bg-primary-background-subtle/40 dark:bg-primary-dark-background-subtle',
+					'border border-primary-border dark:border-primary-dark-border',
+					'flex gap-2 items-center flex-row',
+					'print:gap-1',
+				]}>
+				{Icon && <Icon class:list={{ 'size-4': !big, 'size-5 print:size-4': big }} />}
+				<span>{name}</span>
+			</li>
+		);
+	})}
 </ul>
