@@ -51,7 +51,7 @@ const isSameYear =
 const isHidePrint = work.hidePrint === true;
 ---
 
-<li class='break-inside-avoid group/work'>
+<li class='group/work'>
 	<div
 		class:list={[
 			'relative',
@@ -61,7 +61,7 @@ const isHidePrint = work.hidePrint === true;
 			'lg:hover:!opacity-100',
 			isHidePrint && 'print:hidden',
 		]}>
-		<header class='relative text-sm mt-1 pr-4 font-medium md:not-print:text-right print:font-semibold md:col-span-2'>
+		<header class='relative text-sm mt-1 pr-4 font-medium md:not-print:text-right print:font-semibold md:col-span-2 print:break-after-avoid'>
 			<Time date={startDate} />
 			{startDate && !isSameYear && ' - '}
 			{endDate ? isSameYear ? <Fragment /> : <Time date={endDate} /> : <span>Presente</span>}
@@ -114,9 +114,9 @@ const isHidePrint = work.hidePrint === true;
 			{isShowContent && (
 				<div class='mt-4 mb-6 print:mt-2 print:mb-4 flex flex-col gap-3 print:gap-1'>
 					{summary && (
-						<div>
+						<div class='print:break-inside-avoid'>
 							<Heading
-								class='text-base print:text-sm mb-0'
+								class='text-base print:text-sm mb-0 print:break-after-avoid'
 								heading='h4'>
 								Resumen:
 							</Heading>
@@ -140,13 +140,13 @@ const isHidePrint = work.hidePrint === true;
 									'after:bg-gradient-to-t',
 									'after:from-primary-background after:to-primary-background/0',
 									'dark:after:from-primary-dark-background dark:after:to-primary-dark-background/0',
-									'max-md:!h-auto print:!max-h-fit print:after:hidden',
+									'max-md:!h-auto print:!max-h-fit print:overflow-visible print:after:hidden print:break-inside-avoid',
 									'not-print:data-expanded:after:hidden',
 								]}>
 								{isShowResponsibilities && (
 									<div>
 										<Heading
-											class='text-base print:text-sm mb-0'
+											class='text-base print:text-sm mb-0 print:break-after-avoid'
 											heading='h4'>
 											Responsabilidades:
 										</Heading>
@@ -166,7 +166,7 @@ const isHidePrint = work.hidePrint === true;
 								{isShowAchievements && (
 									<div>
 										<Heading
-											class='text-base print:text-sm mb-0'
+											class='text-base print:text-sm mb-0 print:break-after-avoid'
 											heading='h4'>
 											Logros:
 										</Heading>

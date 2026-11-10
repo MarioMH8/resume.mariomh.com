@@ -123,12 +123,14 @@ The CV data contains personal information. Read [CONTENT-LICENSE.md](CONTENT-LIC
 
 The site deploys automatically after the `Continuous integration` workflow succeeds on `main`. You can also run the [Deploy](https://github.com/MarioMH8/resume.mariomh.com/actions/workflows/deploy.yml) workflow manually with `workflow_dispatch`.
 
+The downloadable CV is not committed. The deploy prints the built site with headless Chromium and writes the PDF into `dist/`, so the download and <kbd>Ctrl</kbd>+<kbd>P</kbd> use the same HTML and the same print styles.
+
 ## Project structure
 
 ```text
 src/               Astro site: assets, components, features, layouts and pages
 resume/            @mariomh8/resume: data, Zod schemas, types and build
-public/            Static files, the printable PDF and the portrait
+public/            Static files served as is: the favicon and the social image
 docs/              Screenshots, the Lighthouse result and the agent guides
 .github/           Workflows, issue templates and CODEOWNERS
 ```

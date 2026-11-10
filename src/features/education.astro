@@ -19,112 +19,120 @@ const hasAnyEduction = hasEducation || hasCertificatesOrLanguages;
 ---
 
 {hasAnyEduction && (
-	<Section
-		class='order-first'
-		title='Educación'>
-		<List>
-			{education?.map(({ area, courses, endDate, institution, score, startDate, studyType, url }) => {
-				if (!institution) {
-					return <Fragment />;
-				}
-
-				const description = [area, studyType].filter(Boolean).join(' - ');
-				const badge = score ? `Nota: ${score}` : undefined;
-				const badgeAriaLabel = `Nota de ${institution}`;
-
-				return (
-					<ListElement
-						description={description}
-						time={[startDate, endDate]}
-						title={institution}
-						url={url}>
-						<GraduationCap slot='icon' />
-						{score && (
-							<Span
-								aria-label={badgeAriaLabel}
-								class='print:hidden'
-								dimension='xs'
-								slot='badge'
-								variant='muted'>
-								{badge}
-							</Span>
-						)}
-						{courses && courses.length > 0 && (
-							<Fragment>
-								<Heading
-									as='span'
-									class='mt-2 print:hidden'
-									heading='h5'
-									subtitle>
-									Asignaturas
-								</Heading>
-								<ul class='print:hidden list-disc ml-4 space-y-2'>
-									{courses.map(course => {
-										return (
-											<Span
-												as='li'
-												dimension='sm'
-												variant='muted'>
-												{course}
-											</Span>
-										);
-									})}
-								</ul>
-							</Fragment>
-						)}
-					</ListElement>
-				);
-			})}
-		</List>
-		{certificates && certificates.length > 0 && (
-			<>
+	<Section class='order-first'>
+		<SectionHeading class='print:hidden'>Educación</SectionHeading>
+		<div class='flex flex-col gap-4 print:grid print:grid-cols-2 print:items-start print:gap-8'>
+			<div>
 				<SectionHeading
-					class='text-lg print:text-lg mt-4 print:mb-1'
+					class='text-lg not-print:hidden'
 					heading='h4'>
-					Certificados
+					Educación
 				</SectionHeading>
 				<List>
-					{certificates.map(({ date, issuer, name, url }) => {
-						if (!name) {
+					{education?.map(({ area, courses, endDate, institution, score, startDate, studyType, url }) => {
+						if (!institution) {
 							return <Fragment />;
 						}
 
+						const description = [area, studyType].filter(Boolean).join(' - ');
+						const badge = score ? `Nota: ${score}` : undefined;
+						const badgeAriaLabel = `Nota de ${institution}`;
+
 						return (
 							<ListElement
-								description={issuer}
-								time={date}
-								title={name}
+								description={description}
+								time={[startDate, endDate]}
+								title={institution}
 								url={url}>
-								<ScrollText slot='icon' />
+								<GraduationCap slot='icon' />
+								{score && (
+									<Span
+										aria-label={badgeAriaLabel}
+										class='print:hidden'
+										dimension='xs'
+										slot='badge'
+										variant='muted'>
+										{badge}
+									</Span>
+								)}
+								{courses && courses.length > 0 && (
+									<Fragment>
+										<Heading
+											as='span'
+											class='mt-2 print:hidden'
+											heading='h5'
+											subtitle>
+											Asignaturas
+										</Heading>
+										<ul class='print:hidden list-disc ml-4 space-y-2'>
+											{courses.map(course => {
+												return (
+													<Span
+														as='li'
+														dimension='sm'
+														variant='muted'>
+														{course}
+													</Span>
+												);
+											})}
+										</ul>
+									</Fragment>
+								)}
 							</ListElement>
 						);
 					})}
 				</List>
-			</>
-		)}
-		{languages && languages.length > 0 && (
-			<>
-				<SectionHeading
-					class='text-lg print:text-lg mt-4 print:mb-1'
-					heading='h4'>
-					Idiomas
-				</SectionHeading>
-				<List>
-					{languages.map(({ fluency, language }) => {
-						if (!language) {
-							return <Fragment />;
-						}
+				{certificates && certificates.length > 0 && (
+					<>
+						<SectionHeading
+							class='text-lg print:text-lg mt-4 print:mb-1'
+							heading='h4'>
+							Certificados
+						</SectionHeading>
+						<List>
+							{certificates.map(({ date, issuer, name, url }) => {
+								if (!name) {
+									return <Fragment />;
+								}
 
-						return (
-							<ListElement
-								description={fluency}
-								title={language}>
-								<Languages slot='icon' />
-							</ListElement>
-						);
-					})}
-				</List>
-			</>
-		)}
+								return (
+									<ListElement
+										description={issuer}
+										time={date}
+										title={name}
+										url={url}>
+										<ScrollText slot='icon' />
+									</ListElement>
+								);
+							})}
+						</List>
+					</>
+				)}
+			</div>
+			{languages && languages.length > 0 && (
+				<div class='flex flex-col'>
+					<SectionHeading
+						class='text-lg'
+						heading='h4'>
+						Idiomas
+					</SectionHeading>
+					<List>
+						{languages.map(({ fluency, language }) => {
+							if (!language) {
+								return <Fragment />;
+							}
+
+							return (
+								<ListElement
+									description={fluency}
+									title={language}>
+									<Languages slot='icon' />
+								</ListElement>
+							);
+						})}
+					</List>
+				</div>
+			)}
+		</div>
 	</Section>
 )}

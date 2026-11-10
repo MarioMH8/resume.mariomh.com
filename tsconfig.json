@@ -6,6 +6,7 @@
 			"@resume": ["./resume/src/index.ts", "./resume/schema/index.ts"],
 			"@assets/*": ["./src/assets/*"],
 			"@components/*": ["./src/components/*"],
+			"@config": ["./src/config.ts"],
 			"@features/*": ["./src/features/*"],
 			"@icons/*": ["./src/icons/*"],
 			"@icons": ["./src/icons/index.ts"],
