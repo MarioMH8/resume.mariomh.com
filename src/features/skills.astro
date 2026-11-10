@@ -9,9 +9,7 @@ const filteredSkills = skills?.filter(skill => skill.name);
 ---
 
 {filteredSkills && filteredSkills.length > 0 && (
-	<Section
-		class='print:col-span-3 print:col-start-2'
-		title='Tecnologías'>
+	<Section title='Tecnologías'>
 		<SkillList
 			big
 			skills={filteredSkills}

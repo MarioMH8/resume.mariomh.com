@@ -28,6 +28,8 @@
 	"scripts": {
 		"build": "bun run build:packages && astro build",
 		"build:packages": "bun run --filter '@mariomh8/resume' build",
+		"build:pdf": "bun scripts/generate-pdf.ts",
+		"build:pdf:dev": "bun scripts/generate-pdf.ts --out public",
 		"build:resume": "bun run build:packages",
 		"check:packages": "bun run build:packages && bun run lint:packages",
 		"commitlint": "commitlint --edit",
@@ -74,6 +76,7 @@
 		"eslint": "10.14.0",
 		"husky": "9.1.7",
 		"lint-staged": "17.6.0",
+		"playwright-core": "1.65.0",
 		"sharp": "0.35.5",
 		"tailwindcss": "4.3.5",
 		"typescript": "6.0.3"

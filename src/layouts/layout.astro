@@ -90,6 +90,25 @@ const computedDescription = description ?? (typeof summary === 'string' ? summar
 				overrideSystemPreference: true,
 			});
 
+			// Chrome does not print background colors, so a dark theme would put light text on white paper.
+			let restoreDarkTheme: (() => void) | undefined;
+
+			window.addEventListener('beforeprint', () => {
+				const rootElement = document.documentElement;
+
+				if (!rootElement.classList.contains('dark')) {
+					return;
+				}
+
+				rootElement.classList.remove('dark');
+				restoreDarkTheme = () => rootElement.classList.add('dark');
+			});
+
+			window.addEventListener('afterprint', () => {
+				restoreDarkTheme?.();
+				restoreDarkTheme = undefined;
+			});
+
 			document.addEventListener('astro:page-load', () => {
 				manager.applyCurrentTheme();
 			});

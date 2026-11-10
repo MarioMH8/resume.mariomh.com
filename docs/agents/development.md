@@ -41,6 +41,8 @@ CI uses the `PACKAGES_TOKEN` Actions secret because the design system packages a
 | --- | --- |
 | Install dependencies | `bun install` |
 | Build the package and the site | `bun run build` |
+| Generate the PDF into `dist/` | `bun run build:pdf` |
+| Generate the PDF into `public/` for `bun run dev` | `bun run build:pdf:dev` |
 | Build the package only | `bun run build:packages` |
 | Run all tests | `bun run test` |
 | Run one test file | `bun test resume/test/index.test.ts` |
@@ -78,6 +80,23 @@ bun run start
 ```
 
 The site consumes the local package through the `@resume` TypeScript path and the design system through `@mariomh8/*`.
+
+## Printable PDF
+
+The download button needs `playwright-core` and a Chromium build. Both scripts print the already built site, so run `bun run build` first:
+
+```bash
+# Chromium, once per machine
+bunx playwright-core install chromium
+
+bun run build
+bun run build:pdf        # dist/<file>.pdf, what the deploy publishes
+bun run build:pdf:dev    # public/<file>.pdf, served by bun run dev
+```
+
+`public/*.pdf` is ignored by Git. Run `bun run build:pdf:dev` again after changing the print styles or the CV data.
+
+The generated PDF follows the `@page` rule in `src/pages/index.astro`, so a layout change shows up in the download and in <kbd>Ctrl</kbd>+<kbd>P</kbd> at the same time.
 
 ## Tests
 

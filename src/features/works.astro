@@ -7,9 +7,7 @@ const { work } = resume ?? {};
 ---
 
 {work && work.length > 0 && (
-	<Section
-		class='print:col-span-3'
-		title='Experiencia'>
+	<Section title='Experiencia'>
 		<ul class='flex flex-col'>
 			{work
 				.filter(w => w.name)

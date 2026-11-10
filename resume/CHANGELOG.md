@@ -1,5 +1,11 @@
 # @mariomh8/resume
 
+## 0.1.2
+
+### Patch Changes
+
+- 77f5f3c: Fix the printable CV: real A4 page, no overlapping sections and a PDF generated from the build instead of a committed snapshot.
+
 ## 0.1.1
 
 ### Patch Changes

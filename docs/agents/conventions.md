@@ -14,7 +14,7 @@ The repository uses TypeScript 6.0.3 with `@hexadrop/tsconfig` 0.0.5. The root `
 
 - Extends `@hexadrop/tsconfig`.
 - Maps `@resume` to `./resume/src/index.ts`, which also re-exports the schema types.
-- Maps the site aliases `@assets`, `@components`, `@features`, `@icons` and `@layout`.
+- Maps the site aliases `@assets`, `@components`, `@config`, `@features`, `@icons` and `@layout`.
 - Uses `types: ["bun"]`.
 - Loads the `@astrojs/ts-plugin` plugin.
 - Includes the whole repository and excludes `node_modules` and `**/dist/*`.

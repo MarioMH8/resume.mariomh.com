@@ -29,7 +29,7 @@ Do not publish a stable release after every change. Batch package changes in the
 
 `deploy.yml` deploys the site automatically after the `Continuous integration` workflow succeeds on `main`. It also supports `workflow_dispatch` for manual redeploys.
 
-The deploy checks out the commit that passed CI, installs dependencies with `PACKAGES_TOKEN`, builds the package and the site, and publishes `dist` to Cloudflare Pages project `resume-mariomh`.
+The deploy checks out the commit that passed CI, installs dependencies with `PACKAGES_TOKEN`, builds the package and the site, generates the printable PDF with headless Chromium and publishes `dist` to Cloudflare Pages project `resume-mariomh`.
 
 ## Sync back to develop
 
