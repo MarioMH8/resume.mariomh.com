@@ -1,4 +1,16 @@
-# @mariomh/resume
+# @mariomh8/resume
+
+## 0.1.1
+
+### Patch Changes
+
+- b97925a: Document the `resume.json` and `schema.json` subpath exports, add a regression test for the export map and include the missing 0.1.0 changelog entry in the published tarball.
+
+## 0.1.0
+
+### Minor Changes
+
+- Rename the package to `@mariomh8/resume` and publish it to GitHub Packages. Adopt `tsdown`, generated `resume.json` / `schema.json` / `.d.mts` assets, ESM-only output, `CHANGELOG.md` in the published files and the new repository workflows.
 
 ## 0.0.5
 

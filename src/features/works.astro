@@ -6,18 +6,16 @@ import resume from '@resume';
 const { work } = resume ?? {};
 ---
 
-{
-	work && work.length > 0 && (
-		<Section
-			class='print:col-span-3'
-			title='Experiencia'>
-			<ul class='flex flex-col'>
-				{work
-					.filter(w => w.name)
-					.map(w => (
-						<Work work={w} />
-					))}
-			</ul>
-		</Section>
-	)
-}
+{work && work.length > 0 && (
+	<Section
+		class='print:col-span-3'
+		title='Experiencia'>
+		<ul class='flex flex-col'>
+			{work
+				.filter(w => w.name)
+				.map(w => (
+					<Work work={w} />
+				))}
+		</ul>
+	</Section>
+)}

@@ -8,29 +8,27 @@ import resume from '@resume';
 const { awards } = resume ?? {};
 ---
 
-{
-	awards && awards.length > 0 && (
-		<Section
-			class='print:hidden'
-			title='Premios'>
-			<List>
-				{awards.map(({ awarder, date, summary, title }) => {
-					if (!title) {
-						return <Fragment />;
-					}
+{awards && awards.length > 0 && (
+	<Section
+		class='print:hidden'
+		title='Premios'>
+		<List>
+			{awards.map(({ awarder, date, summary, title }) => {
+				if (!title) {
+					return <Fragment />;
+				}
 
-					const description = [awarder, summary].filter(Boolean).join(' - ');
+				const description = [awarder, summary].filter(Boolean).join(' - ');
 
-					return (
-						<ListElement
-							description={description}
-							time={date}
-							title={title}>
-							<Trophy slot='icon' />
-						</ListElement>
-					);
-				})}
-			</List>
-		</Section>
-	)
-}
+				return (
+					<ListElement
+						description={description}
+						time={date}
+						title={title}>
+						<Trophy slot='icon' />
+					</ListElement>
+				);
+			})}
+		</List>
+	</Section>
+)}

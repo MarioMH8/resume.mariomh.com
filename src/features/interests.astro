@@ -8,29 +8,27 @@ import resume from '@resume';
 const { interests } = resume ?? {};
 ---
 
-{
-	interests && interests.length > 0 && (
-		<Section
-			class='print:hidden space-y-6'
-			title='Aficiones'>
-			<List>
-				{interests.map(({ keywords, name }) => {
-					if (!name) {
-						return <Fragment />;
-					}
+{interests && interests.length > 0 && (
+	<Section
+		class='print:hidden space-y-6'
+		title='Aficiones'>
+		<List>
+			{interests.map(({ keywords, name }) => {
+				if (!name) {
+					return <Fragment />;
+				}
 
-					const description = keywords?.join(' • ');
-					const Icon = INTEREST_ICONS[name];
+				const description = keywords?.join(' • ');
+				const Icon = INTEREST_ICONS[name];
 
-					return (
-						<ListElement
-							description={description}
-							title={name}>
-							{Icon && <Icon slot='icon' />}
-						</ListElement>
-					);
-				})}
-			</List>
-		</Section>
-	)
-}
+				return (
+					<ListElement
+						description={description}
+						title={name}>
+						{Icon && <Icon slot='icon' />}
+					</ListElement>
+				);
+			})}
+		</List>
+	</Section>
+)}

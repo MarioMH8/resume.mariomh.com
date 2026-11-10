@@ -9,50 +9,48 @@ import resume from '@resume';
 const { volunteer } = resume ?? {};
 ---
 
-{
-	volunteer && volunteer.length > 0 && (
-		<Section
-			class='print:hidden space-y-6'
-			title='Voluntariados'>
-			<List>
-				{volunteer.map(({ endDate, highlights, organization, position, startDate, summary, url }) => {
-					if (!organization) {
-						return <Fragment />;
-					}
+{volunteer && volunteer.length > 0 && (
+	<Section
+		class='print:hidden space-y-6'
+		title='Voluntariados'>
+		<List>
+			{volunteer.map(({ endDate, highlights, organization, position, startDate, summary, url }) => {
+				if (!organization) {
+					return <Fragment />;
+				}
 
-					return (
-						<ListElement
-							description={summary}
-							time={[startDate, endDate]}
-							title={organization}
-							url={url}>
-							<HeartHandshake slot='icon' />
-							{position && (
-								<Span
-									dimension='xs'
-									slot='badge'
-									variant='muted'>
-									{position}
-								</Span>
-							)}
-							{highlights && highlights.length > 0 && (
-								<ul class='list-disc ml-4 space-y-2'>
-									{highlights.filter(Boolean).map(highlight => {
-										return (
-											<Span
-												as='li'
-												dimension='sm'
-												variant='muted'>
-												{highlight}
-											</Span>
-										);
-									})}
-								</ul>
-							)}
-						</ListElement>
-					);
-				})}
-			</List>
-		</Section>
-	)
-}
+				return (
+					<ListElement
+						description={summary}
+						time={[startDate, endDate]}
+						title={organization}
+						url={url}>
+						<HeartHandshake slot='icon' />
+						{position && (
+							<Span
+								dimension='xs'
+								slot='badge'
+								variant='muted'>
+								{position}
+							</Span>
+						)}
+						{highlights && highlights.length > 0 && (
+							<ul class='list-disc ml-4 space-y-2'>
+								{highlights.filter(Boolean).map(highlight => {
+									return (
+										<Span
+											as='li'
+											dimension='sm'
+											variant='muted'>
+											{highlight}
+										</Span>
+									);
+								})}
+							</ul>
+						)}
+					</ListElement>
+				);
+			})}
+		</List>
+	</Section>
+)}

@@ -6,18 +6,16 @@ import resume from '@resume';
 const { publications } = resume ?? {};
 ---
 
-{
-	publications && publications.length > 0 && (
-		<Section
-			class='print:hidden'
-			title='Publicaciones'>
-			<div class='grid grid-cols-1 md:grid-cols-2 gap-3'>
-				{publications
-					.filter(publication => publication.name)
-					.map(publication => (
-						<Publication publication={publication} />
-					))}
-			</div>
-		</Section>
-	)
-}
+{publications && publications.length > 0 && (
+	<Section
+		class='print:hidden'
+		title='Publicaciones'>
+		<div class='grid grid-cols-1 md:grid-cols-2 gap-3'>
+			{publications
+				.filter(publication => publication.name)
+				.map(publication => (
+					<Publication publication={publication} />
+				))}
+		</div>
+	</Section>
+)}
