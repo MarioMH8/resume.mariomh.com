@@ -3,93 +3,156 @@
 </h1>
 
 <p align="center">
-    Printable Curriculum Vitae
+  A printable curriculum vitae and the <code>@mariomh8/resume</code> package.
 </p>
 
-![mariomh-resume--portfolio](docs/resume.mriomh.com.webp)
+<p align="center">
+  <a href="https://resume.mariomh.com"><img src="https://img.shields.io/badge/live-resume.mariomh.com-blue?style=flat-square" alt="Live site"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-PolyForm%20Noncommercial%201.0.0-lightgrey?style=flat-square" alt="License"></a>
+</p>
+
+![resume.mariomh.com](docs/resume.mriomh.com.webp)
+
+## Table of contents
+
+- [Features](#features)
+- [Tech stack](#tech-stack)
+- [Lighthouse score](#lighthouse-score)
+- [Requirements](#requirements)
+- [Running locally](#running-locally)
+- [The package](#the-package)
+- [Deploying the site](#deploying-the-site)
+- [Project structure](#project-structure)
+- [Contributing](#contributing)
+- [Security](#security)
+- [License](#license)
+- [Inspiration and credits](#inspiration-and-credits)
 
 ## Features
 
-- 📱 Responsive Design
-- 🎨 Light and Dark theme
-- 🖨️ Printable (Cmd + p | Ctrl + p)
+- 📱 Responsive design.
+- 🎨 Light and dark theme.
+- 🖨️ Printable layout (`Cmd + P` or `Ctrl + P`).
+- 🌐 Spanish content with the CV data shared through a package.
 
-## Tech Stack
+## Tech stack
 
-- **Runtime** - [Bun](https://bun.sh)
-- **Frontend** - [Astro](https://astro.build/)
-- **Styling** - [TailwindCSS](https://tailwindcss.com)
-- **Deployment** - [Cloudflare Pages](https://pages.cloudflare.com/)
-- **Languages** - [TypeScript](https://www.typescriptlang.org/)
+- **Runtime and package manager** - [Bun](https://bun.sh) 1.4.4
+- **Frontend** - [Astro](https://astro.build)
+- **Styling** - [Tailwind CSS](https://tailwindcss.com)
+- **Language** - [TypeScript](https://www.typescriptlang.org)
+- **Registry** - [GitHub Packages](https://github.com/features/packages)
+- **Deployment** - [Cloudflare Pages](https://pages.cloudflare.com)
 
-## Lighthouse Score
+## Lighthouse score
 
-![lighthouse-result.svg](docs/lighthouse-result.svg)
+![Lighthouse result](docs/lighthouse-result.svg)
 
-## Running Locally
+## Requirements
 
-Clone the project
+- Bun 1.4.4
+- Git
+- A GitHub personal access token with `read:packages` to install `@mariomh8/resume` and the other private packages
+
+## Running locally
+
+Clone the repository and install the workspace:
 
 ```bash
 git clone https://github.com/MarioMH8/resume.mariomh.com.git
-```
-
-Go to the project directory
-
-```bash
 cd resume.mariomh.com
-```
-
-Install dependencies
-
-```bash
 bun install
 ```
 
-Build the package and the site
+Build the package and the site:
 
 ```bash
 bun run build
 ```
 
-Start the development server
+Start the development server:
 
 ```bash
 bun run dev
 ```
 
-## Package
+The main commands are:
 
-The repository publishes `@mariomh8/resume` to GitHub Packages. The package contains the CV data, the JSON Schema and the generated types.
+| Task | Command |
+| --- | --- |
+| Build the package and the site | `bun run build` |
+| Build only the package | `bun run build:packages` |
+| Run the development server | `bun run dev` |
+| Run the tests | `bun run test` |
+| Type-check | `bun run typecheck` |
+| Type-check the Astro sources | `bun run typecheck:astro` |
+| Lint without writing changes | `bun run lint:ci` |
+| Lint and fix | `bun run lint:fix` |
+| Build and validate the package | `bun run check:packages` |
+
+## The package
+
+`@mariomh8/resume` publishes the CV data as JSON Resume (v1.2.1), the JSON Schema and the generated types. The package is private and lives in the `resume/` workspace.
 
 ```bash
 bun run build:packages
 bun run check:packages
 ```
 
-Local installs need a classic GitHub personal access token with `read:packages` in your user-level npm configuration. CI uses the `PACKAGES_TOKEN` Actions secret. See [CONTRIBUTING.md](CONTRIBUTING.md) for the complete setup.
+Add the scope and your token to your user-level npm configuration:
 
-## Deploying the project
+```ini
+//npm.pkg.github.com/:_authToken=${NPM_TOKEN}
+@mariomh8:registry=https://npm.pkg.github.com/
+```
+
+Export `NPM_TOKEN` with a classic GitHub personal access token that has the `read:packages` permission. In CI the release workflow uses `GITHUB_TOKEN` with `packages: write`, and Renovate uses the `RENOVATE_PACKAGES_TOKEN` secret.
+
+<!-- eslint-skip -->
+```ts
+import resume from '@mariomh8/resume';
+import type { JSONResume } from '@mariomh8/resume';
+import schema from '@mariomh8/resume/schema.json';
+```
+
+The default export is the resume object, the `JSONResume` type describes it and `schema.json` is the JSON Schema built from the Zod schemas in `resume/schema/`.
+
+The CV data contains personal information. Read [CONTENT-LICENSE.md](CONTENT-LICENSE.md) before reusing it.
+
+## Deploying the site
 
 The site deploys automatically after the `Continuous integration` workflow succeeds on `main`. You can also run the [Deploy](https://github.com/MarioMH8/resume.mariomh.com/actions/workflows/deploy.yml) workflow manually with `workflow_dispatch`.
 
-## Project Structure
+## Project structure
 
-The project is organized into several main directories and files:
+```text
+src/               Astro site: assets, components, features, layouts and pages
+resume/            @mariomh8/resume: data, Zod schemas, types and build
+public/            Static files, the printable PDF and the portrait
+docs/              Screenshots, the Lighthouse result and the agent guides
+.github/           Workflows, issue templates and CODEOWNERS
+```
 
-- `src/`: This directory contains all the source code for the project.
-  - `assets/`: Contains the images, fonts, and other assets used in the project.
-  - `components/`: Contains the common components.
-  - `features/`: Contains the specific components of the application.
-  - `icons/`: Contains the SVG icons used in the project.
-  - `layouts/`: Contains the base layout of the page.
-  - `pages/`: Contains the Astro components that represent the pages of the application.
-- `public/`: This directory contains all the static files.
+## Contributing
 
-## Inspiration and Credits
+Read [CONTRIBUTING.md](CONTRIBUTING.md) before opening an issue or a pull request. The project follows an issue-first workflow, Conventional Commits and GitFlow with `develop` as the integration branch and `main` for stable releases.
 
-Here are some inspiration for this kind of resume website. Only some features and functionalities are inspired by
-these following websites. All codes are written on my own.
+- [AGENTS.md](AGENTS.md): entry point for the repository guides.
+- [docs/agents/](docs/agents/): architecture, conventions, development, releases, pull requests and branches.
+
+## Security
+
+Do not report vulnerabilities in a public issue. Follow [SECURITY.md](SECURITY.md) and use GitHub's private vulnerability reporting. The CV contains personal data, so report any unintended exposure through the same private channel.
+
+## License
+
+The source code is licensed under the [PolyForm Noncommercial License 1.0.0](LICENSE). You may read, use, modify and share it for noncommercial purposes, with the required notice.
+
+The CV data, the portrait, the images and the documentation prose are **all rights reserved**. See [CONTENT-LICENSE.md](CONTENT-LICENSE.md) for the exact scope.
+
+## Inspiration and credits
+
+Some features and interactions are inspired by these resume sites. All the code is written from scratch.
 
 - [Résumé minimalista by midudev](https://github.com/midudev/minimalist-portfolio-json)
 - [Print-friendly portfolio CV by Ariel Cerda](https://github.com/Smilesharks/dev-portfolio)
