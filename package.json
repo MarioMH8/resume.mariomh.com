@@ -62,7 +62,7 @@
 	"devDependencies": {
 		"@astrojs/check": "0.9.12",
 		"@astrojs/sitemap": "3.7.4",
-		"@astrojs/ts-plugin": "1.10.12",
+		"@astrojs/ts-plugin": "1.11.0",
 		"@changesets/cli": "3.0.3",
 		"@commitlint/cli": "21.2.4",
 		"@commitlint/config-conventional": "21.2.4",
