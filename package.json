@@ -55,13 +55,13 @@
 		"@mariomh8/resume": "workspace:*",
 		"@mariomh8/span": "0.3.1",
 		"@mariomh8/tailwind": "0.3.0",
-		"astro": "7.4.8",
+		"astro": "7.4.12",
 		"astro-mail-obfuscation": "3.0.1",
 		"astro-seo": "1.2.0"
 	},
 	"devDependencies": {
 		"@astrojs/check": "0.9.12",
-		"@astrojs/sitemap": "3.7.4",
+		"@astrojs/sitemap": "3.7.5",
 		"@astrojs/ts-plugin": "1.11.0",
 		"@changesets/cli": "3.0.3",
 		"@commitlint/cli": "21.2.4",
