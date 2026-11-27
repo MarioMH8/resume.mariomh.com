@@ -62,7 +62,7 @@
 	"devDependencies": {
 		"@astrojs/check": "0.9.12",
 		"@astrojs/sitemap": "3.7.4",
-		"@astrojs/ts-plugin": "1.10.12",
+		"@astrojs/ts-plugin": "1.11.0",
 		"@changesets/cli": "3.0.3",
 		"@commitlint/cli": "21.2.4",
 		"@commitlint/config-conventional": "21.2.4",
@@ -70,16 +70,16 @@
 		"@hexadrop/tsconfig": "0.0.5",
 		"@playform/compress": "0.2.5",
 		"@tailwindcss/vite": "4.3.5",
-		"@types/bun": "1.4.4",
+		"@types/bun": "1.4.5",
 		"astro-robots-txt": "1.0.0",
 		"astro-webmanifest": "1.0.0",
-		"eslint": "10.14.0",
+		"eslint": "10.15.0",
 		"husky": "9.1.7",
-		"lint-staged": "17.6.0",
-		"playwright-core": "1.65.0",
+		"lint-staged": "17.6.1",
+		"playwright-core": "1.65.1",
 		"sharp": "0.35.5",
 		"tailwindcss": "4.3.5",
 		"typescript": "6.0.3"
 	},
-	"packageManager": "bun@1.4.4"
+	"packageManager": "bun@1.4.5"
 }
