@@ -6,7 +6,7 @@
       "name": "resume.mariomh.com",
       "dependencies": {
         "@fontsource/dm-sans": "5.3.0",
-        "@lucide/astro": "1.70.0",
+        "@lucide/astro": "1.73.0",
         "@mariomh8/archia": "0.1.0",
         "@mariomh8/font": "0.2.1",
         "@mariomh8/heading": "0.3.1",
@@ -402,7 +402,7 @@
 
     "@keyv/serialize": ["@keyv/serialize@1.1.1", "", {}, "sha512-dXn3FZhPv0US+7dtJsIi2R+c7qWYiReoEh5zUntWCf4oSpMNib8FDhSoed6m3QyZdx5hK7iLFkYk3rNxwt8vTA=="],
 
-    "@lucide/astro": ["@lucide/astro@1.70.0", "", { "peerDependencies": { "astro": "^4 || ^5 || ^6 || ^7" } }, "sha512-GkD59zeFP350rqF+Rc/k1Yc92tuSTG8duXZ1d5BK5xT3wLPiMqKpqFtosQxopYvP/tBHW9D1mqdhzGjoRSLsYA=="],
+    "@lucide/astro": ["@lucide/astro@1.73.0", "", { "peerDependencies": { "astro": "^4 || ^5 || ^6 || ^7" } }, "sha512-FpCBGh0D4yc3uFxcJ/qcBaEq2MzG70DHavYbbPjMYLVadAuFVM4CNcgdGKxanvFR5TS050+aF7gIAEVjfXyOcQ=="],
 
     "@manypkg/find-root": ["@manypkg/find-root@3.1.0", "", { "dependencies": { "@manypkg/tools": "^2.1.0" } }, "sha512-BcSqCyKhBVZ5YkSzOiheMCV41kqAFptW6xGqYSTjkVTl9XQpr+pqHhwgGCOHQtjDCv7Is6EFyA14Sm5GVbVABA=="],
 
